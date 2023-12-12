@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/dark_gery"
     tools:context=".MainActivity"
     >
 
@@ -24,7 +25,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:padding="24dp">
+            android:padding="24dp"
+            android:background="@color/shaded_blue">
 
             <TextView
                 android:id="@+id/loginTW"
@@ -32,37 +34,37 @@
                 android:layout_height="wrap_content"
                 android:text="@string/register"
                 android:textAlignment="center"
-                android:textColor="@color/purple"
+                android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/login_username"
+                android:id="@+id/register_username"
                 android:inputType="text"
                 android:background="@drawable/custom_edit_test_background"
                 android:drawableStart="@drawable/user_dark"
                 android:drawablePadding="8dp"
                 android:hint="@string/user_hint"
                 android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/purple"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/red"
                 android:layout_marginTop="40dp"
                 android:autofillHints="name"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/email_address"
+                android:id="@+id/register_email_address"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/custom_edit_test_background"
                 android:drawableStart="@drawable/email_dark"
                 android:drawablePadding="8dp"
                 android:hint="@string/email"
                 android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/purple"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/red"
                 android:layout_marginTop="20dp"
                 android:autofillHints="emailAddress"/>
 
@@ -70,39 +72,40 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/login_password"
+                android:id="@+id/register_password"
                 android:inputType="textPassword"
                 android:background="@drawable/custom_edit_test_background"
                 android:drawableStart="@drawable/password_dark"
                 android:drawablePadding="8dp"
                 android:hint="@string/password_hint"
                 android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/purple"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/red"
                 android:layout_marginTop="20dp"
                 android:autofillHints="password"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/login_password_confirm"
+                android:id="@+id/register_password_confirm"
                 android:inputType="textPassword"
                 android:background="@drawable/custom_edit_test_background"
                 android:drawableStart="@drawable/password_dark"
                 android:drawablePadding="8dp"
                 android:hint="@string/password_confirmation"
                 android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/purple"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/red"
                 android:layout_marginTop="20dp"
                 android:autofillHints="password"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
-                android:id="@+id/login_btn"
+                android:id="@+id/register_button"
                 android:text="@string/register"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+                android:background="@color/grey"
                 android:textSize="18sp"
                 android:textColorHighlight="@color/purple"
                 android:layout_marginTop="15dp"/>
@@ -114,6 +117,7 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="@string/signed_up"
+        android:textColor="@color/white"
         android:textSize="18sp"
         />
 
@@ -122,7 +126,7 @@
         android:layout_height="wrap_content"
         android:text="@string/log_in_from_register"
         android:textSize="18sp"
-        android:textColor="@color/purple"
+        android:textColor="@color/shaded_blue"
         android:textStyle="bold"
         />
 

@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity"
+    android:background="@color/dark_gery"
+    tools:context=".MainActivity">
     >
 
     <androidx.cardview.widget.CardView
@@ -24,7 +25,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:padding="24dp">
+            android:padding="24dp"
+            android:background="@color/shaded_blue">
 
             <TextView
                 android:id="@+id/loginTW"
@@ -32,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
                 android:textAlignment="center"
-                android:textColor="@color/purple"
+                android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -46,7 +48,7 @@
                 android:drawablePadding="8dp"
                 android:hint="@string/user_hint"
                 android:padding="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textColorHighlight="@color/purple"
                 android:layout_marginTop="40dp"
                 android:autofillHints="name"/>
@@ -79,9 +81,9 @@
                 android:layout_height="50sp"
                 android:id="@+id/login_btn"
                 android:text="@string/login"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
+                android:background="@color/grey"
                 android:textSize="18sp"
-                android:textColorHighlight="@color/purple"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -92,6 +94,7 @@
         android:padding="8dp"
         android:text="@string/not_signed_up"
         android:textSize="18sp"
+        android:textColor="@color/white"
         />
 
     <TextView
@@ -100,7 +103,7 @@
         android:layout_height="wrap_content"
         android:text="@string/register_from_login"
         android:textSize="18sp"
-        android:textColor="@color/purple"
+        android:textColor="@color/shaded_blue"
         android:textStyle="bold"
         />
 
