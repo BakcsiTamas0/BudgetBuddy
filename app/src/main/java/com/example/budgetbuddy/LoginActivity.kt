@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import com.example.budgetbuddy.HandleLogin.Companion.authenticateUser
 
 class LoginActivity : AppCompatActivity() {
     private val PREFS_NAME = "preferences"
@@ -23,7 +24,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Move the initialization here
         username = findViewById(R.id.login_username)
         password = findViewById(R.id.login_password)
         remember = findViewById(R.id.remember)
@@ -32,19 +32,26 @@ class LoginActivity : AppCompatActivity() {
         val registerFromLogin: TextView = findViewById(R.id.register_from_login)
 
         loginBtn.setOnClickListener {
-            Log.d("LoginActivity", username.text.toString())
-            Log.d("LoginActivity", password.text.toString())
+            authenticateUser(username.text.toString(), password.text.toString(), object : HandleLogin.AuthCallback {
+                override fun onAuthSuccess() {
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)}
 
-            if (remember.isChecked) {
-                savePreferences()
-            } else {
-                clearPreferences()
-            }
+                override fun onAuthError() {
+                    Log.d("Error", "Login failed! Check your credentials and try again!")
+                }
 
-            if (username.text.toString() != "" && password.text.toString() != "") {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
+            })
+            //if (remember.isChecked) {
+            //    savePreferences()
+            //} else {
+            //    clearPreferences()
+            //}
+
+            //if (username.text.toString() != "" && password.text.toString() != "") {
+            //    val intent = Intent(this, MainActivity::class.java)
+            //    startActivity(intent)
+            //}
         }
 
         registerFromLogin.setOnClickListener {

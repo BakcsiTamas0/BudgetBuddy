@@ -6,4 +6,7 @@ import retrofit2.http.POST
 interface ApiServices {
     @POST("register_user")
     fun registerUser(@Body userRegisterDataClass: UserRegisterDataClass): Call<Void>
+
+    @POST("authenticate_user")
+    fun authenticateUser(@Body userLoginDataClass: UserLoginDataClass): Call<Void>
 }

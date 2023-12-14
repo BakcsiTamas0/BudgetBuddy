@@ -33,7 +33,7 @@ class RegisterActivity : AppCompatActivity() {
         registerButton = findViewById(R.id.register_button)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.10.13.253:65432/")
+            .baseUrl("http://192.168.43.228:65432/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -41,9 +41,6 @@ class RegisterActivity : AppCompatActivity() {
 
         if (password.text.toString() == confirmPassword.text.toString()) {
             registerButton.setOnClickListener() {
-
-                Toast.makeText(this, password.text.toString(), Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, confirmPassword.text.toString(), Toast.LENGTH_SHORT).show()
 
                 val newUser = UserRegisterDataClass(
                     username = username.text.toString(),
