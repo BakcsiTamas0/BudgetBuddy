@@ -8,10 +8,14 @@ import android.nfc.Tag
 import android.nfc.tech.IsoDep
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.google.android.material.navigation.NavigationView
 import java.nio.charset.Charset
 import java.util.concurrent.Executor
 
@@ -25,8 +29,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initBiometric()
-        showBiometricPrompt()
+        val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = findViewById(R.id.drawerLayout)
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        val toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        navView.setOnClickListener() {
+            Log.d("TAG", "clicked")
+        }
+
+        //initBiometric()
+        //showBiometricPrompt()
     }
 
     // Biometric authentication setup

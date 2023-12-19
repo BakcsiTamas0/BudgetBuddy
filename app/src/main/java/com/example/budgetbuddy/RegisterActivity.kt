@@ -1,10 +1,12 @@
 package com.example.budgetbuddy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.budgetbuddy.PasswordHashUtil.Companion.hashPassword
 import retrofit2.Call
@@ -18,8 +20,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var email : EditText
     private lateinit var password : EditText
     private lateinit var confirmPassword : EditText
-
     private lateinit var registerButton : Button
+    private lateinit var loginFromRegister: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,12 @@ class RegisterActivity : AppCompatActivity() {
         confirmPassword = findViewById(R.id.register_password_confirm)
 
         registerButton = findViewById(R.id.register_button)
+
+        loginFromRegister = findViewById(R.id.loginFromRegister)
+        loginFromRegister.setOnClickListener() {
+            val login = Intent(this, LoginActivity::class.java)
+            startActivity(login)
+        }
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://192.168.43.228:65432/")
@@ -64,6 +72,5 @@ class RegisterActivity : AppCompatActivity() {
 
             }
         }
-
     }
 }

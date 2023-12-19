@@ -22,5 +22,6 @@
     <string name="totalTransactions">Transactions</string>
     <string name="moneySaved">Saved money</string>
     <string name="None">None</string>
-
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
