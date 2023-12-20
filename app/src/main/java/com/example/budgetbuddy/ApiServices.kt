@@ -9,4 +9,7 @@ interface ApiServices {
 
     @POST("authenticate_user")
     fun authenticateUser(@Body userLoginDataClass: UserLoginDataClass): Call<Void>
+
+    @POST("get_email_by_username")
+    fun getEmailByUsername(@Body usernameData: String): Call<EmailResponse>
 }

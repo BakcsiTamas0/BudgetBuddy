@@ -14,37 +14,187 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
 
         <ImageView
             android:id="@+id/drawerUserImage"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="15sp"
-            android:src="@drawable/custom_edit_test_background"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/user_icon"
             android:importantForAccessibility="no"/>
 
         <TextView
+            android:id="@+id/drawerUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
+            android:layout_marginTop="15dp"
             android:text="@string/user_hint"
+            android:textStyle="bold"
             android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/drawerEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
+            android:layout_marginTop="15dp"
             android:text="@string/email"
+            android:textStyle="bold"
             android:textSize="18sp"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="10dp"
             android:background="@color/black"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/profile"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/finances"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:textStyle="bold"
+            android:text="@string/spending_limit"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/graph"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/statistics"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/settings"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/black"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/FAQ"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/about"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/contact"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="5dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/facebook"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/instagram"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/twitter"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/github"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/copyright"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
     </LinearLayout>
 
 </RelativeLayout>

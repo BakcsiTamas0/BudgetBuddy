@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.budgetbuddy.HandleLogin.Companion.authenticateUser
 
 class LoginActivity : AppCompatActivity() {
@@ -35,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
             authenticateUser(username.text.toString(), password.text.toString(), object : HandleLogin.AuthCallback {
                 override fun onAuthSuccess() {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.putExtra("USERNAME", username.text.toString())
                     startActivity(intent)}
 
                 override fun onAuthError() {

@@ -9,6 +9,7 @@ import android.nfc.tech.IsoDep
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -16,6 +17,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.google.android.material.navigation.NavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.nio.charset.Charset
 import java.util.concurrent.Executor
 
@@ -32,9 +38,14 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: androidx.drawerlayout.widget.DrawerLayout = findViewById(R.id.drawerLayout)
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        val toggle: ActionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
+
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        val drawerusername = intent.getStringExtra("USERNAME")
+
+        getEmailByUsername(drawerusername.toString())
 
         val navView: NavigationView = findViewById(R.id.nav_view)
         navView.setOnClickListener() {
@@ -44,6 +55,50 @@ class MainActivity : AppCompatActivity() {
         //initBiometric()
         //showBiometricPrompt()
     }
+
+    private fun getEmailByUsername(username: String) {
+        val intentUsername = intent.getStringExtra("USERNAME")
+        Log.d("username", intentUsername.toString())
+        val drawerusername: TextView = findViewById(R.id.drawerUsername)
+        drawerusername.text = intentUsername
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://192.168.43.228:65432/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val apiServices = retrofit.create(ApiServices::class.java)
+
+        val call = apiServices.getEmailByUsername(username)
+
+        call.enqueue(object : Callback<EmailResponse> {
+            override fun onResponse(call: Call<EmailResponse>, response: Response<EmailResponse>) {
+                if (response.isSuccessful) {
+                    val email: String = response.body()!!.email
+                    if (email != null) {
+                        updateDrawerViews(username, email)
+                    } else {
+                        // Handle empty or null email
+                    }
+                } else {
+                    // Handle unsuccessful response
+                }
+            }
+
+            override fun onFailure(call: Call<EmailResponse>, t: Throwable) {
+                Log.d("TAG", "onFailure: $t")
+            }
+
+            private fun updateDrawerViews(username: String, email: String) {
+                val usernameTextView: TextView = findViewById(R.id.drawerUsername)
+                val emailTextView: TextView = findViewById(R.id.drawerEmail)
+
+                usernameTextView.text = username
+                emailTextView.text = email
+            }
+        })
+    }
+
 
     // Biometric authentication setup
     private fun initBiometric() {
@@ -79,5 +134,4 @@ class MainActivity : AppCompatActivity() {
             Log.d("TAG", "Authentication failed!")
         }
     }
-
 }
