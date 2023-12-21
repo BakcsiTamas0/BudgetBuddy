@@ -9,5 +9,6 @@
     <color name="midinght_purple">#20073a</color>
     <color name="shaded_blue">#5baee5</color>
     <color name="grey">#c5d8e1</color>
-    <color name="dark_gery">#334553</color>>
+    <color name="dark_gery">#334553</color>
+    <color name="transparent">#00000000</color>>
 </resources>
