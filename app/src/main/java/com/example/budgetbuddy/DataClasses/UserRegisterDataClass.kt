@@ -1,4 +1,4 @@
-package com.example.budgetbuddy
+package com.example.budgetbuddy.DataClasses
 data class UserRegisterDataClass(
     val username : String,
     val password : String,

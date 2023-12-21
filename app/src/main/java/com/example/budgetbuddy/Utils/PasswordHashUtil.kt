@@ -1,8 +1,7 @@
-package com.example.budgetbuddy
+package com.example.budgetbuddy.Utils
 
-import java.math.BigInteger
 import java.security.MessageDigest
-import java.security.SecureRandom
+
 class PasswordHashUtil {
     companion object {
         fun hashPassword(password:String):String {

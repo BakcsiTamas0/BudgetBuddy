@@ -1,5 +1,8 @@
-package com.example.budgetbuddy
+package com.example.budgetbuddy.API
 
+import com.example.budgetbuddy.DataClasses.EmailResponse
+import com.example.budgetbuddy.DataClasses.UserLoginDataClass
+import com.example.budgetbuddy.DataClasses.UserRegisterDataClass
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

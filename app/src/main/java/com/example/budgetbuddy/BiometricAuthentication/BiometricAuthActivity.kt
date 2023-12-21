@@ -1,10 +1,11 @@
-package com.example.budgetbuddy
+package com.example.budgetbuddy.BiometricAuthentication
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.budgetbuddy.R
 
 class BiometricAuthActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences

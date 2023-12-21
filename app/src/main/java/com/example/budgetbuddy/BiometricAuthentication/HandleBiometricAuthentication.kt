@@ -1,4 +1,4 @@
-package com.example.budgetbuddy
+package com.example.budgetbuddy.BiometricAuthentication
 
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity

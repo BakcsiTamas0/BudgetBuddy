@@ -7,8 +7,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import com.example.budgetbuddy.PasswordHashUtil.Companion.hashPassword
+import com.example.budgetbuddy.API.ApiServices
+import com.example.budgetbuddy.DataClasses.UserRegisterDataClass
+import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit

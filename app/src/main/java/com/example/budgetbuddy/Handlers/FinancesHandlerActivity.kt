@@ -1,0 +1,52 @@
+package com.example.budgetbuddy.Handlers
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.example.budgetbuddy.Fragments.DebtFragment
+import com.example.budgetbuddy.Fragments.ExpenseFragment
+import com.example.budgetbuddy.Fragments.IncomeFragment
+import com.example.budgetbuddy.R
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+
+class FinancesHandlerActivity : AppCompatActivity() {
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager2
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_finances_handler)
+
+        tabLayout = findViewById(R.id.tabLayout)
+        viewPager = findViewById(R.id.viewPager)
+
+        val fragmentList = listOf(IncomeFragment(), ExpenseFragment(), DebtFragment())
+        val adapter = FinancesPagerAdapter(this, fragmentList)
+
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = when (position) {
+                0 -> "Income"
+                1 -> "Expense"
+                2 -> "Debt"
+                else -> null
+            }
+        }.attach()
+    }
+
+    private class FinancesPagerAdapter(activity: AppCompatActivity, private val fragmentList: List<Fragment>) :
+        FragmentStateAdapter(activity) {
+
+        override fun getItemCount(): Int {
+            return fragmentList.size
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            return fragmentList[position]
+        }
+    }
+}

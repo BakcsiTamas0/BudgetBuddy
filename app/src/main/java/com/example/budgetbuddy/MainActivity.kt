@@ -1,11 +1,14 @@
 package com.example.budgetbuddy
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import com.example.budgetbuddy.Handlers.FinancesHandlerActivity
+import com.example.budgetbuddy.Handlers.HandleUserDataFetching
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerUsername: String
 
     private lateinit var navView: NavigationView
+
+    private lateinit var financesTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,5 +44,13 @@ class MainActivity : AppCompatActivity() {
         navView.setOnClickListener() {
             Log.d("TAG", "clicked")
         }
+
+        financesTextView = findViewById(R.id.financesTextView)
+        financesTextView.setOnClickListener() {
+            val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
+            startActivity(financesIntent)
+            drawerLayout.closeDrawers()
+        }
+
     }
 }

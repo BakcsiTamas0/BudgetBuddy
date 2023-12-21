@@ -63,6 +63,7 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/financesTextView"
             android:clickable="true"
             android:focusable="true"
             android:layout_width="match_parent"
