@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Spinner
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.budgetbuddy.Adapters.CustomIncomeSpinnerAdapter
+import com.example.budgetbuddy.Adapters.IncomeRecycleViewAdapter
+import com.example.budgetbuddy.DataClasses.IncomeItem
 import com.example.budgetbuddy.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,12 +37,46 @@ class IncomeFragment : Fragment() {
         }
     }
 
+    private lateinit var spinner: Spinner
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var incomeList: MutableList<IncomeItem>
+    private lateinit var addButton: Button
+    private lateinit var recyclerViewAdapter: IncomeRecycleViewAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_income, container, false)
+        savedInstanceState: Bundle?,
+    ): View {
+        val view: View = inflater.inflate(R.layout.fragment_income, container, false)
+        spinner = view.findViewById(R.id.incomeSpinner)
+
+        val items = listOf(
+            IncomeItem("Salary", R.drawable.salary),
+            IncomeItem("Crypto", R.drawable.crypto),
+            IncomeItem("Rental", R.drawable.rent),
+            IncomeItem("Profit", R.drawable.profit),
+            IncomeItem("Other", R.drawable.other)
+        )
+
+        val adapter = CustomIncomeSpinnerAdapter(requireContext(), items)
+        spinner.adapter = adapter
+
+        incomeList = mutableListOf()
+
+        recyclerViewAdapter = IncomeRecycleViewAdapter(requireContext(), incomeList)
+
+        recyclerView = view.findViewById(R.id.incomeRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = recyclerViewAdapter
+
+        addButton = view.findViewById(R.id.addIncome)
+        addButton.setOnClickListener() {
+            val selectedIncome = spinner.selectedItem as IncomeItem
+            incomeList.add(selectedIncome)
+            recyclerViewAdapter.notifyItemInserted(incomeList.size - 1)
+        }
+
+        return view
     }
 
     companion object {

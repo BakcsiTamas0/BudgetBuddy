@@ -152,33 +152,33 @@
             android:layout_marginTop="16dp"
             android:padding="5dp">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/facebook"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/facebook"/>
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/instagram"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/instagram"/>
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/twitter"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/twitter"/>
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/github"/>
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/github"/>
 
         </LinearLayout>
 
