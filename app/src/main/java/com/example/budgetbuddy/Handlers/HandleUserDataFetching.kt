@@ -21,7 +21,6 @@ class HandleUserDataFetching(
     fun fetchData(username: String) {
         val intent = (context as AppCompatActivity).intent
         val intentUsername = intent.getStringExtra("USERNAME")
-        Log.d("username", intentUsername.orEmpty())
 
         val drawerUsername: TextView = (context as AppCompatActivity).findViewById(R.id.drawerUsername)
         drawerUsername.text = intentUsername

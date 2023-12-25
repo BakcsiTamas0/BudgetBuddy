@@ -20,11 +20,18 @@ class FinancesHandlerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finances_handler)
 
+        val username = intent.getStringExtra("USERNAME").toString()
+
+        val fragmentList = listOf(
+            IncomeFragment.newInstance(username),
+            ExpenseFragment(),
+            DebtFragment()
+        )
+
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
 
-        val fragmentList = listOf(IncomeFragment(), ExpenseFragment(), DebtFragment())
-        val adapter = FinancesPagerAdapter(this, fragmentList)
+        val adapter = FinancesPagerAdapter(this, fragmentList, username)
 
         viewPager.adapter = adapter
 
@@ -38,15 +45,22 @@ class FinancesHandlerActivity : AppCompatActivity() {
         }.attach()
     }
 
-    private class FinancesPagerAdapter(activity: AppCompatActivity, private val fragmentList: List<Fragment>) :
-        FragmentStateAdapter(activity) {
+    private class FinancesPagerAdapter(
+        activity: AppCompatActivity,
+        private val fragmentList: List<Fragment>,
+        private val username: String?
+    ) : FragmentStateAdapter(activity) {
 
         override fun getItemCount(): Int {
             return fragmentList.size
         }
 
         override fun createFragment(position: Int): Fragment {
-            return fragmentList[position]
+            return if (position == 0) {
+                IncomeFragment.newInstance(username ?: "")
+            } else {
+                fragmentList[position]
+            }
         }
     }
 }

@@ -1,41 +1,47 @@
 package com.example.budgetbuddy.Fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.Adapters.CustomIncomeSpinnerAdapter
 import com.example.budgetbuddy.Adapters.IncomeRecycleViewAdapter
 import com.example.budgetbuddy.DataClasses.IncomeItem
+import com.example.budgetbuddy.Handlers.HandleIncomeCRUD
 import com.example.budgetbuddy.R
+import android.content.Intent
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [IncomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class IncomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            username = it.getString(ARG_PARAM1).toString()
         }
     }
+
+    private lateinit var handleIncomeCRUD: HandleIncomeCRUD
+
+    private lateinit var username: String
+    private lateinit var intent: Intent
 
     private lateinit var spinner: Spinner
     private lateinit var recyclerView: RecyclerView
@@ -43,11 +49,15 @@ class IncomeFragment : Fragment() {
     private lateinit var addButton: Button
     private lateinit var recyclerViewAdapter: IncomeRecycleViewAdapter
 
+    private lateinit var amountEditText: EditText
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_income, container, false)
+
+        Log.d("USERNAME", username)
         spinner = view.findViewById(R.id.incomeSpinner)
 
         val items = listOf(
@@ -69,32 +79,59 @@ class IncomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = recyclerViewAdapter
 
+        handleIncomeCRUD = HandleIncomeCRUD(requireContext())
+
         addButton = view.findViewById(R.id.addIncome)
+        amountEditText = view.findViewById(R.id.incomeAmount)
+
         addButton.setOnClickListener() {
             val selectedIncome = spinner.selectedItem as IncomeItem
-            incomeList.add(selectedIncome)
-            recyclerViewAdapter.notifyItemInserted(incomeList.size - 1)
+            val amount = amountEditText.text.toString()
+
+            if (amount.isNotEmpty()) {
+                val income = IncomeItem(selectedIncome.text, selectedIncome.imageId, amount.toDouble())
+
+                if (username != null) {
+                    handleIncomeCRUD.saveIncomeData(username!!, selectedIncome.text, amount.toDouble())
+                }
+
+                incomeList.add(income)
+                recyclerViewAdapter.notifyItemInserted(incomeList.size - 1)
+                updateTotalIncome()
+                amountEditText.text.clear()
+            } else {
+                val shakeAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.shake_animation)
+                amountEditText.startAnimation(shakeAnimation)
+
+                val errorColor = ContextCompat.getColor(requireContext(), R.color.red)
+                val originalBackground = amountEditText.background
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    amountEditText.background = originalBackground
+                }, 2000)
+
+                Toast.makeText(requireContext(), "Please enter an amount!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view
     }
 
+    private fun updateTotalIncome() {
+        var totalIncome = 0.0
+        incomeList.forEach { item ->
+            totalIncome += item.amount!!.toDouble()
+        }
+        val totalIncomeView = view?.findViewById<TextView>(R.id.totalIncome)
+        totalIncomeView?.text = String.format("%.2f", totalIncome)
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment IncomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(username: String) =
             IncomeFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(ARG_PARAM1, username)
                 }
             }
     }

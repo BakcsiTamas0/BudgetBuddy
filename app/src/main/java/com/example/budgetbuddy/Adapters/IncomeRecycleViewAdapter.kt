@@ -30,10 +30,12 @@ class IncomeRecycleViewAdapter(private val context: Context, private val itemLis
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.incomeTypeImage)
         private val textView: TextView = itemView.findViewById(R.id.incomeTypeList)
+        private val amountView: TextView = itemView.findViewById(R.id.incomeAmount)
 
         fun bind(item: IncomeItem) {
             imageView.setImageResource(item.imageId)
-            textView.text = item.text.toString()
+            amountView.text = String.format("%.2f", item.amount)
+            textView.text = item.text
         }
     }
 }

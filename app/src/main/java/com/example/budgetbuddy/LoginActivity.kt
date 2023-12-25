@@ -37,7 +37,8 @@ class LoginActivity : AppCompatActivity() {
                 override fun onAuthSuccess() {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra("USERNAME", username.text.toString())
-                    startActivity(intent)}
+                    startActivity(intent)
+                }
 
                 override fun onAuthError() {
                     Log.d("Error", "Login failed! Check your credentials and try again!")

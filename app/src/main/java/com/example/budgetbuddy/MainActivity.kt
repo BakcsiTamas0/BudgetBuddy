@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         drawerUsername = intent.getStringExtra("USERNAME").toString()
 
         handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(R.id.drawerEmail))
-        handleUserDataFetching.fetchData(drawerUsername.toString())
+        handleUserDataFetching.fetchData(drawerUsername)
 
         navView = findViewById(R.id.nav_view)
         navView.setOnClickListener() {
@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         financesTextView = findViewById(R.id.financesTextView)
         financesTextView.setOnClickListener() {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
+            financesIntent.putExtra("USERNAME", drawerUsername)
             startActivity(financesIntent)
             drawerLayout.closeDrawers()
         }
-
     }
 }
