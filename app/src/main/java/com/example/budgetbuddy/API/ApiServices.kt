@@ -2,6 +2,7 @@ package com.example.budgetbuddy.API
 
 import com.example.budgetbuddy.DataClasses.EmailResponse
 import com.example.budgetbuddy.DataClasses.IncomeData
+import com.example.budgetbuddy.DataClasses.UserIncomeDataResponse
 import com.example.budgetbuddy.DataClasses.UserLoginDataClass
 import com.example.budgetbuddy.DataClasses.UserRegisterDataClass
 import retrofit2.Call
@@ -17,17 +18,17 @@ interface ApiServices {
 
     // User API endpoint
     @POST("get_email_by_username")
-    fun getEmailByUsername(@Body usernameData: String): Call<EmailResponse>
+    fun getEmailByUsername(@Body username: String): Call<EmailResponse>
 
     // Income API endpoint
     @POST("save_income_data_by_username")
     fun saveIncomeDataByUsername(@Body incomeData: IncomeData): Call<IncomeData>
 
+    @POST("get_income_data_by_username")
+    fun getIncomeDataByUsername(@Body username: String): Call<UserIncomeDataResponse>
+
     @POST("update_income_data_by_username")
     fun updateIncomeDataByUsername(@Body incomeData: IncomeData): Call<IncomeData>
-
-    @POST("get_income_data_by_username")
-    fun getIncomeDataByUsername(@Body incomeData: IncomeData): Call<IncomeData>
 
     @POST("delete_income_data_by_username")
     fun deleteIncomeDataByUsername(@Body incomeData: IncomeData): Call<IncomeData>
