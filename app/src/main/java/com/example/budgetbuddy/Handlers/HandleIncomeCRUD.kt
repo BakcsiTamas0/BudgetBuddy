@@ -70,4 +70,28 @@ class HandleIncomeCRUD(requireContext: Context) {
             }
         })
     }
+
+    fun deleteIncomeData(username: String, incomeType: String, amount: Double) {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://192.168.43.228:65432/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val apiService = retrofit.create(ApiServices::class.java)
+        val call: Call<IncomeData> = apiService.deleteIncomeDataByUsername(username, incomeType, amount)
+
+        call.enqueue(object: Callback<IncomeData> {
+            override fun onResponse(call: Call<IncomeData>, response: retrofit2.Response<IncomeData>) {
+                if (response.isSuccessful) {
+                    Log.d("HandleIncomeCRUD", "Income data deleted successfully")
+                } else {
+                    Log.d("HandleIncomeCRUD", "Failed to delete income data")
+                }
+            }
+
+            override fun onFailure(call: Call<IncomeData>, t: Throwable) {
+                Log.d("HandleIncomeCRUD", "Failed to delete income data: ${t.message}")
+            }
+        })
+    }
 }

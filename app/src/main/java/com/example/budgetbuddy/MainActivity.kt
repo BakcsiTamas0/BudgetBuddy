@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.example.budgetbuddy.Adapters.IncomeRecycleViewAdapter
 import com.example.budgetbuddy.Handlers.FinancesHandlerActivity
 import com.example.budgetbuddy.Handlers.HandleUserDataFetching
 import com.google.android.material.navigation.NavigationView

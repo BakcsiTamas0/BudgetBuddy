@@ -82,7 +82,9 @@ class IncomeFragment : Fragment() {
 
         incomeList = mutableListOf()
 
-        recyclerViewAdapter = IncomeRecycleViewAdapter(requireContext(), incomeList)
+        recyclerViewAdapter = IncomeRecycleViewAdapter(requireContext(), incomeList, username)
+        intent = Intent(requireContext(), IncomeFragment::class.java)
+        intent.putExtra("USERNAME", username)
 
         recyclerView = view.findViewById(R.id.incomeRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -99,10 +101,6 @@ class IncomeFragment : Fragment() {
 
             if (amount.isNotEmpty()) {
                 val income = IncomeItem(selectedIncome.text, selectedIncome.imageId, amount.toDouble())
-
-                Log.d("abc", username)
-                Log.d("abc", selectedIncome.text)
-                Log.d("abc", amount)
 
                 if (username != null) {
                     handleIncomeCRUD.saveIncomeData(username, selectedIncome.text, amount.toDouble())

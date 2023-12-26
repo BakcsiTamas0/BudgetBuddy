@@ -8,6 +8,8 @@ import com.example.budgetbuddy.DataClasses.UserRegisterDataClass
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Path
+
 interface ApiServices {
     // Authentication API endpoints
     @POST("register_user")
@@ -27,9 +29,10 @@ interface ApiServices {
     @POST("get_income_data_by_username")
     fun getIncomeDataByUsername(@Body username: String): Call<UserIncomeDataResponse>
 
-    @POST("update_income_data_by_username")
-    fun updateIncomeDataByUsername(@Body incomeData: IncomeData): Call<IncomeData>
-
-    @POST("delete_income_data_by_username")
-    fun deleteIncomeDataByUsername(@Body incomeData: IncomeData): Call<IncomeData>
+    @POST("delete_income_data_by_username/{username}/{incomeType}/{amount}")
+    fun deleteIncomeDataByUsername(
+        @Path("username") username: String,
+        @Path("incomeType") incomeType: String,
+        @Path("amount") amount: Double):
+            Call<IncomeData>
 }
