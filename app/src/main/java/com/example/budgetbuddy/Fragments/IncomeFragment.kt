@@ -17,21 +17,18 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.budgetbuddy.Adapters.CustomIncomeSpinnerAdapter
-import com.example.budgetbuddy.Adapters.IncomeRecycleViewAdapter
-import com.example.budgetbuddy.DataClasses.IncomeItem
-import com.example.budgetbuddy.Handlers.HandleIncomeCRUD
+import com.example.budgetbuddy.Adapters.IncomeAdapter.CustomIncomeSpinnerAdapter
+import com.example.budgetbuddy.Adapters.IncomeAdapter.IncomeRecyclerViewAdapter
+import com.example.budgetbuddy.DataClasses.IncomeData.IncomeItem
+import com.example.budgetbuddy.Handlers.FiancesHandler.HandleIncomeCRUD
 import com.example.budgetbuddy.R
 import android.content.Intent
-import com.example.budgetbuddy.DataClasses.UserIncomeDataResponse
+import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class IncomeFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -48,7 +45,7 @@ class IncomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var incomeList: MutableList<IncomeItem>
     private lateinit var addButton: Button
-    private lateinit var recyclerViewAdapter: IncomeRecycleViewAdapter
+    private lateinit var recyclerViewAdapter: IncomeRecyclerViewAdapter
 
     private lateinit var amountEditText: EditText
 
@@ -82,7 +79,7 @@ class IncomeFragment : Fragment() {
 
         incomeList = mutableListOf()
 
-        recyclerViewAdapter = IncomeRecycleViewAdapter(requireContext(), incomeList, username)
+        recyclerViewAdapter = IncomeRecyclerViewAdapter(requireContext(), incomeList, username)
         intent = Intent(requireContext(), IncomeFragment::class.java)
         intent.putExtra("USERNAME", username)
 

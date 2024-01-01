@@ -1,14 +1,20 @@
 package com.example.budgetbuddy.API
 
-import com.example.budgetbuddy.DataClasses.EmailResponse
-import com.example.budgetbuddy.DataClasses.IncomeData
-import com.example.budgetbuddy.DataClasses.UserIncomeDataResponse
-import com.example.budgetbuddy.DataClasses.UserLoginDataClass
-import com.example.budgetbuddy.DataClasses.UserRegisterDataClass
+import com.example.budgetbuddy.DataClasses.ExpenseData.ExpenseData
+import com.example.budgetbuddy.DataClasses.UserData.EmailResponse
+import com.example.budgetbuddy.DataClasses.IncomeData.IncomeData
+import com.example.budgetbuddy.DataClasses.UserData.UserExpenseDataResponse
+import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
+import com.example.budgetbuddy.DataClasses.UserData.UserLoginDataClass
+import com.example.budgetbuddy.DataClasses.UserData.UserRegisterDataClass
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiServices {
     // Authentication API endpoints
@@ -35,4 +41,29 @@ interface ApiServices {
         @Path("incomeType") incomeType: String,
         @Path("amount") amount: Double):
             Call<IncomeData>
+
+    @Multipart
+    @POST("update_profile_picture")
+    fun updateProfilePicture(
+        @Part image: MultipartBody.Part,
+        @Part("username") username: String): Call<Void>
+
+    @POST("save_expense_data_by_username/{username}/{expenseType}/{amount}")
+    fun saveExpenseDataByUsername(
+        @Path("username") username: String,
+        @Path("expenseType") expenseType: String,
+        @Path("amount") amount: Double,
+    ): Call<ExpenseData>
+
+    @POST("get_expense_data_by_username/{username}")
+    fun getExpenseDataByUsername(
+        @Path("username") username: String
+    ): Call<UserExpenseDataResponse>
+
+    @POST("delete_expense_data_by_username/{username}/{incomeType}/{amount}")
+    fun deleteExpenseDataByUsername(
+        @Path("username") username: String,
+        @Path("incomeType") incomeType: String,
+        @Path("amount") amount: Double):
+            Call<ExpenseData>
 }

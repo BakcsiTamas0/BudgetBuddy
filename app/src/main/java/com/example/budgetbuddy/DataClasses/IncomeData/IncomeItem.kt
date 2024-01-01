@@ -1,4 +1,4 @@
-package com.example.budgetbuddy.DataClasses
+package com.example.budgetbuddy.DataClasses.IncomeData
 
 data class IncomeItem(
     val text: String,

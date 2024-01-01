@@ -6,10 +6,8 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import com.example.budgetbuddy.Adapters.IncomeRecycleViewAdapter
-import com.example.budgetbuddy.Handlers.FinancesHandlerActivity
-import com.example.budgetbuddy.Handlers.HandleUserDataFetching
+import com.example.budgetbuddy.Handlers.FiancesHandler.FinancesHandlerActivity
+import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
 
     private lateinit var financesTextView: TextView
+    private lateinit var settingsTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +46,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         financesTextView = findViewById(R.id.financesTextView)
+        settingsTextView = findViewById(R.id.settingsTextView)
+
         financesTextView.setOnClickListener() {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
             financesIntent.putExtra("USERNAME", drawerUsername)
             startActivity(financesIntent)
             drawerLayout.closeDrawers()
+        }
+
+        settingsTextView.setOnClickListener() {
+            val settingsIntent = Intent(this, SettingsActivity::class.java)
+            startActivity(settingsIntent)
         }
     }
 }

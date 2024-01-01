@@ -1,4 +1,4 @@
-package com.example.budgetbuddy.Adapters
+package com.example.budgetbuddy.Adapters.IncomeAdapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.budgetbuddy.DataClasses.IncomeItem
+import com.example.budgetbuddy.DataClasses.IncomeData.IncomeItem
 import com.example.budgetbuddy.R
 
 class CustomIncomeSpinnerAdapter(

@@ -1,10 +1,10 @@
-package com.example.budgetbuddy.Handlers
+package com.example.budgetbuddy.Handlers.FiancesHandler
 
 import android.content.Context
 import android.util.Log
 import com.example.budgetbuddy.API.ApiServices
-import com.example.budgetbuddy.DataClasses.IncomeData
-import com.example.budgetbuddy.DataClasses.UserIncomeDataResponse
+import com.example.budgetbuddy.DataClasses.IncomeData.IncomeData
+import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

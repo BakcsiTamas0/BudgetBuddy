@@ -22,7 +22,10 @@
         android:theme="@style/Theme.Material3.Dark.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".Handlers.FinancesHandlerActivity"
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Handlers.FiancesHandler.FinancesHandlerActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -38,8 +41,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
-        <activity android:name=".BiometricAuthentication.BiometricAuthActivity"></activity>
+            android:exported="false" />
+        <activity android:name=".BiometricAuthentication.BiometricAuthActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

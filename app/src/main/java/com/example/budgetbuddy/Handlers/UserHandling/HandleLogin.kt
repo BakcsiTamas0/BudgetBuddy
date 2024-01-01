@@ -1,8 +1,8 @@
-package com.example.budgetbuddy.Handlers
+package com.example.budgetbuddy.Handlers.UserHandling
 
 import android.util.Log
 import com.example.budgetbuddy.API.ApiServices
-import com.example.budgetbuddy.DataClasses.UserLoginDataClass
+import com.example.budgetbuddy.DataClasses.UserData.UserLoginDataClass
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 import retrofit2.Call
 import retrofit2.Callback

@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.example.budgetbuddy.API.ApiServices
-import com.example.budgetbuddy.DataClasses.UserRegisterDataClass
+import com.example.budgetbuddy.DataClasses.UserData.UserRegisterDataClass
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 import retrofit2.Call
 import retrofit2.Callback

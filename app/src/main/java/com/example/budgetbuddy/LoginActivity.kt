@@ -8,8 +8,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
-import com.example.budgetbuddy.Handlers.HandleLogin
-import com.example.budgetbuddy.Handlers.HandleLogin.Companion.authenticateUser
+import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin
+import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin.Companion.authenticateUser
 
 class LoginActivity : AppCompatActivity() {
     private val PREFS_NAME = "preferences"

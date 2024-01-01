@@ -1,11 +1,11 @@
-package com.example.budgetbuddy.Handlers
+package com.example.budgetbuddy.Handlers.UserHandling
 
 import android.content.Context
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.budgetbuddy.API.ApiServices
-import com.example.budgetbuddy.DataClasses.EmailResponse
+import com.example.budgetbuddy.DataClasses.UserData.EmailResponse
 import com.example.budgetbuddy.R
 import retrofit2.Call
 import retrofit2.Callback

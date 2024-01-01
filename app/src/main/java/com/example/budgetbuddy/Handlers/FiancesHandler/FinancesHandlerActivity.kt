@@ -1,4 +1,4 @@
-package com.example.budgetbuddy.Handlers
+package com.example.budgetbuddy.Handlers.FiancesHandler
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +24,7 @@ class FinancesHandlerActivity : AppCompatActivity() {
 
         val fragmentList = listOf(
             IncomeFragment.newInstance(username),
-            ExpenseFragment(),
+            ExpenseFragment.newInstance(username),
             DebtFragment()
         )
 
