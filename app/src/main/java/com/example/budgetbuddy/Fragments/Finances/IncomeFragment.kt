@@ -1,4 +1,4 @@
-package com.example.budgetbuddy.Fragments
+package com.example.budgetbuddy.Fragments.Finances
 
 import android.os.Bundle
 import android.os.Handler

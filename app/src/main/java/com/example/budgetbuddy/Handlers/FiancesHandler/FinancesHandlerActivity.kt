@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.budgetbuddy.Fragments.DebtFragment
-import com.example.budgetbuddy.Fragments.ExpenseFragment
-import com.example.budgetbuddy.Fragments.IncomeFragment
+import com.example.budgetbuddy.Fragments.Finances.DebtFragment
+import com.example.budgetbuddy.Fragments.Finances.ExpenseFragment
+import com.example.budgetbuddy.Fragments.Finances.IncomeFragment
 import com.example.budgetbuddy.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -25,6 +25,7 @@ class FinancesHandlerActivity : AppCompatActivity() {
         val fragmentList = listOf(
             IncomeFragment.newInstance(username),
             ExpenseFragment.newInstance(username),
+            //DebtFragment.newInstance(username)
             DebtFragment()
         )
 

@@ -82,6 +82,7 @@
             android:textSize="20sp"/>
 
         <TextView
+            android:id="@+id/chartTextView"
             android:clickable="true"
             android:focusable="true"
             android:layout_width="match_parent"

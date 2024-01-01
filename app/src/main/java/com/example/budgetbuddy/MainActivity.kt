@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.budgetbuddy.Handlers.ChartHandler.ChartHandlerActivity
 import com.example.budgetbuddy.Handlers.FiancesHandler.FinancesHandlerActivity
 import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 import com.google.android.material.navigation.NavigationView
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navView: NavigationView
 
     private lateinit var financesTextView: TextView
+    private lateinit var chartTextView: TextView
     private lateinit var settingsTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +48,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         financesTextView = findViewById(R.id.financesTextView)
+        chartTextView = findViewById(R.id.chartTextView)
         settingsTextView = findViewById(R.id.settingsTextView)
 
         financesTextView.setOnClickListener() {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
-            financesIntent.putExtra("USERNAME", drawerUsername)
             startActivity(financesIntent)
+            drawerLayout.closeDrawers()
+        }
+
+        chartTextView.setOnClickListener() {
+            val chartIntent = Intent(this, ChartHandlerActivity::class.java)
+            startActivity(chartIntent)
             drawerLayout.closeDrawers()
         }
 
