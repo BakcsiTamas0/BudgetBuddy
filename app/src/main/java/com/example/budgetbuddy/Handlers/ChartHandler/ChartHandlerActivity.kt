@@ -20,9 +20,11 @@ class ChartHandlerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart_handler)
 
+        val username = intent.getStringExtra("USERNAME").toString()
+
         val fragmentList = listOf(
-            LineChart(),
-            PieChart(),
+            LineChart.newInstance(username),
+            PieChart.newInstance(username),
             RadarChart()
         )
 

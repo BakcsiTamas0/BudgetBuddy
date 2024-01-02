@@ -23,7 +23,6 @@ class HandleExpenseCRUD(requireContext: Context) {
             .build()
 
         val apiService = retrofit.create(ApiServices::class.java)
-        val incomeData = ExpenseData(username, expenseType, amount.toString())
         val call: Call<ExpenseData> = apiService.saveExpenseDataByUsername(username, expenseType, amount)
 
         call.enqueue(object: Callback<ExpenseData> {

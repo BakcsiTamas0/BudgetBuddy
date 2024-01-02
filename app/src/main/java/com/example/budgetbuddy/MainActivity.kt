@@ -53,12 +53,14 @@ class MainActivity : AppCompatActivity() {
 
         financesTextView.setOnClickListener() {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
+            financesIntent.putExtra("USERNAME", drawerUsername)
             startActivity(financesIntent)
             drawerLayout.closeDrawers()
         }
 
         chartTextView.setOnClickListener() {
             val chartIntent = Intent(this, ChartHandlerActivity::class.java)
+            chartIntent.putExtra("USERNAME", drawerUsername)
             startActivity(chartIntent)
             drawerLayout.closeDrawers()
         }

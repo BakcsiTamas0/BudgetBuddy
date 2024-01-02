@@ -7,41 +7,44 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.budgetbuddy.R
 
+import com.github.mikephil.charting.charts.LineChart
+
 
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class LineChart : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            username = it.getString(ARG_PARAM1).toString()
         }
     }
+
+    private lateinit var username: String
+
+    private lateinit var incomeLineChart: LineChart
+    private lateinit var expenseLineChart: LineChart
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_radar_chart, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_line_chart, container, false)
 
+        incomeLineChart = view.findViewById(R.id.incomeLineChart)
+        expenseLineChart = view.findViewById(R.id.expenseLineChart)
 
         return view
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(username: String) =
             LineChart().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(ARG_PARAM1, username)
                 }
             }
     }
+
 }
