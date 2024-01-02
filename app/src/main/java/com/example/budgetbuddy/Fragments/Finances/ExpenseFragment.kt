@@ -26,7 +26,6 @@ import com.example.budgetbuddy.Handlers.FiancesHandler.HandleExpenseCRUD
 import com.example.budgetbuddy.R
 
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class ExpenseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +35,6 @@ class ExpenseFragment : Fragment() {
         }
     }
 
-    private lateinit var handleExpenseCRUD: HandleExpenseCRUD
-
     private lateinit var username: String
     private lateinit var intent: Intent
 
@@ -46,6 +43,8 @@ class ExpenseFragment : Fragment() {
     private lateinit var expenseList: MutableList<ExpenseItem>
     private lateinit var addButton: Button
     private lateinit var recyclerViewAdapter: ExpenseRecyclerViewAdapter
+
+    private lateinit var handleExpenseCRUD: HandleExpenseCRUD
 
     private lateinit var amountEditText: EditText
 

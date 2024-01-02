@@ -21,18 +21,18 @@ import com.example.budgetbuddy.Handlers.ChartHandler.ExpenseChartFetcher
 private const val ARG_PARAM1 = "param1"
 
 class PieChart : Fragment() {
-
-    private lateinit var username: String
-
-    private lateinit var expensePieChart: PieChart
-
-    private val expensePRChartFetcher = ExpenseChartFetcher(requireContext(), username)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             username = it.getString(ARG_PARAM1).toString()
         }
+    }
+
+    private lateinit var username: String
+    private lateinit var expensePieChart: PieChart
+
+    private val expensePRChartFetcher: ExpenseChartFetcher by lazy {
+        ExpenseChartFetcher(requireContext(), username)
     }
 
     override fun onCreateView(

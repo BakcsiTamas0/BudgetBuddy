@@ -28,7 +28,6 @@ class ExpenseChartFetcher(private val context: Context, private val username: St
                 call: Call<ChartDataResponse>,
                 response: Response<ChartDataResponse>
             ) {
-                Log.d("PieChart", "onResponse: ${response.body().toString()}")
                 if (response.isSuccessful) {
                     val chartDataResponse = response.body()
                     chartDataResponse?.let {

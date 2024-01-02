@@ -25,8 +25,7 @@ class FinancesHandlerActivity : AppCompatActivity() {
         val fragmentList = listOf(
             IncomeFragment.newInstance(username),
             ExpenseFragment.newInstance(username),
-            //DebtFragment.newInstance(username)
-            DebtFragment()
+            DebtFragment.newInstance(username)
         )
 
         tabLayout = findViewById(R.id.tabLayout)

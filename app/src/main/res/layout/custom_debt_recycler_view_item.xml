@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="15sp">
+
+    <ImageView
+        android:id="@+id/debtTypeImage"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/crypto"/>
+
+    <TextView
+        android:id="@+id/debtTypeList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/debtTypeImage"
+        android:layout_marginStart="25dp"
+        android:layout_centerVertical="true"
+        android:text="Description"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/debtAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/debtTypeList"
+        android:layout_marginStart="25dp"
+        android:layout_centerVertical="true"
+        android:text="Amount" />
+
+    <Button
+        android:id="@+id/deleteDebtItemBtn"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/debtAmount"
+        android:layout_marginStart="10dp"
+        android:text="X"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

@@ -22,7 +22,7 @@ class HandleUserDataFetching(
         val intent = (context as AppCompatActivity).intent
         val intentUsername = intent.getStringExtra("USERNAME")
 
-        val drawerUsername: TextView = (context as AppCompatActivity).findViewById(R.id.drawerUsername)
+        val drawerUsername: TextView = (context).findViewById(R.id.drawerUsername)
         drawerUsername.text = intentUsername
 
         val retrofit = Retrofit.Builder()
