@@ -19,11 +19,12 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <com.github.mikephil.charting.charts.LineChart
+        <com.github.mikephil.charting.charts.RadarChart
             android:id="@+id/incomeRadarChart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_margin="20dp"/>
     </LinearLayout>
 
     <View
@@ -43,11 +44,12 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <com.github.mikephil.charting.charts.LineChart
+        <com.github.mikephil.charting.charts.RadarChart
             android:id="@+id/expenseRadarChart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_margin="20dp"/>
     </LinearLayout>
 
 </LinearLayout>

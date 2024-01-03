@@ -1,7 +1,7 @@
 package com.example.budgetbuddy.DataClasses.ChartData
 
 
-data class ChartDataResponse(
+data class ExpenseChartDataResponse(
     val totalExpenseData: List<ExpenseData>
 )
 

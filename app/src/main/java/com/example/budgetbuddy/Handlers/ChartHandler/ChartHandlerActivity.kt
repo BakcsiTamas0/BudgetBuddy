@@ -25,7 +25,7 @@ class ChartHandlerActivity : AppCompatActivity() {
         val fragmentList = listOf(
             LineChart.newInstance(username),
             PieChart.newInstance(username),
-            RadarChart()
+            RadarChart.newInstance(username)
         )
 
         tabLayout = findViewById(R.id.chartTabLayout)

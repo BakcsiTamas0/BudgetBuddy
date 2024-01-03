@@ -1,7 +1,6 @@
 package com.example.budgetbuddy.Handlers.ChartHandler
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -9,7 +8,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.example.budgetbuddy.API.ChartDataAPI.ExpenseFetching.ExpenseFetch
-import com.example.budgetbuddy.DataClasses.ChartData.ChartDataResponse
+import com.example.budgetbuddy.DataClasses.ChartData.ExpenseChartDataResponse
 import com.example.budgetbuddy.DataClasses.ChartData.ExpenseData
 
 class ExpenseChartFetcher(private val context: Context, private val username: String) {
@@ -23,10 +22,10 @@ class ExpenseChartFetcher(private val context: Context, private val username: St
         val expenseFetchService = retrofit.create(ExpenseFetch::class.java)
 
         val call = expenseFetchService.getExpenseChartData(username)
-        call.enqueue(object : Callback<ChartDataResponse> {
+        call.enqueue(object : Callback<ExpenseChartDataResponse> {
             override fun onResponse(
-                call: Call<ChartDataResponse>,
-                response: Response<ChartDataResponse>
+                call: Call<ExpenseChartDataResponse>,
+                response: Response<ExpenseChartDataResponse>
             ) {
                 if (response.isSuccessful) {
                     val chartDataResponse = response.body()
@@ -42,8 +41,7 @@ class ExpenseChartFetcher(private val context: Context, private val username: St
                 }
             }
 
-            override fun onFailure(call: Call<ChartDataResponse>, t: Throwable) {
-                // Handle failure
+            override fun onFailure(call: Call<ExpenseChartDataResponse>, t: Throwable) {
                 Toast.makeText(
                     context,
                     "Failed to fetch expense data: ${t.message}",
