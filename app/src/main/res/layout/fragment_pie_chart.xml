@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:text="Income pie chart"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"/>
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/incomePieChart"
@@ -42,7 +43,8 @@
             android:layout_height="wrap_content"
             android:text="Expense pie chart"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"/>
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/expensePieChart"

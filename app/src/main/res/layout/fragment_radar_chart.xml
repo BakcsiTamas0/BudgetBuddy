@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:text="Income radar chart"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"/>
 
         <com.github.mikephil.charting.charts.RadarChart
             android:id="@+id/incomeRadarChart"
@@ -42,7 +43,8 @@
             android:layout_height="wrap_content"
             android:text="Expense radar chart"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"/>
 
         <com.github.mikephil.charting.charts.RadarChart
             android:id="@+id/expenseRadarChart"

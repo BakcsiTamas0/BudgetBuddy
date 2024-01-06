@@ -4,3 +4,8 @@ data class UserRegisterDataClass(
     val password : String,
     val email : String,
 )
+
+data class UserGoogleRegisterDataClass(
+    val username : String,
+    val email : String,
+)

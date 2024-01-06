@@ -54,7 +54,7 @@ class HandleUserDataFetching(
         })
     }
 
-    private fun updateDrawerViews(username: String, email: String) {
+    fun updateDrawerViews(username: String, email: String) {
         usernameTextView.text = username
         emailTextView.text = email
     }

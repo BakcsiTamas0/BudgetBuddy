@@ -9,7 +9,6 @@
     android:gravity="center"
     android:background="@color/dark_gery"
     tools:context=".MainActivity">
-    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -94,8 +93,7 @@
         android:padding="8dp"
         android:text="@string/not_signed_up"
         android:textSize="18sp"
-        android:textColor="@color/white"
-        />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/register_from_login"
@@ -104,7 +102,24 @@
         android:text="@string/register_from_login"
         android:textSize="18sp"
         android:textColor="@color/shaded_blue"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/loginWithGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Or log in with google"
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/googleImage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/google_icon"/>
+
+
 
 </LinearLayout>

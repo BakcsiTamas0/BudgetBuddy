@@ -1,5 +1,6 @@
 package com.example.budgetbuddy
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,9 +8,12 @@ import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin.Companion.authenticateUser
+import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
+import com.example.budgetbuddy.Handlers.UserHandling.HandleUserSignIn
 
 class LoginActivity : AppCompatActivity() {
     private val PREFS_NAME = "preferences"
@@ -31,6 +35,13 @@ class LoginActivity : AppCompatActivity() {
 
         val loginBtn: Button = findViewById(R.id.login_btn)
         val registerFromLogin: TextView = findViewById(R.id.register_from_login)
+
+        val googleImage: ImageView = findViewById(R.id.googleImage)
+
+        googleImage.setOnClickListener {
+            val googleSignInIntent = Intent(this@LoginActivity, HandleUserSignIn::class.java)
+            startActivity(googleSignInIntent)
+        }
 
         loginBtn.setOnClickListener {
             authenticateUser(username.text.toString(), password.text.toString(), object : HandleLogin.AuthCallback {

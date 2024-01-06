@@ -17,13 +17,15 @@
             android:layout_height="wrap_content"
             android:text="Income line chart"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginStart="10sp"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/incomeLineChart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_margin="20dp"/>
     </LinearLayout>
 
     <View
@@ -41,12 +43,14 @@
             android:layout_height="wrap_content"
             android:text="Expense line chart"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/expenseLineChart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_margin="20dp"/>
     </LinearLayout>
 </LinearLayout>
