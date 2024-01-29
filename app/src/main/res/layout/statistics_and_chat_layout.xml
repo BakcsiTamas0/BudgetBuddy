@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/statistics_and_chat_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Statistics"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/estimatedExpenseTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Estimated expenses"
+            android:textSize="16sp"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/estimatedExpenseTextView"
+            android:layout_marginStart="25sp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/midnight_purple">
+    </View>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="5dp"
+        android:textSize="16sp">
+    </TextView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/userMessageInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="105dp"
+            android:inputType="text"
+            android:hint="Start typing here..."
+            android:textSize="16sp"/>
+
+
+        <Button
+            android:id="@+id/sendUserMessageInput"
+            android:layout_width="85dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="end"
+            android:text="Send"
+            android:textSize="16sp"/>
+
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

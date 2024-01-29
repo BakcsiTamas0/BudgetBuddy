@@ -33,21 +33,10 @@
         android:text="Amount" />
 
     <Button
-        android:id="@+id/editIncomeItemBtn"
-        android:layout_width="60sp"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/incomeAmount"
-        android:layout_marginStart="25dp"
-        android:text="E"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <Button
         android:id="@+id/deleteIncomeItemBtn"
         android:layout_width="60sp"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/editIncomeItemBtn"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="320dp"
         android:text="X"
         android:textSize="20sp"
         android:textStyle="bold"/>

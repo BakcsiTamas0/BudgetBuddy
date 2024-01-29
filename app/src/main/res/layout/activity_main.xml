@@ -33,7 +33,16 @@
             android:layout_marginTop="175dp"
             android:layout_marginBottom="20dp"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"/>
+
+        <Button
+            android:id="@+id/expandButton"
+            android:layout_width="120dp"
+            android:layout_height="55dp"
+            android:text="Expand"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="385dp"/>
 
     </RelativeLayout>
 
