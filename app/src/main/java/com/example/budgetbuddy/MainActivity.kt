@@ -18,6 +18,7 @@ import com.example.budgetbuddy.R.id.appListCardOne
 import com.google.android.material.navigation.NavigationView
 import android.animation.ValueAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
+import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var financesTextView: TextView
     private lateinit var chartTextView: TextView
     private lateinit var settingsTextView: TextView
+
+    private lateinit var appListExchangeOptionTextView: TextView
 
     private lateinit var expandButton: Button
 
@@ -83,6 +86,13 @@ class MainActivity : AppCompatActivity() {
         settingsTextView.setOnClickListener() {
             val settingsIntent = Intent(this, SettingsActivity::class.java)
             startActivity(settingsIntent)
+        }
+
+        appListExchangeOptionTextView = findViewById(R.id.appListExchangeOptionTextView)
+
+        appListExchangeOptionTextView.setOnClickListener() {
+            val exchangeIntent = Intent(this, ExchangeHandlerActivity::class.java)
+            startActivity(exchangeIntent)
         }
 
         expandButton = findViewById(R.id.expandButton)

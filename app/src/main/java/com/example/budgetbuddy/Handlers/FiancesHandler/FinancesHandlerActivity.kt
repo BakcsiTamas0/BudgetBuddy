@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class FinancesHandlerActivity : AppCompatActivity() {
+
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 

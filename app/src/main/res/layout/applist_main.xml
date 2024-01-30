@@ -107,9 +107,10 @@
             app:cardCornerRadius="35dp">
 
             <TextView
+                android:id="@+id/appListExchangeOptionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Currency exchange rates"
+                android:text="Currency exchange and rates"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
