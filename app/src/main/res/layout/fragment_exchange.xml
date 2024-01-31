@@ -12,37 +12,48 @@
         android:gravity="center">
 
         <Spinner
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="40dp"
+            android:id="@+id/exchangeOneSpinner"
+            android:layout_width="320dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="45dp"/>
 
         <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="215dp"
+            android:id="@+id/exchangeOneTextView"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:text="0.00"
+            android:textAlignment="textEnd"
+            android:textSize="30sp"
+            android:layout_marginTop="88dp"
+            android:layout_marginStart="45dp"
             android:layout_marginEnd="40dp"/>
 
         <ImageView
+            android:id="@+id/switchButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="125dp"
+            android:layout_marginTop="150dp"
             android:layout_marginStart="315dp"/>
 
         <Spinner
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="200dp"
+            android:id="@+id/exchangeTwoSpinner"
+            android:layout_width="320dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="220dp"
             android:layout_marginStart="45dp"/>
 
         <TextView
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginStart="215dp"
+            android:id="@+id/exchangeTwoTextView"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:text="0.00"
+            android:textAlignment="textEnd"
+            android:textSize="30sp"
+            android:layout_marginTop="298dp"
+            android:layout_marginStart="45dp"
             android:layout_marginEnd="40dp"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="20dp"/>
 
     </RelativeLayout>
 
@@ -65,97 +76,109 @@
         android:layout_marginEnd="40dp">
 
         <Button
+            android:id="@+id/buttonOne"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="1"/>
 
         <Button
+            android:id="@+id/buttonTwo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="2"/>
 
         <Button
+            android:id="@+id/buttonThree"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="3"/>
 
         <Button
+            android:id="@+id/buttonFour"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="4"/>
 
         <Button
+            android:id="@+id/buttonFive"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="5"/>
 
         <Button
+            android:id="@+id/buttonSix"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="6"/>
 
         <Button
+            android:id="@+id/buttonSeven"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="7"/>
 
         <Button
+            android:id="@+id/buttonEight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="8"/>
 
         <Button
+            android:id="@+id/buttonNine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="9"/>
 
         <Button
+            android:id="@+id/buttonDot"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="."/>
 
         <Button
+            android:id="@+id/buttonZero"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="0"/>
 
         <Button
+            android:id="@+id/buttonDel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:text="Del"/>

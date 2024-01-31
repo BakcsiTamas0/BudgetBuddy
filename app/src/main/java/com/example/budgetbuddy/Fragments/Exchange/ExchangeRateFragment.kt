@@ -31,6 +31,7 @@ class ExchangeRateFragment : Fragment() {
     }
 
     private lateinit var exchangeRecyclerView: RecyclerView
+    private lateinit var selectedCurrencies: List<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,11 +40,14 @@ class ExchangeRateFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_exchange_rate, container, false)
 
         val exchangeAPI = ExchangeAPI("feea76798c5086d49afc470d")
-
         var exchangeRates: MutableList<ExchangeItem>
+
+        selectedCurrencies = listOf("RON", "EUR", "USD", "GBP", "CAD", "CHF", "CNY", "CZK", "DKK", "HRK", "HUF", "JPY", "NOK", "PLN", "RUB", "SEK", "TRY")
 
         lifecycleScope.launch {
             exchangeRates = exchangeAPI.getExchangeRates("RON").toMutableList()
+            exchangeRates = exchangeRates.filter { it.currency in selectedCurrencies }.toMutableList()
+
             exchangeRecyclerView = view.findViewById(R.id.exchangeRecyclerView)
             exchangeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
