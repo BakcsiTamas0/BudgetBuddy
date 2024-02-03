@@ -18,6 +18,10 @@ import com.example.budgetbuddy.R.id.appListCardOne
 import com.google.android.material.navigation.NavigationView
 import android.animation.ValueAnimator
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.EditText
+import android.widget.Toast
+import com.example.budgetbuddy.DataClasses.ChatbotData.ChatRequest
+import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +45,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appListExchangeOptionTextView: TextView
 
     private lateinit var expandButton: Button
+    private lateinit var chatSendButton: Button
+    private lateinit var userMessageInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,6 +106,25 @@ class MainActivity : AppCompatActivity() {
         expandButton.setOnClickListener() {
             toggleExpandCollapse()
         }
+
+        chatSendButton = findViewById(R.id.sendUserMessageInput)
+        userMessageInput = findViewById(R.id.userMessageInput)
+
+        chatSendButton.setOnClickListener() {
+            Toast.makeText(this, "Sending message...", Toast.LENGTH_SHORT).show()
+
+            val userMessage = userMessageInput.text.toString()
+
+            val handleChatBotMessages = HandleChatBotMessages(this)
+            handleChatBotMessages.sendChatBotMessage(drawerUsername, userMessage) { response ->
+                handleResponse(response)
+            }
+        }
+    }
+
+    private fun handleResponse(response: String) {
+        val chatView = findViewById<TextView>(R.id.chatView)
+        chatView.text = response
     }
 
     private fun toggleExpandCollapse() {
