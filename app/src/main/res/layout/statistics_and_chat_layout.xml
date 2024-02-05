@@ -42,14 +42,15 @@
         android:background="@color/midnight_purple">
     </View>
 
-    <TextView
-        android:id="@+id/chatView"
+    <LinearLayout
+        android:id="@+id/chat_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginBottom="5dp"
-        android:textSize="16sp">
-    </TextView>
+        android:orientation="horizontal">
+
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
