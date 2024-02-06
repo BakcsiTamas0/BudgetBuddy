@@ -26,6 +26,8 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginBottom
+import androidx.core.widget.NestedScrollView
 import com.example.budgetbuddy.DataClasses.ChatbotData.ChatRequest
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
@@ -132,7 +134,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleResponse(response: String) {
-        val chatRelativeLayout = findViewById<LinearLayout>(R.id.chat_relative_layout)
+        val chatLinearLayout = findViewById<LinearLayout>(R.id.chat_relative_layout)
+
+        val userMessageLayout = LayoutInflater.from(this)
+            .inflate(R.layout.custom_user_message_frame, null, false)
+
+        val userMessageTextView = userMessageLayout.findViewById<TextView>(R.id.user_message_text_view)
+
+        val userMessageUsername = userMessageLayout.findViewById<TextView>(R.id.chat_username)
+        userMessageUsername.text = drawerUsername
+
+        userMessageTextView.text = userMessageInput.text.toString()
+        userMessageTextView.textSize = 16f
+
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        layoutParams.bottomMargin = 30
+        userMessageLayout.layoutParams = layoutParams
+
+        chatLinearLayout.addView(userMessageLayout)
 
         val chatbotMessageLayout = LayoutInflater.from(this)
             .inflate(R.layout.custom_chatbot_message_frame, null, false)
@@ -141,17 +163,14 @@ class MainActivity : AppCompatActivity() {
         chatbotMessageTextView.text = response
         chatbotMessageTextView.movementMethod = ScrollingMovementMethod()
 
-        chatRelativeLayout.addView(chatbotMessageLayout)
+        chatLinearLayout.addView(chatbotMessageLayout)
 
-        val userMessageLayout = LayoutInflater.from(this)
-            .inflate(R.layout.custom_user_message_frame, null, false)
-
-        val userMessageTextView = userMessageLayout.findViewById<TextView>(R.id.user_message_text_view)
-        userMessageTextView.text = userMessageInput.text.toString()
-        chatRelativeLayout.addView(userMessageLayout)
+        val scrollView = findViewById<NestedScrollView>(R.id.scrollView)
+        scrollView.post { scrollView.fullScroll(View.FOCUS_DOWN) }
 
         userMessageInput.text.clear()
     }
+
 
     private fun toggleExpandCollapse() {
         val statisticsAndChatLayout = findViewById<CardView>(appListCardOne)

@@ -37,7 +37,6 @@
         </View>
 
         <TextView
-            android:id="@+id/user_message_text_view"
             android:layout_width="50dp"
             android:layout_height="35dp"
             android:layout_marginTop="9dp"
@@ -54,6 +53,7 @@
         android:background="@drawable/custom_edit_test_background">
 
         <TextView
+            android:id="@+id/user_message_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
