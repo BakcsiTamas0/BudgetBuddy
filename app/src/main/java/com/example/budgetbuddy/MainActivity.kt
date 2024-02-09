@@ -2,7 +2,6 @@ package com.example.budgetbuddy
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 
 import android.widget.Button
 import android.widget.FrameLayout
@@ -17,18 +16,16 @@ import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 import com.example.budgetbuddy.R.id.appListCardOne
 import com.google.android.material.navigation.NavigationView
 import android.animation.ValueAnimator
+import android.app.Dialog
+import android.graphics.Bitmap
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.view.marginBottom
 import androidx.core.widget.NestedScrollView
-import com.example.budgetbuddy.DataClasses.ChatbotData.ChatRequest
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
 
@@ -60,8 +57,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (!hasUserRegionSettings()) {
+            showUserRegionSettingsDialog()
+        } else {
+            initUIElements()
+            initLogic()
+        }
+
+    }
+
+    private fun initUIElements(): Boolean {
         drawerLayout = findViewById(R.id.drawerLayout)
         toolbar = findViewById(R.id.toolbar)
+
+        navView = findViewById(R.id.nav_view)
+
+        financesTextView = findViewById(R.id.financesTextView)
+        chartTextView = findViewById(R.id.chartTextView)
+        settingsTextView = findViewById(R.id.settingsTextView)
+
+        appListExchangeOptionTextView = findViewById(R.id.appListExchangeOptionTextView)
+
+        expandButton = findViewById(R.id.expandButton)
+
+        chatSendButton = findViewById(R.id.sendUserMessageInput)
+        userMessageInput = findViewById(R.id.userMessageInput)
+
+        return true
+    }
+
+    private fun initLogic() {
         setSupportActionBar(toolbar)
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
@@ -72,16 +97,6 @@ class MainActivity : AppCompatActivity() {
 
         handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(R.id.drawerEmail))
         handleUserDataFetching.fetchData(drawerUsername)
-
-        navView = findViewById(R.id.nav_view)
-
-        navView.setOnClickListener() {
-            Log.d("TAG", "clicked")
-        }
-
-        financesTextView = findViewById(R.id.financesTextView)
-        chartTextView = findViewById(R.id.chartTextView)
-        settingsTextView = findViewById(R.id.settingsTextView)
 
         financesTextView.setOnClickListener() {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
@@ -102,21 +117,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(settingsIntent)
         }
 
-        appListExchangeOptionTextView = findViewById(R.id.appListExchangeOptionTextView)
-
         appListExchangeOptionTextView.setOnClickListener() {
             val exchangeIntent = Intent(this, ExchangeHandlerActivity::class.java)
             startActivity(exchangeIntent)
         }
 
-        expandButton = findViewById(R.id.expandButton)
-
         expandButton.setOnClickListener() {
             toggleExpandCollapse()
         }
-
-        chatSendButton = findViewById(R.id.sendUserMessageInput)
-        userMessageInput = findViewById(R.id.userMessageInput)
 
         chatSendButton.setOnClickListener() {
             Toast.makeText(this, "Sending message...", Toast.LENGTH_SHORT).show()
@@ -130,7 +138,36 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Message handled!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
+    private fun hasUserRegionSettings(): Boolean {
+        val sharedPref = getSharedPreferences("userRegionSettings", MODE_PRIVATE)
+        return sharedPref.contains("hasUserSetRegion") && sharedPref.getBoolean("hasUserSetRegion", false)
+    }
+
+    private fun showUserRegionSettingsDialog() {
+        val dialog = Dialog(this, android.R.style.Theme_Translucent_NoTitleBar)
+        dialog.setContentView(R.layout.user_region_settings)
+
+        val submitButton = dialog.findViewById<Button>(R.id.userRegionSubmitButton)
+        submitButton.setOnClickListener {
+            saveUserRegionSettings()
+            dialog.dismiss()
+
+            setContentView(R.layout.activity_main)
+            initUIElements()
+            initLogic()
+        }
+
+        dialog.show()
+    }
+
+    private fun saveUserRegionSettings() {
+        val sharedPref = getSharedPreferences("userRegionSettings", MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putBoolean("hasUserSetRegion", true)
+            apply()
+        }
     }
 
     private fun handleResponse(response: String) {
@@ -170,7 +207,6 @@ class MainActivity : AppCompatActivity() {
 
         userMessageInput.text.clear()
     }
-
 
     private fun toggleExpandCollapse() {
         val statisticsAndChatLayout = findViewById<CardView>(appListCardOne)
