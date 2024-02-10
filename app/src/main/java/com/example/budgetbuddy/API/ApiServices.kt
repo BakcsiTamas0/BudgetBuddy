@@ -30,7 +30,11 @@ interface ApiServices {
 
     // Income API endpoint
     @POST("save_income_data_by_username")
-    fun saveIncomeDataByUsername(@Body incomeData: IncomeData): Call<IncomeData>
+    fun saveIncomeDataByUsername(
+        @Path("username") username: String,
+        @Path("incomeType") incomeType: String,
+        @Path("amount") amount: Double
+    ): Call<IncomeData>
 
     @POST("get_income_data_by_username")
     fun getIncomeDataByUsername(@Body username: String): Call<UserIncomeDataResponse>
@@ -42,12 +46,7 @@ interface ApiServices {
         @Path("amount") amount: Double):
             Call<IncomeData>
 
-    @Multipart
-    @POST("update_profile_picture")
-    fun updateProfilePicture(
-        @Part image: MultipartBody.Part,
-        @Part("username") username: String): Call<Void>
-
+    // Expense API endpoint
     @POST("save_expense_data_by_username/{username}/{expenseType}/{amount}")
     fun saveExpenseDataByUsername(
         @Path("username") username: String,

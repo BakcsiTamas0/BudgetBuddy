@@ -24,8 +24,7 @@ class HandleIncomeCRUD(requireContext: Context) {
             .build()
 
         val apiService = retrofit.create(ApiServices::class.java)
-        val incomeData = IncomeData(username, incomeType, amount.toString())
-        val call: Call<IncomeData> = apiService.saveIncomeDataByUsername(incomeData)
+        val call: Call<IncomeData> = apiService.saveIncomeDataByUsername(username, incomeType, amount)
 
         call.enqueue(object: Callback<IncomeData> {
             override fun onResponse(call: Call<IncomeData>, response: retrofit2.Response<IncomeData>) {
