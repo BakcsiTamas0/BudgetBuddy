@@ -24,15 +24,24 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.lifecycleScope
+import com.example.budgetbuddy.API.ExchangeAPI.ExchangeAPI
+import com.example.budgetbuddy.Adapters.UserRegionSettingsAdapter.UserRegionSettingsCountrySpinnerAdapter
+import com.example.budgetbuddy.Adapters.UserRegionSettingsAdapter.UserRegionSettingsCurrencySpinnerAdapter
+import com.example.budgetbuddy.DataClasses.ExchangeData.ExchangeItem
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private var isExpanded = false
     private var initialCollapsedHeight = 0
+
+    private lateinit var userRegionSettingCurrencySpinner: Spinner
 
     private lateinit var drawerLayout: androidx.drawerlayout.widget.DrawerLayout
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
@@ -67,6 +76,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUIElements(): Boolean {
+        userRegionSettingCurrencySpinner = findViewById(R.id.userRegionSettingCurrencySpinner)
+
         drawerLayout = findViewById(R.id.drawerLayout)
         toolbar = findViewById(R.id.toolbar)
 
@@ -148,6 +159,22 @@ class MainActivity : AppCompatActivity() {
     private fun showUserRegionSettingsDialog() {
         val dialog = Dialog(this, android.R.style.Theme_Translucent_NoTitleBar)
         dialog.setContentView(R.layout.user_region_settings)
+
+        val userRegionSettingCountrySpinner = dialog.findViewById<Spinner>(R.id.userRegionSettingCountrySpinner)
+        val userRegionSettingCurrencySpinner = dialog.findViewById<Spinner>(R.id.userRegionSettingCurrencySpinner)
+
+        val exchangeAPI = ExchangeAPI("feea76798c5086d49afc470d")
+        var exchangeRates: MutableList<ExchangeItem>
+
+        lifecycleScope.launch {
+            exchangeRates = exchangeAPI.getExchangeRates("EUR").toMutableList()
+
+            val countryAdapter = UserRegionSettingsCountrySpinnerAdapter(this@MainActivity, exchangeRates)
+            val currencyAdapter = UserRegionSettingsCurrencySpinnerAdapter(this@MainActivity, exchangeRates)
+
+            userRegionSettingCountrySpinner.adapter = countryAdapter
+            userRegionSettingCurrencySpinner.adapter = currencyAdapter
+        }
 
         val submitButton = dialog.findViewById<Button>(R.id.userRegionSubmitButton)
         submitButton.setOnClickListener {

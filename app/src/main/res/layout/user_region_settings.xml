@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="90dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="200dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         tools:ignore="UselessParent">
@@ -34,70 +34,70 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="Before we start..."
-                    android:textSize="18sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
                     android:text="we have to set up a few things to better personalize your experience"
-                    android:textSize="16sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
                     android:text="Which country do you reside in?"
-                    android:textSize="16sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/userRegionSettingCountry"
+                    android:id="@+id/userRegionSettingCountrySpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"/>
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="25dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_marginStart="25dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="25dp"
                     android:text="And which is your preferred currency type?"
-                    android:textSize="16sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/userRegionSettingCurrency"
+                    android:id="@+id/userRegionSettingCurrencySpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"/>
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="25dp" />
 
                 <Button
                     android:id="@+id/userRegionSubmitButton"
-                    android:layout_marginTop="30dp"
                     android:layout_width="125dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center"
-                    android:text="Submit"/>
+                    android:layout_marginTop="30dp"
+                    android:text="Submit" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="25dp"
                     android:text="*the data given by the user will be solely used for improving the user experience/ statistics and they can be changed in the settings any time"
-                    android:textSize="12sp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
