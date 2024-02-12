@@ -17,6 +17,7 @@ import com.example.budgetbuddy.R.id.appListCardOne
 import com.google.android.material.navigation.NavigationView
 import android.animation.ValueAnimator
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -27,6 +28,7 @@ import androidx.core.widget.NestedScrollView
 import com.example.budgetbuddy.Fragments.RegionSettings.RegionSettingsFragment
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
+import com.example.budgetbuddy.R.id.drawerEmail
 
 class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsListener {
 
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
     private lateinit var navView: NavigationView
 
+    private lateinit var profileTextView: TextView
     private lateinit var financesTextView: TextView
     private lateinit var chartTextView: TextView
     private lateinit var settingsTextView: TextView
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         navView = findViewById(R.id.nav_view)
 
+        profileTextView = findViewById(R.id.profileTextView)
         financesTextView = findViewById(R.id.financesTextView)
         chartTextView = findViewById(R.id.chartTextView)
         settingsTextView = findViewById(R.id.settingsTextView)
@@ -98,8 +102,16 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         drawerUsername = intent.getStringExtra("USERNAME").toString()
 
-        handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(R.id.drawerEmail))
+        handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(drawerEmail))
         handleUserDataFetching.fetchData(drawerUsername)
+
+        profileTextView.setOnClickListener() {
+            val profileIntent = Intent(this, ProfileActivity::class.java)
+            profileIntent.putExtra("USERNAME", drawerUsername)
+            profileIntent.putExtra("EMAIL", drawerEmail.toString())
+            startActivity(profileIntent)
+            drawerLayout.closeDrawers()
+        }
 
         financesTextView.setOnClickListener() {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)

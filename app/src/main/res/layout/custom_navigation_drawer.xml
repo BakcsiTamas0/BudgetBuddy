@@ -53,6 +53,7 @@
             android:background="@color/black"/>
 
         <TextView
+            android:id="@+id/profileTextView"
             android:clickable="true"
             android:focusable="true"
             android:layout_width="match_parent"

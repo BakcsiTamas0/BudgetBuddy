@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".Handlers.ExchangeHandler.ExchangeHandlerActivity"
             android:exported="false" />
