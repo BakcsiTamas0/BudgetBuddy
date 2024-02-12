@@ -29,15 +29,17 @@ interface ApiServices {
     fun getEmailByUsername(@Body username: String): Call<EmailResponse>
 
     // Income API endpoint
-    @POST("save_income_data_by_username")
+    @POST("save_income_data_by_username/{username}/{incomeType}/{amount}")
     fun saveIncomeDataByUsername(
         @Path("username") username: String,
         @Path("incomeType") incomeType: String,
         @Path("amount") amount: Double
     ): Call<IncomeData>
 
-    @POST("get_income_data_by_username")
-    fun getIncomeDataByUsername(@Body username: String): Call<UserIncomeDataResponse>
+    @POST("get_income_data_by_username/{username}")
+    fun getIncomeDataByUsername(
+        @Path ("username") username: String
+    ): Call<UserIncomeDataResponse>
 
     @POST("delete_income_data_by_username/{username}/{incomeType}/{amount}")
     fun deleteIncomeDataByUsername(
