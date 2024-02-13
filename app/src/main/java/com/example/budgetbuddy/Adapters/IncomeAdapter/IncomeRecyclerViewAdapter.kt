@@ -17,7 +17,6 @@ class IncomeRecyclerViewAdapter(
     private val itemList: MutableList<IncomeItem>,
     private val username: String) :
     RecyclerView.Adapter<IncomeRecyclerViewAdapter.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.custom_income_recycler_view_item, parent, false)
         return ViewHolder(view, username)

@@ -15,8 +15,8 @@ import com.example.budgetbuddy.R
 class DebtRecyclerViewAdapter (
     private val context: Context,
     private val itemList: MutableList<DebtItem>,
-    private val username: String) :
-    RecyclerView.Adapter<DebtRecyclerViewAdapter.ViewHolder>() {
+    private val username: String
+) : RecyclerView.Adapter<DebtRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.custom_debt_recycler_view_item, parent, false)
