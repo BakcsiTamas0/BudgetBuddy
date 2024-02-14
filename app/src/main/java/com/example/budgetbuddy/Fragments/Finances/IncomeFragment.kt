@@ -58,7 +58,6 @@ class IncomeFragment : Fragment() {
         handleIncomeCRUD = HandleIncomeCRUD(requireContext())
         handleIncomeCRUD.fetchIncomeData(username, object : HandleIncomeCRUD.IncomeDataCallBack {
             override fun onIncomeDataReceived(incomeDataResponse: UserIncomeDataResponse) {
-                Log.d("IncomeFragment", incomeDataResponse.income.toString())
                 updateIncomeList(incomeDataResponse.income)
             }
         })

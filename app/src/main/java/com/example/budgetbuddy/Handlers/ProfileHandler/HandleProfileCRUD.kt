@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.budgetbuddy.API.ProfileAPI.ProfileAPI
 import com.example.budgetbuddy.DataClasses.ProfileData.ProfileData
 import com.example.budgetbuddy.DataClasses.ProfileData.ProfileDataResponse
+import com.example.budgetbuddy.Handlers.FiancesHandler.HandleDebtCRUD
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +21,7 @@ class HandleProfileCRUD(requireContext: Context) {
 
     private val profileAPI: ProfileAPI = retrofit.create(ProfileAPI::class.java)
 
-    interface onSubUserDataReceiver {
+    interface OnSubUserDataReceiver {
         fun onSubUserDataReceived(profileDataResponse: ProfileDataResponse)
     }
 
@@ -38,12 +39,19 @@ class HandleProfileCRUD(requireContext: Context) {
         })
     }
 
-    fun getSubUsers(username: String){
+    fun getSubUsers(username: String, callBack: OnSubUserDataReceiver){
         val call = profileAPI.getSubUsers(username)
 
         call.enqueue(object: Callback<ProfileDataResponse>{
             override fun onResponse(call: Call<ProfileDataResponse>, response: Response<ProfileDataResponse>) {
-                Log.d("HandleProfileCrud", response.body().toString())
+                if (response.isSuccessful) {
+                    val profileDataResponse = response.body()
+                    profileDataResponse?.let {
+                        callBack.onSubUserDataReceived(profileDataResponse)
+                    }
+                } else {
+                    Log.d("HandleProfileCrud", "Failed to get sub users")
+                }
             }
 
             override fun onFailure(call: Call<ProfileDataResponse>, t: Throwable) {
