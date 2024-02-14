@@ -13,19 +13,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HandleIncomeCRUD(requireContext: Context) {
 
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("http://192.168.43.228:65432/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val apiService = retrofit.create(ApiServices::class.java)
+
     interface IncomeDataCallBack {
         fun onIncomeDataReceived(incomeDataResponse: UserIncomeDataResponse)
     }
 
     fun saveIncomeData(username: String, incomeType: String, amount: Double) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiServices::class.java)
         val call: Call<IncomeData> = apiService.saveIncomeDataByUsername(username, incomeType, amount)
-
         call.enqueue(object: Callback<IncomeData> {
             override fun onResponse(call: Call<IncomeData>, response: retrofit2.Response<IncomeData>) {
                 Log.d("HandleIncomeCRUD", response.body().toString())
@@ -44,12 +44,6 @@ class HandleIncomeCRUD(requireContext: Context) {
     }
 
     fun fetchIncomeData(username: String, callBack: IncomeDataCallBack) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiServices::class.java)
         val call: Call<UserIncomeDataResponse> = apiService.getIncomeDataByUsername(username)
 
         call.enqueue(object : Callback<UserIncomeDataResponse> {
@@ -71,12 +65,6 @@ class HandleIncomeCRUD(requireContext: Context) {
     }
 
     fun deleteIncomeData(username: String, incomeType: String, amount: Double) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiServices::class.java)
         val call: Call<IncomeData> = apiService.deleteIncomeDataByUsername(username, incomeType, amount)
 
         call.enqueue(object: Callback<IncomeData> {

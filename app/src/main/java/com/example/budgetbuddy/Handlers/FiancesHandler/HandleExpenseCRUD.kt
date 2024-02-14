@@ -12,17 +12,19 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HandleExpenseCRUD(requireContext: Context) {
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("http://192.168.43.228:65432/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val apiService = retrofit.create(ApiServices::class.java)
+
     interface ExpenseDataCallBack {
         fun onExpenseDataReceived(expenseDataResponse: UserExpenseDataResponse)
     }
 
     fun saveExpenseData(username: String, expenseType: String, amount: Double) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiServices::class.java)
         val call: Call<ExpenseData> = apiService.saveExpenseDataByUsername(username, expenseType, amount)
 
         call.enqueue(object: Callback<ExpenseData> {
@@ -37,12 +39,6 @@ class HandleExpenseCRUD(requireContext: Context) {
     }
 
     fun fetchExpenseData(username: String, callBack: ExpenseDataCallBack) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiServices::class.java)
         val call: Call<UserExpenseDataResponse> = apiService.getExpenseDataByUsername(username)
 
         call.enqueue(object : Callback<UserExpenseDataResponse> {
@@ -64,12 +60,6 @@ class HandleExpenseCRUD(requireContext: Context) {
     }
 
     fun deleteExpenseData(username: String, incomeType: String, amount: Double) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiServices::class.java)
         val call: Call<ExpenseData> = apiService.deleteExpenseDataByUsername(username, incomeType, amount)
 
         call.enqueue(object: Callback<ExpenseData> {

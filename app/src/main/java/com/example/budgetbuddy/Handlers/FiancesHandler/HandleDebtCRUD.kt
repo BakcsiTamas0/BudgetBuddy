@@ -12,17 +12,19 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HandleDebtCRUD(requireContext: Context) {
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("http://192.168.43.228:65432/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val apiService = retrofit.create(DebtAPI::class.java)
+
     interface DebtDataCallBack {
         fun onDebtDataReceived(debtDataResponse: UserDebtDataResponse)
     }
 
     fun saveDebtData(username: String, debtType: String, amount: Double) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(DebtAPI::class.java)
         val call: Call<DebtData> = apiService.saveDebtDataByUsername(username, debtType, amount)
 
         call.enqueue(object: Callback<DebtData> {
@@ -37,12 +39,6 @@ class HandleDebtCRUD(requireContext: Context) {
     }
 
     fun fetchDebtData(username: String, callBack: DebtDataCallBack) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(DebtAPI::class.java)
         val call: Call<UserDebtDataResponse> = apiService.getDebtDataByUsername(username)
 
         call.enqueue(object : Callback<UserDebtDataResponse> {
@@ -64,12 +60,6 @@ class HandleDebtCRUD(requireContext: Context) {
     }
 
     fun deleteDebtData(username: String, incomeType: String, amount: Double) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(DebtAPI::class.java)
         val call: Call<DebtData> = apiService.deleteDebtDataByUsername(username, incomeType, amount)
 
         call.enqueue(object: Callback<DebtData> {

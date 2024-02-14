@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.budgetbuddy.Handlers.HandleProfileCRUD
+import com.example.budgetbuddy.Handlers.ProfileHandler.HandleProfileCRUD
 import com.example.budgetbuddy.R
 
 class ProfileRecyclerViewAdapter(

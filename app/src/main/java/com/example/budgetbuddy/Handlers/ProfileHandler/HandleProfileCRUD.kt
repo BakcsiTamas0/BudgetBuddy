@@ -1,4 +1,4 @@
-package com.example.budgetbuddy.Handlers
+package com.example.budgetbuddy.Handlers.ProfileHandler
 
 import android.content.Context
 import android.util.Log
@@ -13,12 +13,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HandleProfileCRUD(requireContext: Context) {
 
-    val retrofit: Retrofit = Retrofit.Builder()
+    private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("http://192.168.43.228:65432/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val profileAPI: ProfileAPI = retrofit.create(ProfileAPI::class.java)
+    private val profileAPI: ProfileAPI = retrofit.create(ProfileAPI::class.java)
 
     interface onSubUserDataReceiver {
         fun onSubUserDataReceived(profileDataResponse: ProfileDataResponse)
