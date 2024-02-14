@@ -40,8 +40,7 @@ class ProfileActivity : AppCompatActivity() {
         addUserRecyclerView.adapter = customRecyclerViewAdapter
 
         addNewUserButton.setOnClickListener {
-            val newItem = "User ${customRecyclerViewAdapter.itemCount + 1}"
-            customRecyclerViewAdapter.addItem(newItem)
+            customRecyclerViewAdapter.addItem("")
             addUserRecyclerView.scrollToPosition(customRecyclerViewAdapter.itemCount - 1)
         }
 
@@ -54,7 +53,6 @@ class ProfileActivity : AppCompatActivity() {
                 for (subUser in subUsernames) {
                     subUserList.add(subUser)
                 }
-
                 customRecyclerViewAdapter.notifyDataSetChanged()
             }
         })

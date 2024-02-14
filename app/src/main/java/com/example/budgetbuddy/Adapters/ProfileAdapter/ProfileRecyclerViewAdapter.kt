@@ -1,6 +1,7 @@
 package com.example.budgetbuddy.Adapters.ProfileAdapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,7 @@ class ProfileRecyclerViewAdapter(
     inner class ViewHolder(itemView: View, private val username: String) : RecyclerView.ViewHolder(itemView) {
         private val userCounter: TextView = itemView.findViewById(R.id.addedUserNumber)
         private val addedUserName: EditText = itemView.findViewById(R.id.addedUserName)
-        private val saveExtraProfileUserButton: Button = itemView.findViewById(R.id.addedUserDeleteButton)
+        private val deleteExtraProfileUserButton: Button = itemView.findViewById(R.id.addedUserDeleteButton)
         private val handleSubUserCRUD = HandleProfileCRUD(context)
 
         fun bind(item: String) {
@@ -55,6 +56,17 @@ class ProfileRecyclerViewAdapter(
 
                 if (!hasFocus) {
                     handleSubUserCRUD.saveSubUser(username, subUsername)
+                }
+            }
+
+            deleteExtraProfileUserButton.setOnClickListener {
+                handleSubUserCRUD.deleteSubUsers(username, addedUserName.text.toString())
+                Toast.makeText(context, "User ${addedUserName.text} deleted successfully!", Toast.LENGTH_SHORT).show()
+
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    itemList.removeAt(position)
+                    notifyItemRemoved(position)
                 }
             }
         }
