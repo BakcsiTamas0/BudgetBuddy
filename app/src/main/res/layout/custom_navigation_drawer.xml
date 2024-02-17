@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start" />
+        android:layout_gravity="start"
+        android:background="@drawable/custom_view_holder_4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
@@ -30,7 +31,7 @@
 
         <TextView
             android:id="@+id/drawerUsername"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/user_hint"
@@ -39,7 +40,7 @@
 
         <TextView
             android:id="@+id/drawerEmail"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/email"
@@ -47,16 +48,17 @@
             android:textSize="18sp"/>
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="310dp"
             android:layout_height="3dp"
             android:layout_marginTop="10dp"
-            android:background="@color/black"/>
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_view_holder"/>
 
         <TextView
             android:id="@+id/profileTextView"
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="15dp"
             android:text="@string/profile"
@@ -67,7 +69,7 @@
             android:id="@+id/financesTextView"
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/finances"
             android:textStyle="bold"
@@ -76,7 +78,7 @@
         <TextView
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:textStyle="bold"
             android:text="@string/spending_limit"
@@ -86,7 +88,7 @@
             android:id="@+id/chartTextView"
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/graph"
             android:textStyle="bold"
@@ -95,7 +97,7 @@
         <TextView
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/statistics"
             android:textStyle="bold"
@@ -105,21 +107,22 @@
             android:id="@+id/settingsTextView"
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/settings"
             android:textStyle="bold"
             android:textSize="20sp"/>
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="310dp"
             android:layout_height="3dp"
-            android:background="@color/black"/>
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_view_holder"/>
 
         <TextView
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="15dp"
             android:text="@string/FAQ"
@@ -129,7 +132,7 @@
         <TextView
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/about"
             android:textStyle="bold"
@@ -138,19 +141,20 @@
         <TextView
             android:clickable="true"
             android:focusable="true"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="@string/contact"
             android:textStyle="bold"
             android:textSize="18sp"/>
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="310dp"
             android:layout_height="3dp"
-            android:background="@color/black"/>
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_view_holder"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="5dp">

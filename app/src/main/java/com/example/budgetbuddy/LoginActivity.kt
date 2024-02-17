@@ -2,8 +2,14 @@ package com.example.budgetbuddy
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Paint
+import android.graphics.Shader
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextPaint
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
@@ -14,12 +20,19 @@ import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin.Companion.authenticateUser
 import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 import com.example.budgetbuddy.Handlers.UserHandling.HandleUserSignIn
+import com.example.budgetbuddy.Utils.CustomTextUtils
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var customTextUtils: CustomTextUtils
+
+    private lateinit var registerFromLogin: TextView
+
     private val PREFS_NAME = "preferences"
     private val PREF_USERNAME = "username"
     private val PREF_PASSWORD = "password"
     private val PREF_REMEMBER = "remember"
+
+    private lateinit var appName: TextView
 
     private lateinit var username: EditText
     private lateinit var password: EditText
@@ -29,12 +42,21 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        customTextUtils = CustomTextUtils()
+
+        appName = findViewById(R.id.appName)
+        customTextUtils.applyLinearGradient(appName)
+
         username = findViewById(R.id.login_username)
         password = findViewById(R.id.login_password)
         remember = findViewById(R.id.remember)
 
         val loginBtn: Button = findViewById(R.id.login_btn)
-        val registerFromLogin: TextView = findViewById(R.id.register_from_login)
+
+
+        registerFromLogin = findViewById(R.id.registerFromLogin)
+        customTextUtils.applyLinearGradient(registerFromLogin)
+
 
         val googleImage: ImageView = findViewById(R.id.googleImage)
 

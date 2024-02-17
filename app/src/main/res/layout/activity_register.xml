@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
@@ -7,9 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/dark_gery"
-    tools:context=".MainActivity"
-    >
+    android:background="@drawable/custom_background_image"
+    tools:context=".RegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -25,11 +24,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@color/shaded_blue">
+            android:padding="40dp"
+            android:background="@drawable/custom_view_holder">
 
             <TextView
-                android:id="@+id/loginTW"
+                android:id="@+id/signUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/register"
@@ -43,11 +42,12 @@
                 android:layout_height="50dp"
                 android:id="@+id/register_username"
                 android:inputType="text"
-                android:background="@drawable/custom_edit_test_background"
-                android:drawableStart="@drawable/user_dark"
-                android:drawablePadding="8dp"
+                android:background="@drawable/custom_textview_holder_light"
+                android:drawableStart="@drawable/user"
+                android:drawablePadding="15dp"
                 android:hint="@string/user_hint"
-                android:padding="8dp"
+                android:textColorHint="@android:color/white"
+                android:padding="15dp"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/red"
                 android:layout_marginTop="40dp"
@@ -58,11 +58,12 @@
                 android:layout_height="50dp"
                 android:id="@+id/register_email_address"
                 android:inputType="textEmailAddress"
-                android:background="@drawable/custom_edit_test_background"
-                android:drawableStart="@drawable/email_dark"
-                android:drawablePadding="8dp"
+                android:background="@drawable/custom_textview_holder_light"
+                android:drawableStart="@drawable/email"
+                android:drawablePadding="15dp"
                 android:hint="@string/email"
-                android:padding="8dp"
+                android:textColorHint="@android:color/white"
+                android:padding="15dp"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/red"
                 android:layout_marginTop="20dp"
@@ -74,11 +75,12 @@
                 android:layout_height="50dp"
                 android:id="@+id/register_password"
                 android:inputType="textPassword"
-                android:background="@drawable/custom_edit_test_background"
-                android:drawableStart="@drawable/password_dark"
-                android:drawablePadding="8dp"
+                android:background="@drawable/custom_textview_holder_light"
+                android:drawableStart="@drawable/password"
+                android:drawablePadding="15dp"
                 android:hint="@string/password_hint"
-                android:padding="8dp"
+                android:textColorHint="@android:color/white"
+                android:padding="15dp"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/red"
                 android:layout_marginTop="20dp"
@@ -89,46 +91,46 @@
                 android:layout_height="50dp"
                 android:id="@+id/register_password_confirm"
                 android:inputType="textPassword"
-                android:background="@drawable/custom_edit_test_background"
-                android:drawableStart="@drawable/password_dark"
-                android:drawablePadding="8dp"
+                android:background="@drawable/custom_textview_holder_light"
+                android:drawableStart="@drawable/password"
+                android:drawablePadding="15dp"
                 android:hint="@string/password_confirmation"
-                android:padding="8dp"
+                android:textColorHint="@android:color/white"
+                android:padding="15dp"
                 android:textColor="@color/white"
                 android:textColorHighlight="@color/red"
                 android:layout_marginTop="20dp"
                 android:autofillHints="password"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="50sp"
+                android:layout_marginTop="15dp"
                 android:id="@+id/register_button"
                 android:text="@string/register"
                 android:textColor="@color/white"
-                android:background="@color/grey"
+                android:background="@drawable/custom_button"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text="@string/signed_up"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/loginFromRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/log_in_from_register"
                 android:textSize="18sp"
-                android:textColorHighlight="@color/purple"
-                android:layout_marginTop="15dp"/>
+                android:textStyle="bold"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="@string/signed_up"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        />
-
-    <TextView
-        android:id="@+id/loginFromRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_in_from_register"
-        android:textSize="18sp"
-        android:textColor="@color/shaded_blue"
-        android:textStyle="bold"
-        />
-
-</LinearLayout>
+</FrameLayout>

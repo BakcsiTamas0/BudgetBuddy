@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="325dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_centerInParent="true"
-    app:cardCornerRadius="25dp"
-    app:cardElevation="5dp"
-    app:cardBackgroundColor="@color/shaded_blue">
+    android:background="@drawable/custom_textview_holder_light">
 
-    <!-- Main container LinearLayout -->
     <LinearLayout
         android:id="@+id/topLayer"
         android:layout_width="match_parent"
@@ -18,7 +15,6 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <!-- Header TextView -->
         <TextView
             android:id="@+id/ProfOverview"
             android:layout_width="match_parent"
@@ -30,14 +26,12 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- First Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- Monthly Limit TextView -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,7 +39,7 @@
                 android:text="@string/monthlyLimit"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:background="@color/shaded_blue"
+                android:background="@android:color/transparent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -53,7 +47,6 @@
                 android:layout_width="10dp"
                 android:layout_height="1dp" />
 
-            <!-- Money Spent TextView -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -61,12 +54,11 @@
                 android:text="@string/moneySpent"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:background="@color/shaded_blue"
+                android:background="@android:color/transparent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- New Row for "None" text -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +66,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- None TextView (Left) -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -89,7 +80,6 @@
                 android:layout_width="10dp"
                 android:layout_height="1dp" />
 
-            <!-- None TextView (Right) -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -101,7 +91,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- Second Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -109,7 +98,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- Total Transactions TextView -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -117,7 +105,7 @@
                 android:text="@string/totalTransactions"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:background="@color/shaded_blue"
+                android:background="@android:color/transparent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -125,7 +113,6 @@
                 android:layout_width="10dp"
                 android:layout_height="1dp" />
 
-            <!-- Money Saved TextView -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -133,12 +120,11 @@
                 android:text="@string/moneySaved"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:background="@color/shaded_blue"
+                android:background="@android:color/transparent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- New Row for "None" text -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,7 +132,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- None TextView (Left) -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -161,7 +146,6 @@
                 android:layout_width="10dp"
                 android:layout_height="1dp" />
 
-            <!-- None TextView (Right) -->
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -173,4 +157,4 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</FrameLayout>

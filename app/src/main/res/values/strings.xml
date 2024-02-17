@@ -2,10 +2,10 @@
     // Registration screen
     <string name="app_name">BudgetBuddy</string>
     <string name="login">Login</string>
-    <string name="user_hint">Username</string>
-    <string name="password_hint">Password</string>
-    <string name="password_confirmation">Confirm password</string>
-    <string name="email">Email</string>
+    <string name="user_hint">Username…</string>
+    <string name="password_hint">Password…</string>
+    <string name="password_confirmation">Confirm password…</string>
+    <string name="email">Email…</string>
     <string name="signed_up">Already signed up?</string>
     <string name="log_in_from_register"><u>Click on me to log in!</u></string>
 
