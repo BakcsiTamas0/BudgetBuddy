@@ -4,21 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.Charts.LineChart">
+    tools:context=".Fragments.Charts.LineChart"
+    android:background="@drawable/custom_background_image">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        android:background="@drawable/custom_view_holder_4">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Income line chart"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginStart="10sp"/>
+            android:textAlignment="center"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/incomeLineChart"
@@ -29,22 +33,27 @@
     </LinearLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
+        android:layout_width="310dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/custom_view_holder_6"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="15dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/custom_view_holder_4">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Expense line chart"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginStart="10dp"/>
+            android:textAlignment="center"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/expenseLineChart"

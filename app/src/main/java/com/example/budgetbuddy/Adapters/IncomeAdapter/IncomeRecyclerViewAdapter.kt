@@ -35,7 +35,7 @@ class IncomeRecyclerViewAdapter(
         private val imageView: ImageView = itemView.findViewById(R.id.incomeTypeImage)
         private val textView: TextView = itemView.findViewById(R.id.incomeTypeList)
         private val amountView: TextView = itemView.findViewById(R.id.incomeAmount)
-        private val deleteButton: Button = itemView.findViewById(R.id.deleteIncomeItemBtn)
+        private val deleteButton: ImageView = itemView.findViewById(R.id.deleteIncomeItemBtn)
         private val handleIncomeCRUD = HandleIncomeCRUD(context)
 
         init{

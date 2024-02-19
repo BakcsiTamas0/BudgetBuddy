@@ -34,7 +34,6 @@ class ExchangeFragment : Fragment() {
 
     private lateinit var exchangeOneSpinner: Spinner
     private lateinit var exchangeTwoSpinner: Spinner
-    private lateinit var switchButton: ImageView
 
     private lateinit var selectedCurrencies: List<String>
 
@@ -62,7 +61,6 @@ class ExchangeFragment : Fragment() {
 
         exchangeOneSpinner = view.findViewById(R.id.exchangeOneSpinner)
         exchangeTwoSpinner = view.findViewById(R.id.exchangeTwoSpinner)
-        switchButton = view.findViewById(R.id.switchButton)
 
         currencyOneTextView = view.findViewById(R.id.exchangeOneTextView)
         currencyTwoTextView = view.findViewById(R.id.exchangeTwoTextView)

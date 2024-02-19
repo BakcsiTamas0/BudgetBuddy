@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.Finances.IncomeFragment">
+    tools:context=".Fragments.Finances.IncomeFragment"
+    android:background="@drawable/custom_background_image">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,16 +16,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@drawable/custom_view_holder_7">
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/incomeSpinner"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="45dp"
-                android:layout_weight="1"
                 android:layout_marginStart="10dp"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                android:padding="5dp"
+                android:background="@drawable/custom_view_holder_7"/>
 
             <EditText
                 android:id="@+id/incomeAmount"
@@ -34,14 +40,15 @@
                 android:inputType="numberDecimal"
                 android:hint="Amount"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/addIncome"
                 android:layout_width="75dp"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:text="Add"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:background="@drawable/custom_button"/>
         </LinearLayout>
 
     </RelativeLayout>
@@ -56,27 +63,37 @@
             android:id="@+id/incomeList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginEnd="15dp"
             android:text="Income list"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:padding="2dp"
+            android:background="@drawable/custom_view_holder_7"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/incomeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp" />
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="15dp"
+            android:background="@color/transparent"/>
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:orientation="vertical">
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@drawable/custom_view_holder_7">
 
         <TextView
             android:layout_width="match_parent"

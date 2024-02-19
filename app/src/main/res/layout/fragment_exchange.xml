@@ -3,57 +3,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/custom_background_image"
     android:orientation="vertical"
     tools:context=".Fragments.Exchange.ExchangeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center">
 
-        <Spinner
-            android:id="@+id/exchangeOneSpinner"
-            android:layout_width="320dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="45dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/exchangeOneTextView"
-            android:layout_width="320dp"
-            android:layout_height="40dp"
-            android:text="0.00"
-            android:textAlignment="textEnd"
-            android:textSize="30sp"
-            android:layout_marginTop="88dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginEnd="40dp"/>
+            <LinearLayout
+                android:id="@+id/spinnerOneLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="25dp">
 
-        <ImageView
-            android:id="@+id/switchButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginStart="315dp"/>
+                <Spinner
+                    android:id="@+id/exchangeOneSpinner"
+                    android:layout_width="320dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/custom_view_holder_7"/>
 
-        <Spinner
-            android:id="@+id/exchangeTwoSpinner"
-            android:layout_width="320dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="220dp"
-            android:layout_marginStart="45dp"/>
+                <TextView
+                    android:id="@+id/exchangeOneTextView"
+                    android:layout_width="320dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:text="0.00"
+                    android:textAlignment="center"
+                    android:textSize="30sp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/exchangeTwoTextView"
-            android:layout_width="320dp"
-            android:layout_height="40dp"
-            android:text="0.00"
-            android:textAlignment="textEnd"
-            android:textSize="30sp"
-            android:layout_marginTop="298dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="20dp"/>
+            <LinearLayout
+                android:id="@+id/switchButtonLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/switch_button_image" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/spinnerTwoLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinnerOneLinearLayout"
+                android:background="@color/transparent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <Spinner
+                    android:id="@+id/exchangeTwoSpinner"
+                    android:layout_width="320dp"
+                    android:layout_height="75dp"
+                    android:background="@drawable/custom_view_holder_7"/>
+
+                <TextView
+                    android:id="@+id/exchangeTwoTextView"
+                    android:layout_width="320dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:text="0.00"
+                    android:textAlignment="center"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -61,127 +94,155 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-    </View>
+        android:layout_marginBottom="10dp"></View>
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1"
-        android:rowCount="4"
-        android:columnCount="3"
         android:alignmentMode="alignMargins"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp">
+        android:background="@color/transparent"
+        android:columnCount="3"
+        android:padding="15dp"
+        android:rowCount="4">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonOne"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="1"/>
+            android:layout_columnWeight="1"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_3"
+            android:text="1" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonTwo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="2"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_5"
+            android:text="2" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonThree"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="3"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_4"
+            android:text="3" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonFour"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="4"/>
+            android:layout_columnWeight="1"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_3"
+            android:text="4" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonFive"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="5"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_5"
+            android:text="5" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonSix"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="6"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_4"
+            android:text="6" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonSeven"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="7"/>
+            android:layout_columnWeight="1"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_3"
+            android:text="7" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonEight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="8"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_5"
+            android:text="8" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonNine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="9"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_4"
+            android:text="9" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonDot"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="."/>
+            android:layout_columnWeight="1"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_3"
+            android:text="." />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonZero"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="0"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_5"
+            android:text="0" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonDel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:text="Del"/>
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_view_holder_4"
+            android:text="Del" />
+
     </GridLayout>
 
 </LinearLayout>

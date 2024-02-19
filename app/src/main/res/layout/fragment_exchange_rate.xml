@@ -4,18 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/custom_background_image"
     tools:context=".Fragments.Exchange.ExchangeRateFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Selected currency"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Default currency"
+        android:textAlignment="center"
         android:textSize="20sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple">
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/custom_view_holder_6">
 
         <ImageView
             android:layout_width="50dp"
@@ -33,24 +39,34 @@
     </RelativeLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_width="310dp"
+        android:layout_height="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/custom_view_holder_6">
     </View>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:text="All currency rates"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textAlignment="center"/>
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
         android:rowCount="1"
         android:columnCount="3"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="@drawable/custom_view_holder_6">
 
         <TextView
             android:layout_width="0dp"
@@ -68,7 +84,7 @@
             android:padding="5dp"
             android:text="Currency"
             android:textSize="18sp"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <TextView
             android:layout_width="0dp"
@@ -85,7 +101,11 @@
         android:id="@+id/exchangeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:padding="15dp"
         android:layout_weight="1"
-        android:background="@color/purple"/>
+        android:background="@color/transparent"/>
 
 </LinearLayout>

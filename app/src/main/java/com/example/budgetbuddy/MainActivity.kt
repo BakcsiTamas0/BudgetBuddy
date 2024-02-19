@@ -49,7 +49,9 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
     private lateinit var chartTextView: TextView
     private lateinit var settingsTextView: TextView
 
-    private lateinit var appListExchangeOptionTextView: TextView
+    private lateinit var appListFinances: LinearLayout
+    private lateinit var applistGraphs: LinearLayout
+    private lateinit var appListExchange: LinearLayout
 
     private lateinit var expandButton: Button
     private lateinit var chatSendButton: Button
@@ -83,7 +85,9 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
         chartTextView = findViewById(R.id.chartTextView)
         settingsTextView = findViewById(R.id.settingsTextView)
 
-        appListExchangeOptionTextView = findViewById(R.id.appListExchangeOptionTextView)
+        appListFinances = findViewById(R.id.appListFinances)
+        applistGraphs = findViewById(R.id.appListGraphs)
+        appListExchange = findViewById(R.id.appListExchange)
 
         expandButton = findViewById(R.id.expandButton)
 
@@ -132,7 +136,19 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
             startActivity(settingsIntent)
         }
 
-        appListExchangeOptionTextView.setOnClickListener() {
+        appListFinances.setOnClickListener() {
+            val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
+            financesIntent.putExtra("USERNAME", drawerUsername)
+            startActivity(financesIntent)
+        }
+
+        applistGraphs.setOnClickListener() {
+            val chartIntent = Intent(this, ChartHandlerActivity::class.java)
+            chartIntent.putExtra("USERNAME", drawerUsername)
+            startActivity(chartIntent)
+        }
+
+        appListExchange.setOnClickListener() {
             val exchangeIntent = Intent(this, ExchangeHandlerActivity::class.java)
             startActivity(exchangeIntent)
         }

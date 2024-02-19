@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
-        app:tabGravity="fill"/>
+        app:tabGravity="fill"
+        android:background="@drawable/custom_view_holder_7"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

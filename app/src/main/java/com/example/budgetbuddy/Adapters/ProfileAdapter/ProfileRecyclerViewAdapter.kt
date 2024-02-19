@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -44,7 +45,7 @@ class ProfileRecyclerViewAdapter(
     inner class ViewHolder(itemView: View, private val username: String) : RecyclerView.ViewHolder(itemView) {
         private val userCounter: TextView = itemView.findViewById(R.id.addedUserNumber)
         private val addedUserName: EditText = itemView.findViewById(R.id.addedUserName)
-        private val deleteExtraProfileUserButton: Button = itemView.findViewById(R.id.addedUserDeleteButton)
+        private val deleteExtraProfileUserButton: ImageView = itemView.findViewById(R.id.addedUserDeleteButton)
         private val handleSubUserCRUD = HandleProfileCRUD(context)
 
         fun bind(item: String) {

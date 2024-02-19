@@ -24,7 +24,7 @@
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:padding="40dp"
-            android:background="@drawable/custom_view_holder">
+            android:background="@drawable/custom_view_holder_2">
 
             <TextView
                 android:id="@+id/appName"

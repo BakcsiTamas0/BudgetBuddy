@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:background="@android:color/white"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="25dp">
+    android:padding="5dp"
+    android:background="@android:color/transparent">
 
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/shaded_blue"
-    android:padding="10dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_view_holder_7">
 
     <ImageView
         android:id="@+id/exchangeImageView"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="15dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
         android:src="@drawable/user_icon"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
         android:layout_toEndOf="@id/exchangeImageView"
+        android:layout_centerVertical="true"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/exchangeAbbreviation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="currencyAbbreviation"
             android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:text="currencyAbbreviation"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -42,8 +40,9 @@
             android:id="@+id/exchangeFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:layout_marginStart="25dp"
+            android:layout_marginBottom="5dp"
             android:text="currencyFullname"
             android:textSize="16sp"/>
     </LinearLayout>
@@ -54,10 +53,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_centerVertical="true"
         android:textSize="18sp"
         android:textStyle="bold"/>
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</FrameLayout>

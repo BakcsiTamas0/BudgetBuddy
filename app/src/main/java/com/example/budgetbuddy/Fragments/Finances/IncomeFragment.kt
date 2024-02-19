@@ -44,7 +44,7 @@ class IncomeFragment : Fragment() {
     private lateinit var spinner: Spinner
     private lateinit var recyclerView: RecyclerView
     private lateinit var incomeList: MutableList<IncomeItem>
-    private lateinit var addButton: Button
+    private lateinit var addButton: androidx.appcompat.widget.AppCompatButton
     private lateinit var recyclerViewAdapter: IncomeRecyclerViewAdapter
 
     private lateinit var amountEditText: EditText

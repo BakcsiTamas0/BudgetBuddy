@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_centerInParent="true"
-    android:background="@drawable/custom_view_holder">
+    android:background="@drawable/custom_view_holder_6">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/appListCardOne"
@@ -43,13 +43,28 @@
             android:layout_margin="8dp"
             android:background="@drawable/custom_view_holder_3">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Finances"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
+            <LinearLayout
+                android:id="@+id/appListFinances"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:background="@drawable/custom_view_holder_6"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/finances_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/finances"
+                    android:textSize="18sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
         </FrameLayout>
 
         <FrameLayout
@@ -62,13 +77,28 @@
             android:layout_margin="8dp"
             android:background="@drawable/custom_view_holder_4">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Graphs"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
+            <LinearLayout
+                android:id="@+id/appListGraphs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:background="@drawable/custom_view_holder_6"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/graphs_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/graph"
+                    android:textSize="18sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
         </FrameLayout>
 
         <FrameLayout
@@ -81,13 +111,27 @@
             android:layout_margin="8dp"
             android:background="@drawable/custom_view_holder_3">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Statistics"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:background="@drawable/custom_view_holder_6"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/statistics_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Statistics"
+                    android:textSize="18sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
         </FrameLayout>
 
         <FrameLayout
@@ -100,15 +144,29 @@
             android:layout_margin="8dp"
             android:background="@drawable/custom_view_holder_4">
 
-            <TextView
-                android:id="@+id/appListExchangeOptionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Exchange"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_gravity="center"/>
+            <LinearLayout
+                android:id="@+id/appListExchange"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:background="@drawable/custom_view_holder_6"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/exchange_icon"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Exchange"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
         </FrameLayout>
 
     </GridLayout>

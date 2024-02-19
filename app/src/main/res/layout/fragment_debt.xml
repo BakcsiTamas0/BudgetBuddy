@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.Finances.DebtFragment">
+    tools:context=".Fragments.Finances.DebtFragment"
+    android:background="@drawable/custom_background_image">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,8 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@drawable/custom_view_holder_7">
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/debtSpinner"
@@ -53,30 +58,39 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/debtList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="10dp"
-            android:text="Income list"
+            android:layout_marginEnd="15dp"
+            android:text="Debt list"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:padding="2dp"
+            android:background="@drawable/custom_view_holder_7"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/debtRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="15dp" />
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="15dp"
+            android:background="@color/transparent"/>
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:orientation="vertical">
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@drawable/custom_view_holder_7">
 
         <TextView
             android:layout_width="match_parent"
