@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class GoogleUserSave {
     fun saveGoogleUser(username: String, email: String) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://bakcsitamas.pythonanywhere.com/")
+            .baseUrl("http://192.168.43.228:65432/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

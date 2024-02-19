@@ -18,7 +18,7 @@ class HandleLogin {
     }
     companion object {
         private val retrofit = Retrofit.Builder()
-            .baseUrl("https://bakcsitamas.pythonanywhere.com/")
+            .baseUrl("http://192.168.43.228:65432/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

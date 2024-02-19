@@ -15,7 +15,7 @@ class IncomePRChartFetcher(private val context: Context, private val username: S
 
     fun fetchIncomeChartData(onChartDataFetched: (List<IncomeData>)-> Unit) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://bakcsitamas.pythonanywhere.com/")
+            .baseUrl("http://192.168.43.228:65432/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

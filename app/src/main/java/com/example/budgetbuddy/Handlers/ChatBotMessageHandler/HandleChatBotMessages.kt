@@ -23,7 +23,7 @@ class HandleChatBotMessages(private val activity: Activity) {
 
     fun sendChatBotMessage(username: String, message: String, callback: (String) -> Unit) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://bakcsitamas.pythonanywhere.com/")
+            .baseUrl("http://192.168.43.228:65432/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

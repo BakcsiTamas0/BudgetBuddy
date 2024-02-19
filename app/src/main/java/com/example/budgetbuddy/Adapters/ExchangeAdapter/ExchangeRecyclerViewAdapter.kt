@@ -31,14 +31,13 @@ class ExchangeRecyclerViewAdapter (
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val exchangeImageView: ImageView = itemView.findViewById(R.id.exchangeImageView)
-        private val exchangeAbbreviation: TextView =
-            itemView.findViewById(R.id.exchangeAbbreviation)
+        private val exchangeAbbreviation: TextView = itemView.findViewById(R.id.exchangeAbbreviation)
         private val exchangeFullName: TextView = itemView.findViewById(R.id.exchangeFullName)
         private val exchangeBuyPrice: TextView = itemView.findViewById(R.id.exchangeRate)
 
         fun bind(item: ExchangeItem) {
             exchangeAbbreviation.text = item.currency
-            exchangeBuyPrice.text = item.rate.toString()
+            exchangeBuyPrice.text = String.format("%.2f", item.rate)
             setFullName(ExchangeItem(item.currency, item.rate))
             setCountryImage(ExchangeItem(item.currency, item.rate))
         }

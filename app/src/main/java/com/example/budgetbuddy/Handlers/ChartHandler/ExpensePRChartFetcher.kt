@@ -15,7 +15,7 @@ class ExpenseChartFetcher(private val context: Context, private val username: St
 
     fun fetchExpenseChartData(onChartDataFetched: (List<ExpenseData>) -> Unit) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://bakcsitamas.pythonanywhere.com/")
+            .baseUrl("http://192.168.43.228:65432/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

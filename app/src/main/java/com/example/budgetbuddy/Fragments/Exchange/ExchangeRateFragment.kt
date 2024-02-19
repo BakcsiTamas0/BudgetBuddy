@@ -51,7 +51,6 @@ class ExchangeRateFragment : Fragment() {
             exchangeRecyclerView = view.findViewById(R.id.exchangeRecyclerView)
             exchangeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
             val adapter = ExchangeRecyclerViewAdapter(requireContext(), exchangeRates)
             exchangeRecyclerView.adapter = adapter
         }
