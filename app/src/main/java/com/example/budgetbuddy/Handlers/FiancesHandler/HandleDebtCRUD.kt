@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.budgetbuddy.API.DebtAPI.DebtAPI
 import com.example.budgetbuddy.DataClasses.DebtData.DebtData
 import com.example.budgetbuddy.DataClasses.UserData.UserDebtDataResponse
+import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,12 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HandleDebtCRUD(requireContext: Context) {
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.43.228:65432/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
+    val retrofit: Retrofit = RetrofitUtils.initRetrofit()
     private val apiService = retrofit.create(DebtAPI::class.java)
 
     interface DebtDataCallBack {

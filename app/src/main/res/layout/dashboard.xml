@@ -40,8 +40,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@android:color/transparent"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <View
                 android:layout_width="10dp"
@@ -55,8 +54,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@android:color/transparent"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -106,8 +104,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@android:color/transparent"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <View
                 android:layout_width="10dp"
@@ -121,8 +118,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@android:color/transparent"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout

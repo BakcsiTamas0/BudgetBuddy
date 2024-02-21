@@ -100,6 +100,10 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
     private fun initLogic() {
         setSupportActionBar(toolbar)
 
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbar.setTitle("")
+        toolbar.setSubtitle("")
+
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()

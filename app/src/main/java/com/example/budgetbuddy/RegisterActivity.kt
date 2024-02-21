@@ -13,9 +13,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.example.budgetbuddy.API.ApiServices
-import com.example.budgetbuddy.DataClasses.UserData.UserRegisterDataClass
 import com.example.budgetbuddy.Utils.CustomTextUtils
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
+import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
@@ -56,23 +56,17 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(login)
         }
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
+        val retrofit: Retrofit = RetrofitUtils.initRetrofit()
         val apiService = retrofit.create(ApiServices::class.java)
 
         if (password.text.toString() == confirmPassword.text.toString()) {
             registerButton.setOnClickListener() {
 
-                val newUser = UserRegisterDataClass(
-                    username = username.text.toString(),
-                    password = hashPassword(password.text.toString()),
-                    email = email.text.toString()
-                )
+                val username = username.text.toString()
+                val password = hashPassword(password.text.toString())
+                val email = email.text.toString()
 
-                val call = apiService.registerUser(newUser)
+                val call = apiService.registerUser(username, password, email)
 
                 call.enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {

@@ -10,15 +10,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import com.example.budgetbuddy.API.ChartDataAPI.ExpenseFetching.ExpenseFetch
 import com.example.budgetbuddy.DataClasses.ChartData.ExpenseChartDataResponse
 import com.example.budgetbuddy.DataClasses.ChartData.ExpenseData
+import com.example.budgetbuddy.Utils.RetrofitUtils
 
 class ExpenseChartFetcher(private val context: Context, private val username: String) {
+    val retrofit: Retrofit = RetrofitUtils.initRetrofit()
 
     fun fetchExpenseChartData(onChartDataFetched: (List<ExpenseData>) -> Unit) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
         val expenseFetchService = retrofit.create(ExpenseFetch::class.java)
 
         val call = expenseFetchService.getExpenseChartData(username)

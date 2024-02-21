@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.budgetbuddy.API.ApiServices
 import com.example.budgetbuddy.DataClasses.UserData.UserLoginDataClass
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
+import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,18 +18,13 @@ class HandleLogin {
         fun onAuthError()
     }
     companion object {
-        private val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
+        val retrofit: Retrofit = RetrofitUtils.initRetrofit()
         private val apiService = retrofit.create(ApiServices::class.java)
 
         fun authenticateUser(username: String, password: String, callback: AuthCallback) {
             val hashedPassword = hashPassword(password)
-            val userLoginData = UserLoginDataClass(username, hashedPassword)
 
-            val call: Call<Void> = apiService.authenticateUser(userLoginData)
+            val call: Call<Void> = apiService.authenticateUser(username, hashedPassword)
 
             call.enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {

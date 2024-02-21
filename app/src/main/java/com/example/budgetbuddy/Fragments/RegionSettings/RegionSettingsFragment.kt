@@ -2,6 +2,7 @@ package com.example.budgetbuddy.Fragments.RegionSettings
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,6 +67,9 @@ class RegionSettingsFragment : Fragment() {
         }
 
         userRegionSettingSubmitButton.setOnClickListener {
+            Log.d("RegionSettings", "Submit button clicked.")
+            Log.d("RegionSettings", "Country: ${userRegionSettingCountrySpinner.selectedItem.toString()}")
+            Log.d("RegionSettings", "Currency: ${userRegionSettingCurrencySpinner.selectedItem.toString()}")
             regionSettingsListener?.onSaveUserRegionSettings()
         }
 

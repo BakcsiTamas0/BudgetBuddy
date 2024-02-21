@@ -6,6 +6,7 @@ import com.example.budgetbuddy.API.ProfileAPI.ProfileAPI
 import com.example.budgetbuddy.DataClasses.ProfileData.ProfileData
 import com.example.budgetbuddy.DataClasses.ProfileData.ProfileDataResponse
 import com.example.budgetbuddy.Handlers.FiancesHandler.HandleDebtCRUD
+import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,12 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class HandleProfileCRUD(requireContext: Context) {
-
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.43.228:65432/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
+    val retrofit: Retrofit = RetrofitUtils.initRetrofit()
     private val profileAPI: ProfileAPI = retrofit.create(ProfileAPI::class.java)
 
     interface OnSubUserDataReceiver {

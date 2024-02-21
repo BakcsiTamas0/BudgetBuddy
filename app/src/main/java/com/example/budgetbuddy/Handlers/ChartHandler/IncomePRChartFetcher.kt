@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.example.budgetbuddy.API.ChartDataAPI.IncomeFetching.IncomeFetch
 import com.example.budgetbuddy.DataClasses.ChartData.IncomeChartDataResponse
 import com.example.budgetbuddy.DataClasses.ChartData.IncomeData
+import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,13 +13,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class IncomePRChartFetcher(private val context: Context, private val username: String) {
+    val retrofit: Retrofit = RetrofitUtils.initRetrofit()
 
     fun fetchIncomeChartData(onChartDataFetched: (List<IncomeData>)-> Unit) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
         val incomeFetchService = retrofit.create(IncomeFetch::class.java)
 
         val call = incomeFetchService.getIncomeChartData(username)

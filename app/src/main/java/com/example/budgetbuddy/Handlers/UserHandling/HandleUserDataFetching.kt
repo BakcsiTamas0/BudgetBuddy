@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.budgetbuddy.API.ApiServices
 import com.example.budgetbuddy.DataClasses.UserData.EmailResponse
 import com.example.budgetbuddy.R
+import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,11 +26,7 @@ class HandleUserDataFetching(
         val drawerUsername: TextView = (context).findViewById(R.id.drawerUsername)
         drawerUsername.text = intentUsername
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.43.228:65432/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
+        val retrofit: Retrofit = RetrofitUtils.initRetrofit()
         val apiServices = retrofit.create(ApiServices::class.java)
 
         val call = apiServices.getEmailByUsername(username)

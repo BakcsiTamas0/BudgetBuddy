@@ -18,15 +18,24 @@ import retrofit2.http.Query
 
 interface ApiServices {
     // Authentication API endpoints
-    @POST("register_user")
-    fun registerUser(@Body userRegisterDataClass: UserRegisterDataClass): Call<Void>
+    @POST("register_user/{username}/{password}/{email}")
+    fun registerUser(
+        @Path("username") username: String,
+        @Path("password") password: String,
+        @Path("email") email: String
+    ): Call<Void>
 
-    @POST("authenticate_user")
-    fun authenticateUser(@Body userLoginDataClass: UserLoginDataClass): Call<Void>
+    @POST("authenticate_user/{username}/{password}")
+    fun authenticateUser(
+        @Path("username") username: String,
+        @Path("password") password: String
+    ): Call<Void>
 
     // User API endpoint
-    @POST("get_email_by_username")
-    fun getEmailByUsername(@Body username: String): Call<EmailResponse>
+    @POST("get_email_by_username/{username}")
+    fun getEmailByUsername(
+        @Path("username") username: String
+    ): Call<EmailResponse>
 
     // Income API endpoint
     @POST("save_income_data_by_username/{username}/{incomeType}/{amount}")

@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.budgetbuddy.API.ChatbotAPI.ChatbotAPI
 import com.example.budgetbuddy.DataClasses.ChatbotData.ChatRequest
 import com.example.budgetbuddy.DataClasses.ChatbotData.ChatResponse
+import com.example.budgetbuddy.Utils.RetrofitUtils
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,7 +15,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class HandleChatBotMessages(private val activity: Activity) {
-
     val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
