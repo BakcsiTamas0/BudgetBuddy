@@ -41,5 +41,4 @@ class UserRegionSettingsCountrySpinnerAdapter (
 
         return rowView
     }
-
 }

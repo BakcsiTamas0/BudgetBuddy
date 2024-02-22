@@ -16,13 +16,17 @@ class ExchangeHandlerActivity : AppCompatActivity() {
     private lateinit var exchangeTabLayout: TabLayout
     private lateinit var exchangeViewPager: ViewPager2
 
+    private lateinit var username: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_handler)
 
+        username = intent.getStringExtra("USERNAME").toString()
+
         val fragmentList = listOf(
             ExchangeFragment(),
-            ExchangeRateFragment()
+            ExchangeRateFragment.newInstance(username)
         )
 
         exchangeTabLayout = findViewById(R.id.exchangeTabLayout)

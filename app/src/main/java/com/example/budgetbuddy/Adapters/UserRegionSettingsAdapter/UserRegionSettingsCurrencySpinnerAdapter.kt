@@ -37,8 +37,8 @@ class UserRegionSettingsCurrencySpinnerAdapter(
         val currentItem = getItem(position)
 
         if (currentItem != null) {
-            val fullCountryName = regionUtils.setFullCurrencyName(currentItem)
-            regionSettingsFullCurrencyName.text = fullCountryName
+            val fullCountryName = regionUtils.setFullCountryName(currentItem)
+            regionSettingsFullCurrencyName.text = fullCountryName.toString()
             regionSettingsAbbrCurrencyName.text = currentItem.currency
         }
 

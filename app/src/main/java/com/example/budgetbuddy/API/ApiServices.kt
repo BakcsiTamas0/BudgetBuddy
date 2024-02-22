@@ -5,16 +5,9 @@ import com.example.budgetbuddy.DataClasses.UserData.EmailResponse
 import com.example.budgetbuddy.DataClasses.IncomeData.IncomeData
 import com.example.budgetbuddy.DataClasses.UserData.UserExpenseDataResponse
 import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
-import com.example.budgetbuddy.DataClasses.UserData.UserLoginDataClass
-import com.example.budgetbuddy.DataClasses.UserData.UserRegisterDataClass
-import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Multipart
 import retrofit2.http.POST
-import retrofit2.http.Part
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiServices {
     // Authentication API endpoints

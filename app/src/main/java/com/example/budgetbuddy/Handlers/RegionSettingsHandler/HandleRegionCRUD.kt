@@ -14,7 +14,7 @@ class HandleRegionCRUD {
     private var retrofit = RetrofitUtils.initRetrofit()
     private val regionAPI: RegionAPI = retrofit.create(RegionAPI::class.java)
 
-    interface onRegionResponseReceiver {
+    interface onRegionResponseReceived {
         fun onRegionResponseReceived(regionResponse: RegionResponse)
     }
 
@@ -32,21 +32,20 @@ class HandleRegionCRUD {
         })
     }
 
-    fun getRegion(username: String, callBack: onRegionResponseReceiver) {
+    fun getRegion(username: String, callBack: onRegionResponseReceived) {
         val call = regionAPI.getUserRegionSettings(username)
 
         call.enqueue(object : Callback<RegionResponse> {
-            override fun onResponse(
-                call: Call<RegionResponse>,
-                response: Response<RegionResponse>
-            ) {
+            override fun onResponse(call: Call<RegionResponse>, response: Response<RegionResponse>) {
                 if (response.isSuccessful) {
                     val regionResponse = response.body()
                     regionResponse?.let {
                         callBack.onRegionResponseReceived(regionResponse)
                     }
                 } else {
-                    Log.d("HandleRegionCrud", "Failed to get region")
+                    Log.d(
+                        "HandleRegionCrud","Failed to get region. Response code: ${response.code()}"
+                    )
                 }
             }
 

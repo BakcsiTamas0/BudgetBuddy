@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Default currency"
+        android:text="Default country and currency"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -24,17 +24,39 @@
         android:background="@drawable/custom_view_holder_6">
 
         <ImageView
+            android:id="@+id/defaultCountryImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="25dp"
-            android:layout_marginStart="50dp"/>
+            android:layout_marginStart="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
 
-        <EditText
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <TextView
+            android:id="@+id/defaultCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
-            android:layout_marginStart="150dp"/>
+            android:layout_marginStart="130dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/defaultCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
     </RelativeLayout>
 

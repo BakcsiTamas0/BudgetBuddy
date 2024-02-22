@@ -40,19 +40,6 @@ class ExchangeFragment : Fragment() {
     private lateinit var currencyOneTextView: TextView
     private lateinit var currencyTwoTextView: TextView
 
-    private lateinit var buttonOne: Button
-    private lateinit var buttonTwo: Button
-    private lateinit var buttonThree: Button
-    private lateinit var buttonFour: Button
-    private lateinit var buttonFive: Button
-    private lateinit var buttonSix: Button
-    private lateinit var buttonSeven: Button
-    private lateinit var buttonEight: Button
-    private lateinit var buttonNine: Button
-    private lateinit var buttonZero: Button
-    private lateinit var buttonDot: Button
-    private lateinit var buttonDelete: Button
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

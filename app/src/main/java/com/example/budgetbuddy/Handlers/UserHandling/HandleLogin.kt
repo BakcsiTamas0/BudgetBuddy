@@ -2,14 +2,12 @@ package com.example.budgetbuddy.Handlers.UserHandling
 
 import android.util.Log
 import com.example.budgetbuddy.API.ApiServices
-import com.example.budgetbuddy.DataClasses.UserData.UserLoginDataClass
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class HandleLogin {
 
@@ -17,6 +15,7 @@ class HandleLogin {
         fun onAuthSuccess()
         fun onAuthError()
     }
+
     companion object {
         val retrofit: Retrofit = RetrofitUtils.initRetrofit()
         private val apiService = retrofit.create(ApiServices::class.java)

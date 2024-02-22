@@ -61,11 +61,12 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initUIElements()
+        initLogic()
+
+
         if (!hasUserRegionSettings()) {
             showUserRegionSettingsFragment()
-        } else {
-            initUIElements()
-            initLogic()
         }
 
     }
@@ -154,6 +155,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         appListExchange.setOnClickListener() {
             val exchangeIntent = Intent(this, ExchangeHandlerActivity::class.java)
+            exchangeIntent.putExtra("USERNAME", drawerUsername)
             startActivity(exchangeIntent)
         }
 
@@ -182,7 +184,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
     private fun showUserRegionSettingsFragment() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val regionSettingsFragment = RegionSettingsFragment.newInstance()
+        val regionSettingsFragment = RegionSettingsFragment.newInstance(drawerUsername)
         fragmentTransaction.replace(android.R.id.content, regionSettingsFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
