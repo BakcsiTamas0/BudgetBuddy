@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.DataClasses.SettingsData.SettingsItem
+import com.example.budgetbuddy.Fragments.Settings.UpdateUsernameFragment
 import com.example.budgetbuddy.R
 
 class SettingsAdapter(
@@ -29,6 +31,10 @@ class SettingsAdapter(
         return SettingsViewHolder(itemView)
     }
 
+    override fun getItemCount(): Int {
+        return settingItems.size
+    }
+
     override fun onBindViewHolder(holder: SettingsViewHolder, position: Int) {
         val settingItem = settingItems[position]
 
@@ -39,16 +45,19 @@ class SettingsAdapter(
                 toggleSubSettingsVisibility(holder)
             }
 
-            val subSettingsAdapter = SubSettingsAdapter(context, settingItem.subSettings)
+            val subSettingsAdapter = SubSettingsAdapter(
+                context,
+                settingItem.subSettings,
+                onItemClickListener = { subSetting ->
+                    handleSubSettingClick(settingItem, subSetting)
+                }
+            )
+
             holder.subSettingsRecyclerView.layoutManager = LinearLayoutManager(context)
             holder.subSettingsRecyclerView.adapter = subSettingsAdapter
         } else {
             holder.subSettingsRecyclerView.visibility = View.GONE
         }
-    }
-
-    override fun getItemCount(): Int {
-        return settingItems.size
     }
 
     private fun toggleSubSettingsVisibility(holder: SettingsViewHolder) {
@@ -58,5 +67,22 @@ class SettingsAdapter(
             } else {
                 View.VISIBLE
             }
+    }
+
+    private fun handleSubSettingClick(settingsItem: SettingsItem, subSetting: String) {
+        when (settingsItem.title) {
+            "Account" -> {
+                when (subSetting) {
+                    "Change username" -> {
+                        // Handle Change username click
+                        val updateUsernameFragment = UpdateUsernameFragment.newInstance("Lajoska")
+                        val fragmentTransaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        fragmentTransaction.replace(android.R.id.content, updateUsernameFragment)
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.commit()
+                    }
+                }
+            }
+        }
     }
 }

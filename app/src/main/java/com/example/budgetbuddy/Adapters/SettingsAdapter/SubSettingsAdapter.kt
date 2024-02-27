@@ -7,12 +7,26 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.R
+import com.github.mikephil.charting.utils.Utils.init
 
-class SubSettingsAdapter(private val context: Context, private val subSettings: List<String>) :
-    RecyclerView.Adapter<SubSettingsAdapter.SubSettingsViewHolder>() {
+class SubSettingsAdapter(
+    private val context: Context,
+    private val subSettings: List<String>,
+    private var onItemClickListener: (String) -> Unit
+) : RecyclerView.Adapter<SubSettingsAdapter.SubSettingsViewHolder>() {
 
     inner class SubSettingsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val subSettingTextView: TextView = itemView.findViewById(R.id.subSettingTextView)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val subSetting = subSettings[position]
+                    onItemClickListener(subSetting)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubSettingsViewHolder {
