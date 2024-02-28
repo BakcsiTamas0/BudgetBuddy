@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.TextView
 import com.example.budgetbuddy.Handlers.Settings.HandleSettings
 import com.example.budgetbuddy.R
+import com.example.budgetbuddy.Utils.PasswordHashUtil
+import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -26,6 +28,7 @@ class UpdatePasswordFragment : Fragment() {
     }
 
     private var handleSettings = HandleSettings()
+    private var hashUtils = PasswordHashUtil()
 
     private lateinit var username: String
 
@@ -43,9 +46,11 @@ class UpdatePasswordFragment : Fragment() {
         newPasswordET = view.findViewById(R.id.newPassword)
         updatePasswordSaveButton = view.findViewById(R.id.updatePasswordSaveButton)
 
-        val newPassword = newPasswordET.text.toString()
         updatePasswordSaveButton.setOnClickListener {
-            handleSettings.updatePassword(username, newPassword)
+            val newPassword = newPasswordET.text.toString()
+            val hashedPassword = hashPassword(newPassword)
+
+            handleSettings.updatePassword(username, hashedPassword)
         }
 
         return view

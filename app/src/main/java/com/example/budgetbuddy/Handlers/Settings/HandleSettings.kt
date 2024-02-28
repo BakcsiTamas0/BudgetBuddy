@@ -53,4 +53,18 @@ class HandleSettings {
             }
         })
     }
+
+    fun deleteAccount(username: String){
+        val call = settingsAPI.deleteAccount(username)
+
+        call.enqueue(object: Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                Log.d("HandleSettings", response.body().toString())
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.d("HandleSettings", "Failed to delete user: ${t.message}")
+            }
+        })
+    }
 }

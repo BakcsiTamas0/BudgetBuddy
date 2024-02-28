@@ -10,6 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.DataClasses.SettingsData.SettingsItem
+import com.example.budgetbuddy.Fragments.RegionSettings.RegionSettingsFragment
+import com.example.budgetbuddy.Fragments.Settings.DeleteAccountFragment
+import com.example.budgetbuddy.Fragments.Settings.UpdateEmailFragment
+import com.example.budgetbuddy.Fragments.Settings.UpdatePasswordFragment
 import com.example.budgetbuddy.Fragments.Settings.UpdateUsernameFragment
 import com.example.budgetbuddy.R
 
@@ -74,10 +78,41 @@ class SettingsAdapter(
             "Account" -> {
                 when (subSetting) {
                     "Change username" -> {
-                        // Handle Change username click
-                        val updateUsernameFragment = UpdateUsernameFragment.newInstance("Lajoska")
+                        val updateUsernameFragment = UpdateUsernameFragment.newInstance(username)
                         val fragmentTransaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
                         fragmentTransaction.replace(android.R.id.content, updateUsernameFragment)
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.commit()
+                    }
+
+                    "Change password" -> {
+                        val updatePasswordFragment = UpdatePasswordFragment.newInstance(username)
+                        val fragmentTransaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        fragmentTransaction.replace(android.R.id.content, updatePasswordFragment)
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.commit()
+                    }
+
+                    "Change email" -> {
+                        val updateEmailFragment = UpdateEmailFragment.newInstance(username)
+                        val fragmentTransaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        fragmentTransaction.replace(android.R.id.content, updateEmailFragment)
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.commit()
+                    }
+
+                    "Update region and currency" -> {
+                        val updateRegionSettingsFragment = RegionSettingsFragment.newInstance(username)
+                        val fragmentTransaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        fragmentTransaction.replace(android.R.id.content, updateRegionSettingsFragment)
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.commit()
+                    }
+
+                    "Delete account" -> {
+                        val deleteAccountFragment = DeleteAccountFragment.newInstance(username)
+                        val fragmentTransaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        fragmentTransaction.replace(android.R.id.content, deleteAccountFragment)
                         fragmentTransaction.addToBackStack(null)
                         fragmentTransaction.commit()
                     }

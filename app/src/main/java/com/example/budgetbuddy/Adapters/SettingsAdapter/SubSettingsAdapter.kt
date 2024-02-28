@@ -1,12 +1,15 @@
 package com.example.budgetbuddy.Adapters.SettingsAdapter
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.R
+import com.github.mikephil.charting.utils.Utils
 import com.github.mikephil.charting.utils.Utils.init
 
 class SubSettingsAdapter(
@@ -37,6 +40,11 @@ class SubSettingsAdapter(
 
     override fun onBindViewHolder(holder: SubSettingsViewHolder, position: Int) {
         holder.subSettingTextView.text = subSettings[position]
+
+        if (subSettings[position] == "Delete account") {
+            holder.subSettingTextView.setTypeface(holder.subSettingTextView.getTypeface(), Typeface.BOLD)
+            holder.subSettingTextView.setTextColor(Color.RED)
+        }
     }
 
     override fun getItemCount(): Int {

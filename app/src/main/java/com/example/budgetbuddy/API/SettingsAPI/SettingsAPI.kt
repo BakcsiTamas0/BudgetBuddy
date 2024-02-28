@@ -22,4 +22,9 @@ interface SettingsAPI {
         @Path("username") username: String,
         @Path("new_email") newEmail: String
     ): Call<Void>
+
+    @POST("/settings/delete_account/{username}")
+    fun deleteAccount(
+        @Path("username") username: String
+    ): Call<Void>
 }

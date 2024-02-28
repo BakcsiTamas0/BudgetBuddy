@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         settingsTextView.setOnClickListener() {
             val settingsIntent = Intent(this, SettingsActivity::class.java)
+            settingsIntent.putExtra("USERNAME", drawerUsername)
             startActivity(settingsIntent)
         }
 

@@ -6,100 +6,100 @@
     tools:context=".Fragments.Settings.UpdateEmailFragment"
     android:background="@color/transparent">
 
-    <FrameLayout
-        android:id="@+id/updateEmailLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        tools:ignore="UselessParent"
-        android:layout_gravity="center">
+        <FrameLayout
+            android:id="@+id/updateEmailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            tools:ignore="UselessParent"
+            android:layout_gravity="center">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/custom_view_holder_2"
-        android:layout_gravity="center">
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@drawable/custom_view_holder_8"
+            android:layout_gravity="center">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="15dp"
-                android:text="So you want to change your email..."
-                android:textAlignment="center"
-                android:textSize="18sp"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="15dp"
-                android:text="keep in mind that you are allowed to change your email only once a month"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="15dp"
+                    android:text="So you want to change your email..."
+                    android:textAlignment="center"
+                    android:textSize="18sp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="15dp"
-                android:text="Your current email address"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="keep in mind that you are allowed to change your email only once a month"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
 
-            <TextView
-                android:id="@+id/currentEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:text="PLACEHOLDER"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Your current email address"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:text="And you want to change it to..."
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/currentEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="PLACEHOLDER"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
 
-            <EditText
-                android:id="@+id/newEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:text="PLACEHOLDER"
-                android:textAlignment="center"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="And you want to change it to..."
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/updateEmailSaveButton"
-                android:layout_width="125dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:text="Save"
-                android:background="@drawable/custom_button"/>
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/newEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="PLACEHOLDER"
+                    android:textAlignment="center"
+                    android:textSize="16sp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/updateEmailSaveButton"
+                    android:layout_width="125dp"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="Save"
+                    android:background="@drawable/custom_button"/>
+            </LinearLayout>
+
+        </FrameLayout>
 
     </FrameLayout>
-
-</FrameLayout>
 
 </FrameLayout>

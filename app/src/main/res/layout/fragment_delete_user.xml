@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Settings.UpdateUsernameFragment"
+    tools:context=".Fragments.Settings.DeleteAccountFragment"
     android:background="@color/transparent">
 
     <FrameLayout
-        android:id="@+id/updateUsernameLayout"
+        android:id="@+id/deleteUserLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -31,9 +31,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="So you want to change your username..."
+                    android:text="We are sad to see you go.."
                     android:textAlignment="center"
-                    android:textSize="18sp"/>
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -41,60 +42,31 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
-                    android:text="keep in mind that you are allowed to change your username only once a month"
+                    android:text="keep in mind that deleting your account is an action that cannot be reversed and you will have to register again to use our services"
                     android:textAlignment="center"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="Your current username"
-                    android:textAlignment="center"
-                    android:textSize="16sp"/>
 
-                <TextView
-                    android:id="@+id/currentUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="PLACEHOLDER"
-                    android:textAlignment="center"
-                    android:textSize="16sp"/>
-
-                <TextView
+                <CheckBox
+                    android:id="@+id/deleteConfirmationCheckbox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="25dp"
-                    android:text="And you want to change it to..."
-                    android:textAlignment="center"
-                    android:textSize="16sp"/>
-
-                <EditText
-                    android:id="@+id/newUsername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="25dp"
-                    android:text="PLACEHOLDER"
+                    android:text="Hereby I confirm that I want to delete my account"
                     android:textAlignment="center"
                     android:textSize="16sp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/updateUsernameSaveButton"
-                    android:layout_width="125dp"
+                    android:id="@+id/deleteUserSaveButton"
+                    android:layout_width="130dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Save"
+                    android:text="Delete account"
+                    android:textStyle="bold"
                     android:background="@drawable/custom_button"/>
             </LinearLayout>
 
