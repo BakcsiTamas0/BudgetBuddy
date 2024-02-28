@@ -18,9 +18,9 @@
     // MainActivity screen
     <string name="dashboard">Dashboard</string>
     <string name="monthlyLimit">Spending limit</string>
-    <string name="moneySpent">Spent money</string>
-    <string name="totalTransactions">Transactions</string>
-    <string name="moneySaved">Saved money</string>
+    <string name="moneySpent">Money spent</string>
+    <string name="totalExpense">Total Expense</string>
+    <string name="moneySaved">Money saved</string>
     <string name="None">None</string>
     <string name="open">Open</string>
     <string name="close">Close</string>

@@ -1,12 +1,15 @@
 package com.example.budgetbuddy.Adapters.SettingsAdapter
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.DataClasses.SettingsData.SettingsItem
@@ -15,6 +18,7 @@ import com.example.budgetbuddy.Fragments.Settings.DeleteAccountFragment
 import com.example.budgetbuddy.Fragments.Settings.UpdateEmailFragment
 import com.example.budgetbuddy.Fragments.Settings.UpdatePasswordFragment
 import com.example.budgetbuddy.Fragments.Settings.UpdateUsernameFragment
+import com.example.budgetbuddy.LoginActivity
 import com.example.budgetbuddy.R
 
 class SettingsAdapter(
@@ -117,6 +121,9 @@ class SettingsAdapter(
                         fragmentTransaction.commit()
                     }
                 }
+            }
+
+            "Log out" -> {
             }
         }
     }

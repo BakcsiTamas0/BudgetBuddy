@@ -47,6 +47,7 @@ class UpdateUsernameFragment : Fragment() {
         usernameSaveButton.setOnClickListener {
             val newUsername = newUsernameET.text.toString()
             handleSettings.updateUsername(username, newUsername)
+            parentFragmentManager.popBackStack()
         }
 
         return view

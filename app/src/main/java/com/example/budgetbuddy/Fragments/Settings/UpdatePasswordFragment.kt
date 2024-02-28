@@ -51,6 +51,7 @@ class UpdatePasswordFragment : Fragment() {
             val hashedPassword = hashPassword(newPassword)
 
             handleSettings.updatePassword(username, hashedPassword)
+            parentFragmentManager.popBackStack()
         }
 
         return view
