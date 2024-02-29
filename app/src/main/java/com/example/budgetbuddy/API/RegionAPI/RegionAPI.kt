@@ -25,9 +25,4 @@ interface RegionAPI {
         @Path("country") country: String,
         @Path("currency") currency: String
     ): Call<RegionData>
-
-    @POST("delete_user_region_settings/{username}")
-    fun deleteUserRegionSettings(
-        @Path("username") username: String
-    ): Call<Void>
 }

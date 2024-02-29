@@ -25,26 +25,29 @@ import com.example.budgetbuddy.R
 import android.content.Intent
 import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1 = "username"
+private const val ARG_PARAM2 = "userCurrency"
 
 class IncomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             username = it.getString(ARG_PARAM1).toString()
+            userCurrency = it.getString(ARG_PARAM2).toString()
         }
     }
 
     private lateinit var handleIncomeCRUD: HandleIncomeCRUD
 
     private lateinit var username: String
+    private lateinit var userCurrency: String
     private lateinit var intent: Intent
 
     private lateinit var spinner: Spinner
     private lateinit var recyclerView: RecyclerView
     private lateinit var incomeList: MutableList<IncomeItem>
     private lateinit var addButton: androidx.appcompat.widget.AppCompatButton
+    private lateinit var selectedCUR: TextView
     private lateinit var recyclerViewAdapter: IncomeRecyclerViewAdapter
 
     private lateinit var amountEditText: EditText
@@ -90,6 +93,9 @@ class IncomeFragment : Fragment() {
 
         addButton = view.findViewById(R.id.addIncome)
         amountEditText = view.findViewById(R.id.incomeAmount)
+        selectedCUR = view.findViewById(R.id.selectedCUR)
+
+        selectedCUR.text = userCurrency
 
         addButton.setOnClickListener() {
             val selectedIncome = spinner.selectedItem as IncomeItem
@@ -156,10 +162,11 @@ class IncomeFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(username: String) =
+        fun newInstance(username: String, userCurrency: String) =
             IncomeFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, username)
+                    putString(ARG_PARAM2, userCurrency)
                 }
             }
     }

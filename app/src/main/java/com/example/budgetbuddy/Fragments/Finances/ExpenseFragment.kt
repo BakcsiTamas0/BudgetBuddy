@@ -25,23 +25,27 @@ import com.example.budgetbuddy.DataClasses.UserData.UserExpenseDataResponse
 import com.example.budgetbuddy.Handlers.FiancesHandler.HandleExpenseCRUD
 import com.example.budgetbuddy.R
 
-private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM1 = "username"
+private const val ARG_PARAM2 = "userCurrency"
 
 class ExpenseFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             username = it.getString(ARG_PARAM1).toString()
+            userCurrency = it.getString(ARG_PARAM2).toString()
         }
     }
 
     private lateinit var username: String
+    private lateinit var userCurrency: String
     private lateinit var intent: Intent
 
     private lateinit var spinner: Spinner
     private lateinit var recyclerView: RecyclerView
     private lateinit var expenseList: MutableList<ExpenseItem>
     private lateinit var addButton: Button
+    private lateinit var selectedCUR: TextView
     private lateinit var recyclerViewAdapter: ExpenseRecyclerViewAdapter
 
     private lateinit var handleExpenseCRUD: HandleExpenseCRUD
@@ -93,6 +97,9 @@ class ExpenseFragment : Fragment() {
 
         addButton = view.findViewById(R.id.addExpense)
         amountEditText = view.findViewById(R.id.expenseAmount)
+        selectedCUR = view.findViewById(R.id.selectedCUR)
+
+        selectedCUR.text = userCurrency
 
         addButton.setOnClickListener() {
             val selectedExpense = spinner.selectedItem as ExpenseItem
@@ -163,10 +170,11 @@ class ExpenseFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(username: String) =
+        fun newInstance(username: String, userCurrency: String) =
             ExpenseFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, username)
+                    putString(ARG_PARAM2, userCurrency)
                 }
             }
     }

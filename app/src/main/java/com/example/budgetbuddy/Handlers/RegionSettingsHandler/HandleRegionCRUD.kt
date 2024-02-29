@@ -68,18 +68,4 @@ class HandleRegionCRUD {
             }
         })
     }
-
-    fun deleteRegion(username: String) {
-        val call = regionAPI.deleteUserRegionSettings(username)
-
-        call.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                Log.d("HandleRegionCrud", response.body().toString())
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.d("HandleRegionCrud", "Failed to delete region: ${t.message}")
-            }
-        })
-    }
 }
