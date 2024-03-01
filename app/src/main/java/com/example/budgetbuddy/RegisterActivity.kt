@@ -12,9 +12,12 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.budgetbuddy.API.ApiServices
+import com.example.budgetbuddy.Handlers.UserHandling.HandleRegister
 import com.example.budgetbuddy.Utils.CustomTextUtils
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
+import com.example.budgetbuddy.Utils.RegisterInformationUtils
 import com.example.budgetbuddy.Utils.RetrofitUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,6 +40,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        val handleRegister = HandleRegister(this)
+        val registerUtils = RegisterInformationUtils()
+
         customTextUtils = CustomTextUtils()
 
         signUp = findViewById(R.id.signUp)
@@ -44,6 +50,7 @@ class RegisterActivity : AppCompatActivity() {
 
         username = findViewById(R.id.register_username)
         email = findViewById(R.id.register_email_address)
+
         password = findViewById(R.id.register_password)
         confirmPassword = findViewById(R.id.register_password_confirm)
 
@@ -51,35 +58,35 @@ class RegisterActivity : AppCompatActivity() {
 
         loginFromRegister = findViewById(R.id.loginFromRegister)
         customTextUtils.applyLinearGradient(loginFromRegister)
+
         loginFromRegister.setOnClickListener() {
             val login = Intent(this, LoginActivity::class.java)
             startActivity(login)
         }
 
-        val retrofit: Retrofit = RetrofitUtils.initRetrofit()
-        val apiService = retrofit.create(ApiServices::class.java)
-
         if (password.text.toString() == confirmPassword.text.toString()) {
             registerButton.setOnClickListener() {
 
+                val passwordString = password.text.toString()
+                val confirmPasswordString = confirmPassword.text.toString()
+                val hashedPassword = hashPassword(passwordString)
+
+                val emailAddressString = email.text.toString()
+
                 val username = username.text.toString()
-                val password = hashPassword(password.text.toString())
-                val email = email.text.toString()
 
-                val call = apiService.registerUser(username, password, email)
+                val checkedPassword = registerUtils.checkIfValidPassword(passwordString, confirmPasswordString)
+                val checkedEmailAddress = registerUtils.checkIfValidEmailAddress(emailAddressString)
 
-                call.enqueue(object : Callback<Void> {
-                    override fun onResponse(call: Call<Void>, response: retrofit2.Response<Void>) {
-                        if (response.isSuccessful) {
-                            finish()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Log.d("Error", t.message.toString())
-                    }
-                })
-
+                if (checkedPassword && checkedEmailAddress) {
+                    handleRegister.registerUser(
+                        username,
+                        emailAddressString,
+                        hashedPassword
+                    )
+                } else {
+                    Toast.makeText(this, "Invalid Password or Email", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
