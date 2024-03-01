@@ -1,9 +1,11 @@
 package com.example.budgetbuddy.Handlers.UserHandling
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import com.example.budgetbuddy.API.ApiServices
+import com.example.budgetbuddy.LoginActivity
 import com.example.budgetbuddy.RegisterActivity
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 import com.example.budgetbuddy.Utils.RetrofitUtils
@@ -26,6 +28,11 @@ class HandleRegister(
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     Toast.makeText(context, "Registration successful!", Toast.LENGTH_SHORT).show()
+
+                    val loginIntent = Intent(context, LoginActivity::class.java)
+                    loginIntent.putExtra("registerUsername", username)
+                    context.startActivity(loginIntent)
+                    
                 } else  {
                     if (response.code() == 409) {
                         Toast.makeText(context, "Username already exists!", Toast.LENGTH_SHORT).show()
