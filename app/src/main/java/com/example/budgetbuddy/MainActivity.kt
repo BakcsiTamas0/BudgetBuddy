@@ -28,6 +28,7 @@ import androidx.core.widget.NestedScrollView
 import com.example.budgetbuddy.Fragments.RegionSettings.RegionSettingsFragment
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
+import com.example.budgetbuddy.Handlers.StatisticsGenerationHandler.HandleStatisticsGeneration
 import com.example.budgetbuddy.R.id.drawerEmail
 
 class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsListener {
@@ -110,6 +111,15 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
         toggle.syncState()
 
         drawerUsername = intent.getStringExtra("USERNAME").toString()
+
+        
+
+
+        val statisticsHandler = HandleStatisticsGeneration()
+        statisticsHandler.generateStatistics(drawerUsername)
+
+
+
 
         handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(drawerEmail))
         handleUserDataFetching.fetchData(drawerUsername)
