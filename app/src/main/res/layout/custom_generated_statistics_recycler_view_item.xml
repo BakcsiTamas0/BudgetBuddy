@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/custom_view_holder_7">
+
+    <TextView
+        android:id="@+id/pdfNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:text="null"
+        android:textSize="18sp"
+        android:gravity="center"/>
+    
+    <TextView
+        android:id="@+id/pdfDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="90dp"
+        android:text="PLACEHOLDER"
+        android:textSize="18sp"
+        android:gravity="center"/>
+    
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="15dp"/>
+
+</LinearLayout>

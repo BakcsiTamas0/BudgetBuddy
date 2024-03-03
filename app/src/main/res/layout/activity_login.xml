@@ -71,10 +71,11 @@
                 android:id="@+id/remember"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/remember"
                 android:textSize="18sp"
                 android:textColor="@color/white"
-                android:layout_marginTop="20dp"/>
+                android:buttonTint="@color/redReusable"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"

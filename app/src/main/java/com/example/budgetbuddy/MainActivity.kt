@@ -17,7 +17,6 @@ import com.example.budgetbuddy.R.id.appListCardOne
 import com.google.android.material.navigation.NavigationView
 import android.animation.ValueAnimator
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -47,11 +46,13 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
     private lateinit var profileTextView: TextView
     private lateinit var financesTextView: TextView
-    private lateinit var chartTextView: TextView
+    private lateinit var graphsTextView: TextView
+    private lateinit var generatedStatisticsTextView: TextView
     private lateinit var settingsTextView: TextView
 
     private lateinit var appListFinances: LinearLayout
-    private lateinit var applistGraphs: LinearLayout
+    private lateinit var appListGraphs: LinearLayout
+    private lateinit var appListStatistics: LinearLayout
     private lateinit var appListExchange: LinearLayout
 
     private lateinit var expandButton: Button
@@ -84,11 +85,13 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         profileTextView = findViewById(R.id.profileTextView)
         financesTextView = findViewById(R.id.financesTextView)
-        chartTextView = findViewById(R.id.chartTextView)
+        graphsTextView = findViewById(R.id.chartTextView)
+        generatedStatisticsTextView = findViewById(R.id.generatedStatisticsTextView)
         settingsTextView = findViewById(R.id.settingsTextView)
 
         appListFinances = findViewById(R.id.appListFinances)
-        applistGraphs = findViewById(R.id.appListGraphs)
+        appListGraphs = findViewById(R.id.appListGraphs)
+        appListStatistics = findViewById(R.id.appListStatistics)
         appListExchange = findViewById(R.id.appListExchange)
 
         expandButton = findViewById(R.id.expandButton)
@@ -112,14 +115,8 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         drawerUsername = intent.getStringExtra("USERNAME").toString()
 
-        
-
-
-        val statisticsHandler = HandleStatisticsGeneration()
-        statisticsHandler.generateStatistics(drawerUsername)
-
-
-
+        val statisticsHandler = HandleStatisticsGeneration(this)
+        statisticsHandler.downloadStatistics(drawerUsername, "statistics.pdf")
 
         handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(drawerEmail))
         handleUserDataFetching.fetchData(drawerUsername)
@@ -139,10 +136,16 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
             drawerLayout.closeDrawers()
         }
 
-        chartTextView.setOnClickListener() {
+        graphsTextView.setOnClickListener() {
             val chartIntent = Intent(this, ChartHandlerActivity::class.java)
             chartIntent.putExtra("USERNAME", drawerUsername)
             startActivity(chartIntent)
+            drawerLayout.closeDrawers()
+        }
+
+        generatedStatisticsTextView.setOnClickListener() {
+            val generatedStatisticsIntent = Intent(this, GeneratedStatisticsActivity::class.java)
+            startActivity(generatedStatisticsIntent)
             drawerLayout.closeDrawers()
         }
 
@@ -158,10 +161,16 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
             startActivity(financesIntent)
         }
 
-        applistGraphs.setOnClickListener() {
+        appListGraphs.setOnClickListener() {
             val chartIntent = Intent(this, ChartHandlerActivity::class.java)
             chartIntent.putExtra("USERNAME", drawerUsername)
             startActivity(chartIntent)
+        }
+
+        appListStatistics.setOnClickListener() {
+            val generatedStatisticsIntent = Intent(this, GeneralStatisticsActivity::class.java)
+            generatedStatisticsIntent.putExtra("USERNAME", drawerUsername)
+            startActivity(generatedStatisticsIntent)
         }
 
         appListExchange.setOnClickListener() {

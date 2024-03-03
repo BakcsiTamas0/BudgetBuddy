@@ -52,11 +52,8 @@ class LoginActivity : AppCompatActivity() {
         remember = findViewById(R.id.remember)
 
         val loginBtn: Button = findViewById(R.id.login_btn)
-
-
         registerFromLogin = findViewById(R.id.registerFromLogin)
         customTextUtils.applyLinearGradient(registerFromLogin)
-
 
         val googleImage: ImageView = findViewById(R.id.googleImage)
 

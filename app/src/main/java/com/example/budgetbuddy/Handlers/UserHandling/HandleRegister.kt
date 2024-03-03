@@ -32,7 +32,7 @@ class HandleRegister(
                     val loginIntent = Intent(context, LoginActivity::class.java)
                     loginIntent.putExtra("registerUsername", username)
                     context.startActivity(loginIntent)
-                    
+
                 } else  {
                     if (response.code() == 409) {
                         Toast.makeText(context, "Username already exists!", Toast.LENGTH_SHORT).show()
