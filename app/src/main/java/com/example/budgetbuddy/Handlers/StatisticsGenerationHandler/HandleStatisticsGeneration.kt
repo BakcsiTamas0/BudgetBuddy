@@ -1,9 +1,12 @@
 package com.example.budgetbuddy.Handlers.StatisticsGenerationHandler
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import com.example.budgetbuddy.API.StatisticsAPI.StatisticsAPI
 import com.example.budgetbuddy.Utils.RetrofitUtils
 import okhttp3.ResponseBody
@@ -43,25 +46,31 @@ class HandleStatisticsGeneration (
 
     private fun saveFile(responseBody: ResponseBody, context: Context) {
         try {
-            if (isExternalStorageWritable()) {
-                val file = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "statistics.pdf")
-                val outputStream: OutputStream = FileOutputStream(file)
 
-                responseBody.byteStream().use { input ->
-                    outputStream.use { output ->
-                        input.copyTo(output)
-                    }
+            val directory = File(context.filesDir, "BudgetBuddyApp/Statistics")
+            val file = File(directory, "statistics.pdf")
+
+            if (file.exists()) {
+                val uri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
+
+
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setDataAndType(uri, "application/pdf")
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+                try {
+                    context.startActivity(intent)
+                } catch (e: ActivityNotFoundException) {
+                    // Handle the case where there's no activity to open PDF files
+                    Toast.makeText(context, "No PDF viewer found", Toast.LENGTH_SHORT).show()
                 }
-                Log.d("HandleStatisticsGeneration", "File saved successfully")
             } else {
-                Log.e("HandleStatisticsGeneration", "External storage not writable")
+                Log.d("HandleStatisticsGeneration", "File does not exist")
             }
+
+
         } catch (e: IOException) {
             Log.e("HandleStatisticsGeneration", "Error saving file: ${e.message}")
         }
-    }
-    private fun isExternalStorageWritable(): Boolean {
-        val state = Environment.getExternalStorageState()
-        return Environment.MEDIA_MOUNTED == state
     }
 }

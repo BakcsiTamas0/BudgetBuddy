@@ -115,9 +115,6 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         drawerUsername = intent.getStringExtra("USERNAME").toString()
 
-        val statisticsHandler = HandleStatisticsGeneration(this)
-        statisticsHandler.downloadStatistics(drawerUsername, "statistics.pdf")
-
         handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(drawerEmail))
         handleUserDataFetching.fetchData(drawerUsername)
 

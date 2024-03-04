@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GeneralStatisticsActivity">
+    tools:context=".GeneralStatisticsActivity"
+    android:background="@drawable/custom_background_image">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/generateStatistics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Generate statistics"
-        android:layout_gravity="center_horizontal"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/transparent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/generalStatisticsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:padding="25dp"
+            android:text="General Statistics"
+            android:textSize="26sp"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/generateStatisticsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="Generate statistics"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/custom_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>
