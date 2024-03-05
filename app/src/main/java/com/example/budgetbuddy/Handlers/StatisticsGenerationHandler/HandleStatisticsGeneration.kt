@@ -61,7 +61,6 @@ class HandleStatisticsGeneration (
                 try {
                     context.startActivity(intent)
                 } catch (e: ActivityNotFoundException) {
-                    // Handle the case where there's no activity to open PDF files
                     Toast.makeText(context, "No PDF viewer found", Toast.LENGTH_SHORT).show()
                 }
             } else {

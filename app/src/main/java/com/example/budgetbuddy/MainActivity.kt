@@ -27,7 +27,6 @@ import androidx.core.widget.NestedScrollView
 import com.example.budgetbuddy.Fragments.RegionSettings.RegionSettingsFragment
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
-import com.example.budgetbuddy.Handlers.StatisticsGenerationHandler.HandleStatisticsGeneration
 import com.example.budgetbuddy.R.id.drawerEmail
 
 class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsListener {
@@ -106,8 +105,8 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbar.setTitle("")
-        toolbar.setSubtitle("")
+        toolbar.title = ""
+        toolbar.subtitle = ""
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -118,7 +117,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
         handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(drawerEmail))
         handleUserDataFetching.fetchData(drawerUsername)
 
-        profileTextView.setOnClickListener() {
+        profileTextView.setOnClickListener {
             val profileIntent = Intent(this, ProfileActivity::class.java)
             profileIntent.putExtra("USERNAME", drawerUsername)
             profileIntent.putExtra("EMAIL", drawerEmail.toString())
@@ -126,61 +125,61 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
             drawerLayout.closeDrawers()
         }
 
-        financesTextView.setOnClickListener() {
+        financesTextView.setOnClickListener {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
             financesIntent.putExtra("USERNAME", drawerUsername)
             startActivity(financesIntent)
             drawerLayout.closeDrawers()
         }
 
-        graphsTextView.setOnClickListener() {
+        graphsTextView.setOnClickListener {
             val chartIntent = Intent(this, ChartHandlerActivity::class.java)
             chartIntent.putExtra("USERNAME", drawerUsername)
             startActivity(chartIntent)
             drawerLayout.closeDrawers()
         }
 
-        generatedStatisticsTextView.setOnClickListener() {
-            val generatedStatisticsIntent = Intent(this, GeneratedStatisticsActivity::class.java)
+        generatedStatisticsTextView.setOnClickListener {
+            val generatedStatisticsIntent = Intent(this, GeneralStatisticsActivity::class.java)
             startActivity(generatedStatisticsIntent)
             drawerLayout.closeDrawers()
         }
 
-        settingsTextView.setOnClickListener() {
+        settingsTextView.setOnClickListener {
             val settingsIntent = Intent(this, SettingsActivity::class.java)
             settingsIntent.putExtra("USERNAME", drawerUsername)
             startActivity(settingsIntent)
         }
 
-        appListFinances.setOnClickListener() {
+        appListFinances.setOnClickListener {
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
             financesIntent.putExtra("USERNAME", drawerUsername)
             startActivity(financesIntent)
         }
 
-        appListGraphs.setOnClickListener() {
+        appListGraphs.setOnClickListener {
             val chartIntent = Intent(this, ChartHandlerActivity::class.java)
             chartIntent.putExtra("USERNAME", drawerUsername)
             startActivity(chartIntent)
         }
 
-        appListStatistics.setOnClickListener() {
+        appListStatistics.setOnClickListener {
             val generatedStatisticsIntent = Intent(this, GeneralStatisticsActivity::class.java)
             generatedStatisticsIntent.putExtra("USERNAME", drawerUsername)
             startActivity(generatedStatisticsIntent)
         }
 
-        appListExchange.setOnClickListener() {
+        appListExchange.setOnClickListener {
             val exchangeIntent = Intent(this, ExchangeHandlerActivity::class.java)
             exchangeIntent.putExtra("USERNAME", drawerUsername)
             startActivity(exchangeIntent)
         }
 
-        expandButton.setOnClickListener() {
+        expandButton.setOnClickListener {
             toggleExpandCollapse()
         }
 
-        chatSendButton.setOnClickListener() {
+        chatSendButton.setOnClickListener {
             Toast.makeText(this, "Sending message...", Toast.LENGTH_SHORT).show()
 
             val userMessage = userMessageInput.text.toString()
