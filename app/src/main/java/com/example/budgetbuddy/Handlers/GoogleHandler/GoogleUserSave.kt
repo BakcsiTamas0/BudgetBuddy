@@ -10,11 +10,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class GoogleUserSave {
-    val retrofit: Retrofit = RetrofitUtils.initRetrofit()
+    private val retrofit: Retrofit = RetrofitUtils.initRetrofit()
+    private val userRegisterAPI = retrofit.create(GoogleAPI::class.java)
 
-    fun saveGoogleUser(username: String, email: String) {
-        val userRegisterAPI = retrofit.create(GoogleAPI::class.java)
-        val call = userRegisterAPI.registerGoogleUser(username, email)
+    fun saveGoogleUser(username: String, email: String, messageToken: String) {
+        val call = userRegisterAPI.registerGoogleUser(username, email, messageToken)
 
         call.enqueue(object: Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {

@@ -6,9 +6,10 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface GoogleAPI {
-    @POST("register_google_user/{username}/{email}")
+    @POST("register_google_user/{username}/{email}/{message_token}")
     fun registerGoogleUser(
         @Path("username") username: String,
-        @Path("email") email: String
+        @Path("email") email: String,
+        @Path("message_token") messageToken: String
     ): Call<Void>
 }

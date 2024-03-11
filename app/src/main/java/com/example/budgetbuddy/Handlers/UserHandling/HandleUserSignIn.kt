@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.messaging.FirebaseMessaging
 
 class HandleUserSignIn : AppCompatActivity() {
 
@@ -55,7 +58,7 @@ class HandleUserSignIn : AppCompatActivity() {
             if (account != null) {
                 updateUI(account)
             } else {
-                // Sign-in failed
+                Toast.makeText(this,"Sign-in failed", Toast.LENGTH_SHORT).show()
             }
         } catch (e: ApiException) {
             updateUI(null)
@@ -69,7 +72,10 @@ class HandleUserSignIn : AppCompatActivity() {
 
             if (!isUserRegistered(email)) {
                 val googleUserSave = GoogleUserSave()
-                googleUserSave.saveGoogleUser(displayName, email)
+
+                getFirebaseMessagingToken { messageToken ->
+                    googleUserSave.saveGoogleUser(displayName, email, messageToken)
+                }
 
                 setRegisteredUser(email)
             }
@@ -79,8 +85,7 @@ class HandleUserSignIn : AppCompatActivity() {
             startActivity(mainIntent)
             finish()
         } else {
-            // Sign-in failed
-            // You can handle failure here
+            Toast.makeText(this,"Sign-in failed", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -94,5 +99,17 @@ class HandleUserSignIn : AppCompatActivity() {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putBoolean(email, true)
         editor.apply()
+    }
+
+    private fun getFirebaseMessagingToken(callback: (String) -> Unit) {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val token = task.result
+                    callback.invoke(token)
+                } else {
+                    callback.invoke("")
+                }
+            }
     }
 }

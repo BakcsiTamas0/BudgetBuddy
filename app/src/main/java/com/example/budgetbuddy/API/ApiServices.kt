@@ -5,17 +5,19 @@ import com.example.budgetbuddy.DataClasses.UserData.EmailResponse
 import com.example.budgetbuddy.DataClasses.IncomeData.IncomeData
 import com.example.budgetbuddy.DataClasses.UserData.UserExpenseDataResponse
 import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
+import com.google.android.gms.tasks.Task
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiServices {
     // Authentication API endpoints
-    @POST("register_user/{username}/{password}/{email}")
+    @POST("register_user/{username}/{password}/{email}/{message_token}")
     fun registerUser(
         @Path("username") username: String,
         @Path("password") password: String,
-        @Path("email") email: String
+        @Path("email") email: String,
+        @Path("message_token") messageToken: String
     ): Call<Void>
 
     @POST("authenticate_user/{username}/{password}")

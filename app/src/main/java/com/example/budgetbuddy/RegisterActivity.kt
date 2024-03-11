@@ -1,28 +1,18 @@
 package com.example.budgetbuddy
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Paint
-import android.graphics.Shader
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextPaint
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.budgetbuddy.API.ApiServices
 import com.example.budgetbuddy.Handlers.UserHandling.HandleRegister
 import com.example.budgetbuddy.Utils.CustomTextUtils
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 import com.example.budgetbuddy.Utils.RegisterInformationUtils
-import com.example.budgetbuddy.Utils.RetrofitUtils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.google.firebase.messaging.FirebaseMessaging
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var customTextUtils: CustomTextUtils
@@ -78,16 +68,33 @@ class RegisterActivity : AppCompatActivity() {
                 val checkedPassword = registerUtils.checkIfValidPassword(passwordString, confirmPasswordString)
                 val checkedEmailAddress = registerUtils.checkIfValidEmailAddress(emailAddressString)
 
-                if (checkedPassword && checkedEmailAddress) {
-                    handleRegister.registerUser(
-                        username,
-                        emailAddressString,
-                        hashedPassword
-                    )
-                } else {
-                    Toast.makeText(this, "Invalid Password or Email", Toast.LENGTH_SHORT).show()
+                getFirebaseMessagingToken{ messageToken ->
+
+                    if (checkedPassword && checkedEmailAddress) {
+                        handleRegister.registerUser(
+                            username,
+                            emailAddressString,
+                            hashedPassword,
+                            messageToken
+                        )
+                    } else {
+                        Toast.makeText(this, "Invalid Password or Email", Toast.LENGTH_SHORT).show()
+                    }
+
                 }
+
             }
         }
+    }
+    private fun getFirebaseMessagingToken(callback: (String) -> Unit) {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val token = task.result
+                    callback.invoke(token)
+                } else {
+                    callback.invoke("")
+                }
+            }
     }
 }

@@ -16,7 +16,9 @@ import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 import com.example.budgetbuddy.R.id.appListCardOne
 import com.google.android.material.navigation.NavigationView
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -28,6 +30,9 @@ import com.example.budgetbuddy.Fragments.RegionSettings.RegionSettingsFragment
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
 import com.example.budgetbuddy.R.id.drawerEmail
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsListener {
 
@@ -101,6 +106,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
         return true
     }
 
+    @SuppressLint("StringFormatInvalid")
     private fun initLogic() {
         setSupportActionBar(toolbar)
 
@@ -237,14 +243,14 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         chatLinearLayout.addView(userMessageLayout)
 
-        val chatbotMessageLayout = LayoutInflater.from(this)
+        val chatBotMessageLayout = LayoutInflater.from(this)
             .inflate(R.layout.custom_chatbot_message_frame, null, false)
 
-        val chatbotMessageTextView = chatbotMessageLayout.findViewById<TextView>(R.id.chatbot_message_text_view)
-        chatbotMessageTextView.text = response
-        chatbotMessageTextView.movementMethod = ScrollingMovementMethod()
+        val chatBotMessageTextView = chatBotMessageLayout.findViewById<TextView>(R.id.chatbot_message_text_view)
+        chatBotMessageTextView.text = response
+        chatBotMessageTextView.movementMethod = ScrollingMovementMethod()
 
-        chatLinearLayout.addView(chatbotMessageLayout)
+        chatLinearLayout.addView(chatBotMessageTextView)
 
         val scrollView = findViewById<NestedScrollView>(R.id.scrollView)
         scrollView.post { scrollView.fullScroll(View.FOCUS_DOWN) }
