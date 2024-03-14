@@ -29,6 +29,7 @@ import androidx.core.widget.NestedScrollView
 import com.example.budgetbuddy.Fragments.RegionSettings.RegionSettingsFragment
 import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessages
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
+import com.example.budgetbuddy.Handlers.StatisticsGenerationHandler.HandleStatisticsGeneration
 import com.example.budgetbuddy.R.id.drawerEmail
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG

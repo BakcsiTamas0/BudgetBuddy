@@ -38,10 +38,10 @@ class HandleUserDataFetching(
                     if (!email.isNullOrBlank()) {
                         updateDrawerViews(username, email)
                     } else {
-                        // Handle empty or null email
+                        Log.d("TAG", "onResponse: Email not found")
                     }
                 } else {
-                    // Handle unsuccessful response
+                    Log.d("TAG", "onResponse: ${response.code()}")
                 }
             }
 

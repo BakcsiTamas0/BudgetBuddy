@@ -3,27 +3,28 @@ package com.example.budgetbuddy.Handlers.StatisticsGenerationHandler
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.example.budgetbuddy.API.StatisticsAPI.StatisticsAPI
+import com.example.budgetbuddy.DataClasses.StatisticsData.StatisticsDataResponse
 import com.example.budgetbuddy.Utils.RetrofitUtils
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
 
 class HandleStatisticsGeneration (
     private val context: Context
 ) {
     private val retrofit = RetrofitUtils.initRetrofit()
     private val statisticsAPI = retrofit.create(StatisticsAPI::class.java)
+
+    interface StatisticsDataCallBack {
+        fun onStatisticsDataReceived(statisticsDataResponse: StatisticsDataResponse?)
+    }
 
     fun downloadStatistics(username: String, downloadName: String) {
         val call = statisticsAPI.generateStatistics(username, downloadName)
@@ -40,6 +41,31 @@ class HandleStatisticsGeneration (
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.d("HandleStatisticsGeneration", "Failed to download file: ${t.message}")
+            }
+        })
+    }
+
+    fun getExpenseStatistics(username: String, callback: StatisticsDataCallBack) {
+        val call = statisticsAPI.getExpenseStatistics(username)
+
+        call.enqueue(object: Callback<StatisticsDataResponse> {
+            override fun onResponse(call: Call<StatisticsDataResponse>, response: Response<StatisticsDataResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("HandleStatisticsGeneration", "${response.body()}")
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        callback.onStatisticsDataReceived(responseBody)
+                        Log.d("HandleStatisticsGeneration", "Response: $responseBody")
+                    } else {
+                        Log.d("HandleStatisticsGeneration", "Response body is null")
+                    }
+                } else {
+                    Log.d("HandleStatisticsGeneration", "Response not successful")
+                }
+            }
+
+            override fun onFailure(call: Call<StatisticsDataResponse>, t: Throwable) {
+                Log.d("HandleStatisticsGeneration", "Failed to get expense statistics: ${t.message}")
             }
         })
     }
