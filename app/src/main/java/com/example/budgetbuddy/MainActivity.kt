@@ -148,6 +148,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         generatedStatisticsTextView.setOnClickListener {
             val generatedStatisticsIntent = Intent(this, GeneralStatisticsActivity::class.java)
+            generatedStatisticsIntent.putExtra("USERNAME", drawerUsername)
             startActivity(generatedStatisticsIntent)
             drawerLayout.closeDrawers()
         }
