@@ -24,7 +24,6 @@ class NetworkChecker() {
             dialogBuilder.setView(dialogView)
             val alertDialog = dialogBuilder.create()
 
-            alertDialog.setTitle("No Internet Connection")
             alertDialog.setCancelable(false)
             alertDialog.setCanceledOnTouchOutside(false)
 
