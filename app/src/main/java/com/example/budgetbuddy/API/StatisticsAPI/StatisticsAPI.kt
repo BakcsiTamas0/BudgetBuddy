@@ -1,5 +1,6 @@
 package com.example.budgetbuddy.API.StatisticsAPI
 
+import com.example.budgetbuddy.DataClasses.StatisticsData.PredictionResponse
 import com.example.budgetbuddy.DataClasses.StatisticsData.StatisticsDataResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -18,4 +19,9 @@ interface StatisticsAPI {
     fun getExpenseStatistics(
         @Path("username") username: String
     ): Call<StatisticsDataResponse>
+
+    @GET("estimate/get_weekly_estimated_expense/{username}")
+    fun getWeeklyEstimatedExpense(
+        @Path("username") username : String
+    ): Call<PredictionResponse>
 }

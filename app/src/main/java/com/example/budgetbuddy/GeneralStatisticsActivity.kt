@@ -1,12 +1,12 @@
 package com.example.budgetbuddy
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
-import com.example.budgetbuddy.DataClasses.IncomeData.IncomeItem
+import com.example.budgetbuddy.DataClasses.RegionData.RegionResponse
 import com.example.budgetbuddy.DataClasses.StatisticsData.StatisticsDataResponse
 import com.example.budgetbuddy.DataClasses.UserData.UserDebtDataResponse
 import com.example.budgetbuddy.DataClasses.UserData.UserExpenseDataResponse
@@ -14,10 +14,12 @@ import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
 import com.example.budgetbuddy.Handlers.FiancesHandler.HandleDebtCRUD
 import com.example.budgetbuddy.Handlers.FiancesHandler.HandleExpenseCRUD
 import com.example.budgetbuddy.Handlers.FiancesHandler.HandleIncomeCRUD
+import com.example.budgetbuddy.Handlers.RegionSettingsHandler.HandleRegionCRUD
 import com.example.budgetbuddy.Handlers.StatisticsGenerationHandler.HandleStatisticsGeneration
-import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 
 class GeneralStatisticsActivity : AppCompatActivity() {
+    private var handleRegion = HandleRegionCRUD()
+
     private lateinit var statisticsUsername: TextView
     private lateinit var statisticsIncome: TextView
     private lateinit var statisticsExpense: TextView
@@ -83,6 +85,12 @@ class GeneralStatisticsActivity : AppCompatActivity() {
         })
 
         statisticsUsername.text = username
+
+        statisticsHandler.getWeeklyEstimatedSpending(username, object: HandleStatisticsGeneration.EstimatedExpenseCallback {
+            override fun onEstimatedExpenseCallback(response: String) {
+                statisticsEstimatedSpending.text = response
+            }
+        })
 
         incomeFetch.fetchIncomeData(username, object: HandleIncomeCRUD.IncomeDataCallBack {
             override fun onIncomeDataReceived(incomeDataResponse: UserIncomeDataResponse) {
@@ -165,6 +173,7 @@ class GeneralStatisticsActivity : AppCompatActivity() {
         maxWeeklySpendingTextView.text = String.format("%.2f", maxWeeklyExpenseAmount)
         maxWeeklySpendingItemTextView.text = maxWeeklyExpenseItem ?: "N/A"
         minWeeklySpendingItemTextView.text = minWeeklyExpenseItem ?: "N/A"
+
     }
 
     fun calcMonthlySpending(

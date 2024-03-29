@@ -54,10 +54,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Actual income:"/>
 
@@ -65,17 +67,21 @@
                     android:id="@+id/statisticsIncome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:layout_gravity="end"
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Actual expenses:"/>
 
@@ -83,17 +89,20 @@
                     android:id="@+id/statisticsExpense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Actual debt:"/>
 
@@ -101,7 +110,8 @@
                     android:id="@+id/statisticsDebt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
@@ -117,54 +127,63 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Average spending a week:" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Average spending a week:" />
 
                 <TextView
                     android:id="@+id/statisticsAverageWeeklySpending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Average spending a month:"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Average spending a month:"/>
 
                 <TextView
                     android:id="@+id/statisticsAverageMonthlySpending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Estimated spending for future:"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Estimated spending for future:"/>
 
                 <TextView
                     android:id="@+id/statisticsEstimatedSpending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
@@ -180,35 +199,41 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Most money spent in a week:" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Most money spent in a week:" />
 
                 <TextView
                     android:id="@+id/statisticsMaxWeeklySpending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Most money spent in a month:" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Most money spent in a month:" />
 
                 <TextView
                     android:id="@+id/statisticsMaxMonthlySpending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <View
@@ -223,35 +248,41 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Most money spent on in a week:" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Most money spent on in a week:" />
 
                 <TextView
                     android:id="@+id/statisticsMaxWeeklySpendingItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Least money spent on in a week:" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Least money spent on in a week:" />
 
                 <TextView
                     android:id="@+id/statisticsMinWeeklySpendingItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <View
@@ -266,35 +297,41 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Most money spent on in a month:" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Most money spent on in a month:" />
 
                 <TextView
                     android:id="@+id/statisticsMaxMonthlySpendingItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:layout_gravity="end">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Least money spent on in a month:" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Least money spent on in a month:" />
 
                 <TextView
                     android:id="@+id/statisticsMinMonthlySpendingItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PLACEHOLDER"/>
+                    android:text="PLACEHOLDER"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <View

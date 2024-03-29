@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class FinancesHandlerActivity : AppCompatActivity() {
 
-    val handleRegion = HandleRegionCRUD()
+    private val handleRegion = HandleRegionCRUD()
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2

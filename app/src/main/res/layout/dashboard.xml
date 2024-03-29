@@ -65,6 +65,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/dashboardSpendingLimit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -79,6 +80,7 @@
                 android:layout_height="1dp" />
 
             <TextView
+                android:id="@+id/dashboardSpentMoney"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -129,6 +131,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/dashboardTotalExpense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -143,6 +146,7 @@
                 android:layout_height="1dp" />
 
             <TextView
+                android:id="@+id/dashboardSavedMoney"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"

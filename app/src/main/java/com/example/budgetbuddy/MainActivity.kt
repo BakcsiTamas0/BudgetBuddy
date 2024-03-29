@@ -31,9 +31,6 @@ import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessa
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
 import com.example.budgetbuddy.Handlers.StatisticsGenerationHandler.HandleStatisticsGeneration
 import com.example.budgetbuddy.R.id.drawerEmail
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.Constants.MessageNotificationKeys.TAG
-import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsListener {
 
@@ -45,8 +42,8 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
     private lateinit var toggle: ActionBarDrawerToggle
 
     private lateinit var handleUserDataFetching: HandleUserDataFetching
-    private lateinit var drawerUsername: String
 
+    private lateinit var drawerUsername: String
     private lateinit var navView: NavigationView
 
     private lateinit var profileTextView: TextView
@@ -124,6 +121,14 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
         handleUserDataFetching = HandleUserDataFetching(this, findViewById(R.id.drawerUsername), findViewById(drawerEmail))
         handleUserDataFetching.fetchData(drawerUsername)
 
+        val statisticsHandler = HandleStatisticsGeneration(this)
+        statisticsHandler.getWeeklyEstimatedSpending(drawerUsername, object: HandleStatisticsGeneration.EstimatedExpenseCallback {
+            override fun onEstimatedExpenseCallback(response: String) {
+                val weeklyEstimatedExpense = response
+            }
+        })
+
+
         profileTextView.setOnClickListener {
             val profileIntent = Intent(this, ProfileActivity::class.java)
             profileIntent.putExtra("USERNAME", drawerUsername)
@@ -150,7 +155,6 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
             val generatedStatisticsIntent = Intent(this, GeneralStatisticsActivity::class.java)
             generatedStatisticsIntent.putExtra("USERNAME", drawerUsername)
             startActivity(generatedStatisticsIntent)
-            drawerLayout.closeDrawers()
         }
 
         settingsTextView.setOnClickListener {

@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.example.budgetbuddy.API.StatisticsAPI.StatisticsAPI
+import com.example.budgetbuddy.DataClasses.StatisticsData.PredictionResponse
 import com.example.budgetbuddy.DataClasses.StatisticsData.StatisticsDataResponse
 import com.example.budgetbuddy.Utils.RetrofitUtils
 import okhttp3.ResponseBody
@@ -24,6 +25,10 @@ class HandleStatisticsGeneration (
 
     interface StatisticsDataCallBack {
         fun onStatisticsDataReceived(statisticsDataResponse: StatisticsDataResponse?)
+    }
+
+    interface EstimatedExpenseCallback {
+        fun onEstimatedExpenseCallback(response: String)
     }
 
     fun downloadStatistics(username: String, downloadName: String) {
@@ -66,6 +71,27 @@ class HandleStatisticsGeneration (
 
             override fun onFailure(call: Call<StatisticsDataResponse>, t: Throwable) {
                 Log.d("HandleStatisticsGeneration", "Failed to get expense statistics: ${t.message}")
+            }
+        })
+    }
+
+    fun getWeeklyEstimatedSpending(username : String, callback: EstimatedExpenseCallback) {
+        val call = statisticsAPI.getWeeklyEstimatedExpense(username)
+
+        call.enqueue(object: Callback<PredictionResponse> {
+            override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+
+                    if (responseBody != null) {
+                        val predictionValue = responseBody.response.toString()
+                        callback.onEstimatedExpenseCallback(predictionValue)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+                Log.d("HandleStatisticsGeneration", "Failed to get weekly estimated spending: ${t.message}")
             }
         })
     }
