@@ -17,6 +17,8 @@ import com.example.budgetbuddy.R.id.appListCardOne
 import com.google.android.material.navigation.NavigationView
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
@@ -31,8 +33,12 @@ import com.example.budgetbuddy.Handlers.ChatBotMessageHandler.HandleChatBotMessa
 import com.example.budgetbuddy.Handlers.ExchangeHandler.ExchangeHandlerActivity
 import com.example.budgetbuddy.Handlers.StatisticsGenerationHandler.HandleStatisticsGeneration
 import com.example.budgetbuddy.R.id.drawerEmail
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
+import com.example.budgetbuddy.Utils.NetworkChecker
 
-class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsListener {
+class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsListener, ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
 
     private var isExpanded = false
     private var initialCollapsedHeight = 0
@@ -73,6 +79,22 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
             showUserRegionSettingsFragment()
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
+        }
     }
 
     override fun onSaveUserRegionSettings() {

@@ -1,5 +1,7 @@
 package com.example.budgetbuddy
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -8,9 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.Adapters.SettingsAdapter.SettingsAdapter
 import com.example.budgetbuddy.DataClasses.SettingsData.SettingsItem
 import com.example.budgetbuddy.Fragments.Settings.UpdateUsernameFragment
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
+import com.example.budgetbuddy.Utils.NetworkChecker
 import com.example.budgetbuddy.databinding.ActivitySettingsBinding
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
 
     private lateinit var settings: MutableList<SettingsItem>
     private lateinit var adapter: SettingsAdapter
@@ -39,5 +45,21 @@ class SettingsActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.settingsRecyclerView)
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         recyclerView.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
+        }
     }
 }

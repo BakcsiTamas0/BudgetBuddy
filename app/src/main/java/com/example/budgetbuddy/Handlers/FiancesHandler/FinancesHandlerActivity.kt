@@ -1,5 +1,7 @@
 package com.example.budgetbuddy.Handlers.FiancesHandler
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +14,14 @@ import com.example.budgetbuddy.Fragments.Finances.ExpenseFragment
 import com.example.budgetbuddy.Fragments.Finances.IncomeFragment
 import com.example.budgetbuddy.Handlers.RegionSettingsHandler.HandleRegionCRUD
 import com.example.budgetbuddy.R
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
+import com.example.budgetbuddy.Utils.NetworkChecker
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class FinancesHandlerActivity : AppCompatActivity() {
-
+class FinancesHandlerActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
     private val handleRegion = HandleRegionCRUD()
 
     private lateinit var tabLayout: TabLayout
@@ -104,6 +109,22 @@ class FinancesHandlerActivity : AppCompatActivity() {
             } else {
                 fragmentList[position]
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
         }
     }
 }

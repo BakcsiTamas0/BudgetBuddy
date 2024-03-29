@@ -1,6 +1,8 @@
 package com.example.budgetbuddy
 
 import android.annotation.SuppressLint
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,8 +18,12 @@ import com.example.budgetbuddy.Handlers.FiancesHandler.HandleExpenseCRUD
 import com.example.budgetbuddy.Handlers.FiancesHandler.HandleIncomeCRUD
 import com.example.budgetbuddy.Handlers.RegionSettingsHandler.HandleRegionCRUD
 import com.example.budgetbuddy.Handlers.StatisticsGenerationHandler.HandleStatisticsGeneration
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
+import com.example.budgetbuddy.Utils.NetworkChecker
 
-class GeneralStatisticsActivity : AppCompatActivity() {
+class GeneralStatisticsActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
     private var handleRegion = HandleRegionCRUD()
 
     private lateinit var statisticsUsername: TextView
@@ -115,6 +121,22 @@ class GeneralStatisticsActivity : AppCompatActivity() {
         generateStatisticsButton = findViewById(R.id.generateStatisticsButton)
         generateStatisticsButton.setOnClickListener() {
             statisticsHandler.downloadStatistics(username, "statistics.pdf")
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
         }
     }
 

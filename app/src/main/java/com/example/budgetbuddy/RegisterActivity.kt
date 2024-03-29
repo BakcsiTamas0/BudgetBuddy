@@ -1,6 +1,8 @@
 package com.example.budgetbuddy
 
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +11,17 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.budgetbuddy.Handlers.UserHandling.HandleRegister
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
 import com.example.budgetbuddy.Utils.CustomTextUtils
+import com.example.budgetbuddy.Utils.NetworkChecker
 import com.example.budgetbuddy.Utils.PasswordHashUtil.Companion.hashPassword
 import com.example.budgetbuddy.Utils.RegisterInformationUtils
 import com.google.firebase.messaging.FirebaseMessaging
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
+
     private lateinit var customTextUtils: CustomTextUtils
 
     private lateinit var signUp: TextView
@@ -96,5 +103,21 @@ class RegisterActivity : AppCompatActivity() {
                     callback.invoke("")
                 }
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.budgetbuddy.Handlers.ChartHandler
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,10 +11,14 @@ import com.example.budgetbuddy.Fragments.Charts.LineChart
 import com.example.budgetbuddy.Fragments.Charts.PieChart
 import com.example.budgetbuddy.Fragments.Charts.RadarChart
 import com.example.budgetbuddy.R
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
+import com.example.budgetbuddy.Utils.NetworkChecker
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class ChartHandlerActivity : AppCompatActivity() {
+class ChartHandlerActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 
@@ -55,6 +61,22 @@ class ChartHandlerActivity : AppCompatActivity() {
 
         override fun createFragment(position: Int): Fragment {
             return fragmentList[position]
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
         }
     }
 }

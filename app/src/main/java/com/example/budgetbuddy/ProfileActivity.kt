@@ -1,5 +1,7 @@
 package com.example.budgetbuddy
 
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -8,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.Adapters.ProfileAdapter.ProfileRecyclerViewAdapter
 import com.example.budgetbuddy.DataClasses.ProfileData.ProfileDataResponse
 import com.example.budgetbuddy.Handlers.ProfileHandler.HandleProfileCRUD
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
+import com.example.budgetbuddy.Utils.NetworkChecker
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
 
     private lateinit var profileUsername: TextView
     private lateinit var profileEmail: TextView
@@ -56,5 +62,21 @@ class ProfileActivity : AppCompatActivity() {
                 customRecyclerViewAdapter.notifyDataSetChanged()
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
+        }
     }
 }

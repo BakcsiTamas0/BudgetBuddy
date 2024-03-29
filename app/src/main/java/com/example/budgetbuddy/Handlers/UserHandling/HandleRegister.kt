@@ -16,7 +16,6 @@ import retrofit2.Retrofit
 class HandleRegister(
     private val context: Context
 ) {
-
     private val retrofit: Retrofit = RetrofitUtils.initRetrofit()
     private val apiService = retrofit.create(ApiServices::class.java)
 

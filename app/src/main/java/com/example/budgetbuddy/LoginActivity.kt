@@ -2,10 +2,12 @@ package com.example.budgetbuddy
 
 import android.app.Activity
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Shader
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextPaint
@@ -20,9 +22,13 @@ import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin.Companion.authenticateUser
 import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 import com.example.budgetbuddy.Handlers.UserHandling.HandleUserSignIn
+import com.example.budgetbuddy.Utils.ConnectivityReceiver
 import com.example.budgetbuddy.Utils.CustomTextUtils
+import com.example.budgetbuddy.Utils.NetworkChecker
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
     private lateinit var customTextUtils: CustomTextUtils
 
     private lateinit var registerFromLogin: TextView
@@ -98,6 +104,18 @@ class LoginActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         loadPreferences()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
+
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
+        }
     }
 
     private fun savePreferences() {
