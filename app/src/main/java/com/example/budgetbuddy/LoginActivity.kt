@@ -1,17 +1,10 @@
 package com.example.budgetbuddy
 
-import android.app.Activity
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
-import android.graphics.LinearGradient
-import android.graphics.Paint
-import android.graphics.Shader
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextPaint
-import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
@@ -20,17 +13,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin.Companion.authenticateUser
-import com.example.budgetbuddy.Handlers.UserHandling.HandleUserDataFetching
 import com.example.budgetbuddy.Handlers.UserHandling.HandleUserSignIn
+import com.example.budgetbuddy.Utils.BackendPinger
 import com.example.budgetbuddy.Utils.ConnectivityReceiver
 import com.example.budgetbuddy.Utils.CustomTextUtils
 import com.example.budgetbuddy.Utils.NetworkChecker
+import com.example.budgetbuddy.Utils.PingListener
 
-class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
-    private val connectivityReceiver = ConnectivityReceiver(this)
-    private val networkChecker = NetworkChecker()
+class LoginActivity : AppCompatActivity()
+    //ConnectivityReceiver.ConnectivityChangeListener,
+    //PingListener
+{
+    //private val connectivityReceiver = ConnectivityReceiver(this)
+    //private val networkChecker = NetworkChecker()
+    //private lateinit var backendPinger: BackendPinger
+
     private lateinit var customTextUtils: CustomTextUtils
-
     private lateinit var registerFromLogin: TextView
 
     private val PREFS_NAME = "preferences"
@@ -47,6 +45,9 @@ class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChan
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        //backendPinger = BackendPinger(this)
+        //backendPinger.start()
 
         customTextUtils = CustomTextUtils()
 
@@ -81,16 +82,16 @@ class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChan
                 }
 
             })
-            //if (remember.isChecked) {
-            //    savePreferences()
-            //} else {
-            //    clearPreferences()
-            //}
+            if (remember.isChecked) {
+                savePreferences()
+            } else {
+                clearPreferences()
+            }
 
-            //if (username.text.toString() != "" && password.text.toString() != "") {
-            //    val intent = Intent(this, MainActivity::class.java)
-            //    startActivity(intent)
-            //}
+            if (username.text.toString() != "" && password.text.toString() != "") {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         registerFromLogin.setOnClickListener {
@@ -101,22 +102,22 @@ class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChan
         loadPreferences()
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadPreferences()
-        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-    }
+    //override fun onResume() {
+    //    super.onResume()
+    //    loadPreferences()
+    //    registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    //}
 
-    override fun onPause() {
-        super.onPause()
-        unregisterReceiver(connectivityReceiver)
-    }
+    //override fun onPause() {
+    //    super.onPause()
+    //    unregisterReceiver(connectivityReceiver)
+    //}
 
-    override fun onConnectivityChange(isConnected: Boolean) {
-        if (!(isConnected)) {
-            networkChecker.checkConnectivity(this)
-        }
-    }
+    //override fun onConnectivityChange(isConnected: Boolean) {
+    //    if (!(isConnected)) {
+    //        networkChecker.checkConnectivity(this)
+    //    }
+    //}
 
     private fun savePreferences() {
         val preferences = getSharedPreferences(PREFS_NAME, 0)
@@ -146,4 +147,17 @@ class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChan
         password.setText(passwordValue)
         remember.isChecked = rememberValue
     }
+
+    //override fun onPingSuccess(responseCode: Int) {
+    //    Log.d("Success", responseCode.toString())
+    //}
+
+    //override fun onPingFailure(exception: Exception) {
+    //  Log.d("Error", exception.toString())
+    //}
+
+    //override fun onDestroy() {
+    //    super.onDestroy()
+    //    backendPinger.stop()
+    //}
 }

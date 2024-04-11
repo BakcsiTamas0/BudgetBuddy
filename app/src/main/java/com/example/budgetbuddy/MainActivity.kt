@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
     private lateinit var profileTextView: TextView
     private lateinit var financesTextView: TextView
+    private lateinit var spendingLimitTextView: TextView
     private lateinit var graphsTextView: TextView
     private lateinit var generatedStatisticsTextView: TextView
     private lateinit var settingsTextView: TextView
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
 
         profileTextView = findViewById(R.id.profileTextView)
         financesTextView = findViewById(R.id.financesTextView)
+        spendingLimitTextView = findViewById(R.id.spendingLimitTextView)
         graphsTextView = findViewById(R.id.chartTextView)
         generatedStatisticsTextView = findViewById(R.id.generatedStatisticsTextView)
         settingsTextView = findViewById(R.id.settingsTextView)
@@ -163,6 +165,13 @@ class MainActivity : AppCompatActivity(), RegionSettingsFragment.RegionSettingsL
             val financesIntent = Intent(this, FinancesHandlerActivity::class.java)
             financesIntent.putExtra("USERNAME", drawerUsername)
             startActivity(financesIntent)
+            drawerLayout.closeDrawers()
+        }
+
+        spendingLimitTextView.setOnClickListener {
+            val spendingLimitIntent = Intent(this, SpendingLimitActivity::class.java)
+            spendingLimitIntent.putExtra("USERNAME", drawerUsername)
+            startActivity(spendingLimitIntent)
             drawerLayout.closeDrawers()
         }
 

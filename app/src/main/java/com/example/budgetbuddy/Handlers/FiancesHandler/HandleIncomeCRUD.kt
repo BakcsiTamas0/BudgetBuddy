@@ -23,7 +23,7 @@ class HandleIncomeCRUD(requireContext: Context) {
     fun saveIncomeData(username: String, incomeType: String, amount: Double) {
         val call: Call<IncomeData> = apiService.saveIncomeDataByUsername(username, incomeType, amount)
         call.enqueue(object: Callback<IncomeData> {
-            override fun onResponse(call: Call<IncomeData>, response: retrofit2.Response<IncomeData>) {
+            override fun onResponse(call: Call<IncomeData>, response: Response<IncomeData>) {
                 Log.d("HandleIncomeCRUD", response.body().toString())
                 if (response.isSuccessful) {
                     Log.d("HandleIncomeCRUD", "Income data saved successfully")
