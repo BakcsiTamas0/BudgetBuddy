@@ -60,12 +60,14 @@ class RadarChart : Fragment() {
 
     private fun updateExpenseRadarChart(expenseDataList: List<ExpenseData>) {
         val entries = ArrayList<RadarEntry>()
+        val labels = ArrayList<String>()
 
         for (expenseData in expenseDataList) {
-            entries.add(RadarEntry(expenseData.amount.toFloat(), expenseData.expenseType))
+            entries.add(RadarEntry(expenseData.amount.toFloat()))
+            labels.add(expenseData.expenseType)
         }
 
-        val dataSet = RadarDataSet(entries, "Label")
+        val dataSet = RadarDataSet(entries, "Expenses")
 
         dataSet.color = Color.rgb(103, 110, 129)
         dataSet.fillColor = Color.rgb(103, 110, 129)
@@ -74,6 +76,8 @@ class RadarChart : Fragment() {
         dataSet.lineWidth = 2f
 
         val data = RadarData(dataSet)
+        data.setValueTextSize(14f)
+        data.setValueTextColor(Color.BLACK)
 
         expenseRadarChart.apply {
             description.isEnabled = false
@@ -83,22 +87,24 @@ class RadarChart : Fragment() {
             webColorInner = Color.LTGRAY
             webAlpha = 100
 
-            data.setValueTextSize(14f)
-            data.setValueTextColor(Color.BLACK)
+            xAxis.valueFormatter = com.github.mikephil.charting.formatter.IndexAxisValueFormatter(labels)
+            xAxis.textSize = 12f
 
-            expenseRadarChart.data = data
-            expenseRadarChart.invalidate()
+            this.data = data
+            invalidate()
         }
     }
 
-    private fun updateIncomeRadarChart(expenseDataList: List<IncomeData>) {
+    private fun updateIncomeRadarChart(incomeDataList: List<IncomeData>) {
         val entries = ArrayList<RadarEntry>()
+        val labels = ArrayList<String>()
 
-        for (incomeData in expenseDataList) {
-            entries.add(RadarEntry(incomeData.amount.toFloat(), incomeData.incomeType))
+        for (incomeData in incomeDataList) {
+            entries.add(RadarEntry(incomeData.amount.toFloat()))
+            labels.add(incomeData.incomeType)
         }
 
-        val dataSet = RadarDataSet(entries, "Label")
+        val dataSet = RadarDataSet(entries, "Income")
 
         dataSet.color = Color.rgb(103, 110, 129)
         dataSet.fillColor = Color.rgb(103, 110, 129)
@@ -107,6 +113,8 @@ class RadarChart : Fragment() {
         dataSet.lineWidth = 2f
 
         val data = RadarData(dataSet)
+        data.setValueTextSize(14f)
+        data.setValueTextColor(Color.BLACK)
 
         incomeRadarChart.apply {
             description.isEnabled = false
@@ -116,11 +124,11 @@ class RadarChart : Fragment() {
             webColorInner = Color.LTGRAY
             webAlpha = 100
 
-            data.setValueTextSize(14f)
-            data.setValueTextColor(Color.BLACK)
+            xAxis.valueFormatter = com.github.mikephil.charting.formatter.IndexAxisValueFormatter(labels)
+            xAxis.textSize = 12f
 
-            incomeRadarChart.data = data
-            incomeRadarChart.invalidate()
+            this.data = data
+            invalidate()
         }
     }
 

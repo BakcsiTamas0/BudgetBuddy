@@ -19,7 +19,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="monthlyLimit">Spending limit</string>
     <string name="moneySpent">Money spent</string>
-    <string name="totalExpense">Total Expense</string>
+    <string name="estimatedExpense">Est. Expense</string>
     <string name="moneySaved">Money saved</string>
     <string name="None">None</string>
     <string name="open">Open</string>
@@ -38,4 +38,8 @@
     <string name="copyright">Copyright xxx 20xx-20xx</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_notification_channel_id" />
+    <string name="default_web_client_id">"227161700693-42aos6l5iqot65nkdtp0dpbqhterjjn5.apps.googleusercontent.com"</string>
+    <string name="not_available">N/A</string>
+    <string name="budgetBuddy">BudgetBuddy</string>
+    <string name="totalExpense">Total Expense</string>
 </resources>

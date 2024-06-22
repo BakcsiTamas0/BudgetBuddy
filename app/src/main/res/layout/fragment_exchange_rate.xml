@@ -16,49 +16,54 @@
         android:textAlignment="center"
         android:textSize="20sp" />
 
-    <RelativeLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="10dp"
+        android:padding="20dp"
+        android:rowCount="2"
+        android:columnCount="2"
+        android:layout_gravity="center"
         android:background="@drawable/custom_view_holder_6">
 
-        <ImageView
-            android:id="@+id/defaultCountryImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginStart="50dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Default country"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Default currency"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/defaultCountry"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:layout_marginStart="130dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
+            android:layout_columnWeight="1"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/defaultCurrency"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="50dp"
-            android:layout_centerVertical="true"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_columnWeight="1"
             android:textAlignment="center"/>
 
-    </RelativeLayout>
+    </GridLayout>
 
     <View
         android:layout_width="310dp"

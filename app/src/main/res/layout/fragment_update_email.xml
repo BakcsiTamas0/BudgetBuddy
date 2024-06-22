@@ -45,26 +45,6 @@
                     android:textAlignment="center"
                     android:textSize="16sp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="Your current email address"
-                    android:textAlignment="center"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:id="@+id/currentEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="PLACEHOLDER"
-                    android:textAlignment="center"
-                    android:textSize="16sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -72,7 +52,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="25dp"
-                    android:text="And you want to change it to..."
+                    android:text="And you want to change your email to..."
                     android:textAlignment="center"
                     android:textSize="16sp"/>
 
@@ -83,7 +63,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="25dp"
-                    android:text="PLACEHOLDER"
+                    android:hint="Enter new email address here..."
                     android:textAlignment="center"
                     android:textSize="16sp"/>
 

@@ -38,7 +38,6 @@
                     android:layout_width="320dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
-                    android:text="0.00"
                     android:textAlignment="center"
                     android:textSize="30sp" />
             </LinearLayout>
@@ -80,7 +79,6 @@
                     android:layout_width="320dp"
                     android:layout_height="45dp"
                     android:layout_marginTop="15dp"
-                    android:text="0.00"
                     android:textAlignment="center"
                     android:textSize="30sp" />
 

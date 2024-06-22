@@ -55,6 +55,42 @@ class HandleExpenseCRUD(requireContext: Context) {
         })
     }
 
+    fun fetchTotalExpenseAmount(username: String, callback: (Double) -> Unit) {
+        val call: Call<Double> = apiService.getTotalExpenseAmount(username)
+        call.enqueue(object: Callback<Double> {
+            override fun onResponse(call: Call<Double>, response: Response<Double>) {
+                if (response.isSuccessful) {
+                    val totalAmount = response.body()!!.toDouble()
+                    callback(totalAmount)
+                } else {
+                    callback(0.0)
+                }
+            }
+
+            override fun onFailure(call: Call<Double>, t: Throwable) {
+                callback(0.0)
+            }
+        })
+    }
+
+    fun fetchSavings(username: String, callback: (Double) -> Unit) {
+        val call: Call<Double> = apiService.getSavings(username)
+        call.enqueue(object: Callback<Double> {
+            override fun onResponse(call: Call<Double>, response: Response<Double>) {
+                if (response.isSuccessful) {
+                    val savings = response.body()!!.toDouble()
+                    callback(savings)
+                } else {
+                    callback(0.0)
+                }
+            }
+
+            override fun onFailure(call: Call<Double>, t: Throwable) {
+                callback(0.0)
+            }
+        })
+    }
+
     fun deleteExpenseData(username: String, incomeType: String, amount: Double) {
         val call: Call<ExpenseData> = apiService.deleteExpenseDataByUsername(username, incomeType, amount)
 

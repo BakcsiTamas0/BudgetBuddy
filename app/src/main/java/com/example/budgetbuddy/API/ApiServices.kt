@@ -7,6 +7,7 @@ import com.example.budgetbuddy.DataClasses.UserData.UserExpenseDataResponse
 import com.example.budgetbuddy.DataClasses.UserData.UserIncomeDataResponse
 import com.google.android.gms.tasks.Task
 import retrofit2.Call
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -64,6 +65,16 @@ interface ApiServices {
     fun getExpenseDataByUsername(
         @Path("username") username: String
     ): Call<UserExpenseDataResponse>
+
+    @POST("get_total_expense_amount/{username}")
+    fun getTotalExpenseAmount(
+        @Path("username") username: String
+    ): Call<Double>
+
+    @POST("get_savings/{username}")
+    fun getSavings(
+        @Path("username") username: String
+    ): Call<Double>
 
     @POST("delete_expense_data_by_username/{username}/{incomeType}/{amount}")
     fun deleteExpenseDataByUsername(

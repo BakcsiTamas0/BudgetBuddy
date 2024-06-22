@@ -42,7 +42,6 @@ class UpdatePasswordFragment : Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_update_password, container, false)
 
-        currentPassword = view.findViewById(R.id.currentPassword)
         newPasswordET = view.findViewById(R.id.newPassword)
         updatePasswordSaveButton = view.findViewById(R.id.updatePasswordSaveButton)
 

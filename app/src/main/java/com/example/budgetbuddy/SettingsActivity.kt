@@ -4,17 +4,23 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.Adapters.SettingsAdapter.SettingsAdapter
 import com.example.budgetbuddy.DataClasses.SettingsData.SettingsItem
+import com.example.budgetbuddy.Fragments.RegionSettings.RegionSettingsFragment
 import com.example.budgetbuddy.Fragments.Settings.UpdateUsernameFragment
 import com.example.budgetbuddy.Utils.ConnectivityReceiver
 import com.example.budgetbuddy.Utils.NetworkChecker
 import com.example.budgetbuddy.databinding.ActivitySettingsBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 
-class SettingsActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityChangeListener {
+class SettingsActivity : AppCompatActivity(),
+    ConnectivityReceiver.ConnectivityChangeListener,
+    RegionSettingsFragment.RegionSettingsListener
+{
     private val connectivityReceiver = ConnectivityReceiver(this)
     private val networkChecker = NetworkChecker()
 
@@ -27,15 +33,18 @@ class SettingsActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityC
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = intent.getStringExtra("USERNAME").toString()
+        val username: String = intent.getStringExtra("USERNAME").toString()
 
         settings = mutableListOf<SettingsItem>(
-            SettingsItem("Account", listOf("Update profile picture", "Change username", "Change password", "Change email", "Update region and currency", "Delete account")),
+            SettingsItem("Account",listOf("Update profile picture", "Change username", "Change password", "Change email", "Update region and currency", "Delete account")),
             SettingsItem("Notifications", listOf("Push notifications", "Email notifications")),
-            SettingsItem("Privacy and security",),
+            SettingsItem("Privacy and security", listOf("Biometric authentication")),
             SettingsItem("General",),
             SettingsItem("Log out"),
         )
+
+        val googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this)
+        val allSettings = mutableListOf<String>()
 
         adapter = SettingsAdapter(
             this,
@@ -60,6 +69,18 @@ class SettingsActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityC
     override fun onConnectivityChange(isConnected: Boolean) {
         if (!(isConnected)) {
             networkChecker.checkConnectivity(this)
+        }
+    }
+
+    override fun onSaveUserRegionSettings() {
+        saveUserRegionSettings()
+    }
+
+    private fun saveUserRegionSettings() {
+        val sharedPref = getSharedPreferences("userRegionSettings", MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putBoolean("hasUserSetRegion", true)
+            apply()
         }
     }
 }

@@ -105,15 +105,22 @@ class ExchangeFragment : Fragment() {
     private fun updateExchangeResult() {
         val amountString = currencyOneTextView.text.toString()
         if (amountString.isNotBlank()) {
-            val amount = amountString.toDouble()
+            try {
+                val amount = amountString.toDouble()
 
-            val selectedCurrencyOne = exchangeOneSpinner.selectedItem as ExchangeItem
-            val selectedCurrencyTwo = exchangeTwoSpinner.selectedItem as ExchangeItem
+                val selectedCurrencyOne = exchangeOneSpinner.selectedItem as ExchangeItem
+                val selectedCurrencyTwo = exchangeTwoSpinner.selectedItem as ExchangeItem
 
-            val result = calculateExchange(amount, selectedCurrencyOne.rate, selectedCurrencyTwo.rate)
-            currencyTwoTextView.text = result.toString()
+                val result = calculateExchange(amount, selectedCurrencyOne.rate, selectedCurrencyTwo.rate)
+                currencyTwoTextView.text = String.format("%.2f", result)
+            } catch (e: Exception) {
+                currencyTwoTextView.text = "0.00"
+            }
+        } else {
+            currencyTwoTextView.text = "0.00"
         }
     }
+
 
     private fun calculateExchange(amount: Double, rateCurrencyOne: Double, rateCurrencyTwo: Double): Double {
         return (amount / rateCurrencyOne) * rateCurrencyTwo

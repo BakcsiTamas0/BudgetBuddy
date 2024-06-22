@@ -77,4 +77,26 @@ class RegionSettingsUtils {
             else -> item.currency
         }
     }
+
+    fun setFullCountryNameFromString(currencyName: String): String {
+        return when (currencyName) {
+            "RON" -> "Romania"
+            "CAD" -> "Canada"
+            "CHF" -> "Switzerland"
+            "CNY" -> "China"
+            "CZK" -> "Czech Republic"
+            "DKK" -> "Denmark"
+            "GBP" -> "United Kingdom"
+            "HRK" -> "Croatia"
+            "HUF" -> "Hungary"
+            "JPY" -> "Japan"
+            "NOK" -> "Norway"
+            "PLN" -> "Poland"
+            "RUB" -> "Russia"
+            "SEK" -> "Sweden"
+            "TRY" -> "Turkey"
+            "USD" -> "United States"
+            else -> currencyName
+        }
+    }
 }

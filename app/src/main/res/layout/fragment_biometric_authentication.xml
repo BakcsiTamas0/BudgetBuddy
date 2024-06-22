@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Settings.UpdatePasswordFragment"
+    tools:context=".Fragments.Settings.BiometricAuthenticationFragment"
     android:background="@color/transparent">
 
     <FrameLayout
-        android:id="@+id/updatePasswordLayout"
+        android:id="@+id/biometricAuthenticationLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_marginStart="15dp"
-                    android:text="So you want to change your password..."
+                    android:text="Biometric Authentication"
                     android:textAlignment="center"
                     android:textSize="18sp"/>
 
@@ -41,39 +41,18 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="15dp"
-                    android:text="keep in mind that you are allowed to change your password only once a month"
-                    android:textAlignment="center"
-                    android:textSize="16sp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="25dp"
-                    android:text="And you want to change your password to..."
-                    android:textAlignment="center"
-                    android:textSize="16sp"/>
-
-                <EditText
-                    android:id="@+id/newPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="25dp"
-                    android:hint="Enter new password here..."
+                    android:text="Here you can set up biometric authentication for better security of your account"
                     android:textAlignment="center"
                     android:textSize="16sp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/updatePasswordSaveButton"
+                    android:id="@+id/setupBiometricAuthentication"
                     android:layout_width="125dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Save"
+                    android:text="Set Up"
                     android:background="@drawable/custom_button"/>
             </LinearLayout>
 

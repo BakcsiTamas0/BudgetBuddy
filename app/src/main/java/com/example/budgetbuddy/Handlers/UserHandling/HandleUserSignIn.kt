@@ -23,7 +23,6 @@ import com.google.firebase.messaging.FirebaseMessaging
 class HandleUserSignIn : AppCompatActivity() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN = 7007
 
     private lateinit var signInLauncher: ActivityResultLauncher<Intent>
 
@@ -32,6 +31,7 @@ class HandleUserSignIn : AppCompatActivity() {
         setContentView(R.layout.activity_handle_user_sign_in)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
@@ -61,20 +61,23 @@ class HandleUserSignIn : AppCompatActivity() {
                 Toast.makeText(this,"Sign-in failed", Toast.LENGTH_SHORT).show()
             }
         } catch (e: ApiException) {
+            Log.e("SignInError", "Error code: ${e.statusCode}, message: ${e.message}", e)
             updateUI(null)
         }
     }
+
 
     private fun updateUI(account: GoogleSignInAccount?) {
         if (account != null) {
             val email = account.email.toString()
             val displayName = account.displayName.toString()
+            val accountTokenID = account.idToken.toString()
 
             if (!isUserRegistered(email)) {
                 val googleUserSave = GoogleUserSave()
 
                 getFirebaseMessagingToken { messageToken ->
-                    googleUserSave.saveGoogleUser(displayName, email, messageToken)
+                    googleUserSave.saveGoogleUser(displayName, email, accountTokenID, messageToken)
                 }
 
                 setRegisteredUser(email)

@@ -50,7 +50,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/moneySpent"
+                android:text="@string/totalExpense"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@android:color/transparent"
@@ -70,25 +70,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="None"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:text="N/A"/>
 
             <View
                 android:layout_width="10dp"
                 android:layout_height="1dp" />
 
             <TextView
-                android:id="@+id/dashboardSpentMoney"
+                android:id="@+id/dashboardMoneySpent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="None"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:text="N/A"/>
         </LinearLayout>
 
         <LinearLayout
@@ -102,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/totalExpense"
+                android:text="@string/estimatedExpense"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@android:color/transparent"
@@ -131,30 +131,30 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/dashboardTotalExpense"
+                android:id="@+id/dashboardEstimatedExpense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="None"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:text="N/A"/>
 
             <View
                 android:layout_width="10dp"
                 android:layout_height="1dp" />
 
             <TextView
-                android:id="@+id/dashboardSavedMoney"
+                android:id="@+id/dashboardMoneySaved"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="None"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:text="N/A"/>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

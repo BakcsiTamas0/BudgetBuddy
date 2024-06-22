@@ -13,8 +13,8 @@ class GoogleUserSave {
     private val retrofit: Retrofit = RetrofitUtils.initRetrofit()
     private val userRegisterAPI = retrofit.create(GoogleAPI::class.java)
 
-    fun saveGoogleUser(username: String, email: String, messageToken: String) {
-        val call = userRegisterAPI.registerGoogleUser(username, email, messageToken)
+    fun saveGoogleUser(username: String, email: String, accountTokenID: String, messageToken: String) {
+        val call = userRegisterAPI.registerGoogleUser(username, email, accountTokenID, messageToken)
 
         call.enqueue(object: Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {

@@ -76,7 +76,6 @@ class RegisterActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityC
                 val checkedEmailAddress = registerUtils.checkIfValidEmailAddress(emailAddressString)
 
                 getFirebaseMessagingToken{ messageToken ->
-
                     if (checkedPassword && checkedEmailAddress) {
                         handleRegister.registerUser(
                             username,

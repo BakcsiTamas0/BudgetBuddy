@@ -7,7 +7,9 @@ import retrofit2.http.Path
 
 interface ExpenseFetch {
     @GET("/expense_chart_data/{username}")
-    fun getExpenseChartData(@Path("username") username: String): Call<ExpenseChartDataResponse>
+    fun getExpenseChartData(
+        @Path("username") username: String
+    ): Call<ExpenseChartDataResponse>
 }
 
 

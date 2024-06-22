@@ -10,7 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="vertical"
         android:background="@color/transparent">
 
@@ -59,6 +61,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
@@ -121,7 +124,7 @@
                         android:layout_marginBottom="5dp"
                         android:text="* there can only be 5 active users per account"
                         android:textSize="14sp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:layout_below="@id/addUserRecyclerView"/>
 
                 </RelativeLayout>

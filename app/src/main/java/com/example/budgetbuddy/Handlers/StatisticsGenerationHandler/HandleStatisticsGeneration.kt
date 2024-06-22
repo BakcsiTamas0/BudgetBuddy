@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 
 class HandleStatisticsGeneration (
@@ -98,28 +99,30 @@ class HandleStatisticsGeneration (
 
     private fun saveFile(responseBody: ResponseBody, context: Context) {
         try {
-
+            val fileName = "statistics.pdf"
             val directory = File(context.filesDir, "BudgetBuddyApp/Statistics")
-            val file = File(directory, "statistics.pdf")
+            if (!directory.exists()) {
+                directory.mkdirs()
+            }
+            val file = File(directory, fileName)
 
-            if (file.exists()) {
-                val uri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
-
-
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.setDataAndType(uri, "application/pdf")
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-
-                try {
-                    context.startActivity(intent)
-                } catch (e: ActivityNotFoundException) {
-                    Toast.makeText(context, "No PDF viewer found", Toast.LENGTH_SHORT).show()
+            responseBody.byteStream().use { input ->
+                FileOutputStream(file).use { output ->
+                    input.copyTo(output)
                 }
-            } else {
-                Log.d("HandleStatisticsGeneration", "File does not exist")
             }
 
+            val uri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
 
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setDataAndType(uri, "application/pdf")
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            try {
+                context.startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(context, "No PDF viewer found", Toast.LENGTH_SHORT).show()
+            }
         } catch (e: IOException) {
             Log.e("HandleStatisticsGeneration", "Error saving file: ${e.message}")
         }

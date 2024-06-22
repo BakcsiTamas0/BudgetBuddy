@@ -1,8 +1,10 @@
 package com.example.budgetbuddy
 
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,22 +13,27 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import com.example.budgetbuddy.BiometricAuthentication.HandleBiometricAuthentication
+import com.example.budgetbuddy.Handlers.Settings.HandleSettings
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin
 import com.example.budgetbuddy.Handlers.UserHandling.HandleLogin.Companion.authenticateUser
 import com.example.budgetbuddy.Handlers.UserHandling.HandleUserSignIn
 import com.example.budgetbuddy.Utils.BackendPinger
+import com.example.budgetbuddy.Utils.BiometricAuthenticationUtils
 import com.example.budgetbuddy.Utils.ConnectivityReceiver
 import com.example.budgetbuddy.Utils.CustomTextUtils
 import com.example.budgetbuddy.Utils.NetworkChecker
 import com.example.budgetbuddy.Utils.PingListener
 
-class LoginActivity : AppCompatActivity()
-    //ConnectivityReceiver.ConnectivityChangeListener,
-    //PingListener
-{
-    //private val connectivityReceiver = ConnectivityReceiver(this)
-    //private val networkChecker = NetworkChecker()
-    //private lateinit var backendPinger: BackendPinger
+class LoginActivity : AppCompatActivity(),
+    HandleBiometricAuthentication.BiometricAuthCallback,
+    ConnectivityReceiver.ConnectivityChangeListener,
+    PingListener {
+
+    private val connectivityReceiver = ConnectivityReceiver(this)
+    private val networkChecker = NetworkChecker()
+    private lateinit var backendPinger: BackendPinger
 
     private lateinit var customTextUtils: CustomTextUtils
     private lateinit var registerFromLogin: TextView
@@ -42,12 +49,15 @@ class LoginActivity : AppCompatActivity()
     private lateinit var password: EditText
     private lateinit var remember: CheckBox
 
+    private lateinit var biometricAuthentication: HandleBiometricAuthentication
+    private lateinit var settingsHandler: HandleSettings
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //backendPinger = BackendPinger(this)
-        //backendPinger.start()
+        backendPinger = BackendPinger(this)
+        backendPinger.start()
 
         customTextUtils = CustomTextUtils()
 
@@ -70,27 +80,21 @@ class LoginActivity : AppCompatActivity()
         }
 
         loginBtn.setOnClickListener {
-            authenticateUser(username.text.toString(), password.text.toString(), object : HandleLogin.AuthCallback {
+            authenticateUser(username.text.toString(), password.text.toString(), this, object : HandleLogin.AuthCallback {
                 override fun onAuthSuccess() {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra("USERNAME", username.text.toString())
                     startActivity(intent)
                 }
 
-                override fun onAuthError() {
+                override fun onAuthError(errorCode: Int) {
                     Log.d("Error", "Login failed! Check your credentials and try again!")
                 }
-
             })
             if (remember.isChecked) {
                 savePreferences()
             } else {
                 clearPreferences()
-            }
-
-            if (username.text.toString() != "" && password.text.toString() != "") {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
             }
         }
 
@@ -99,25 +103,29 @@ class LoginActivity : AppCompatActivity()
             startActivity(register)
         }
 
+        settingsHandler = HandleSettings()
+
         loadPreferences()
+        checkBiometricPreference()
     }
 
-    //override fun onResume() {
-    //    super.onResume()
-    //    loadPreferences()
-    //    registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-    //}
+    override fun onResume() {
+        super.onResume()
+        loadPreferences()
+        checkBiometricPreference()
+        registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    }
 
-    //override fun onPause() {
-    //    super.onPause()
-    //    unregisterReceiver(connectivityReceiver)
-    //}
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(connectivityReceiver)
+    }
 
-    //override fun onConnectivityChange(isConnected: Boolean) {
-    //    if (!(isConnected)) {
-    //        networkChecker.checkConnectivity(this)
-    //    }
-    //}
+    override fun onConnectivityChange(isConnected: Boolean) {
+        if (!(isConnected)) {
+            networkChecker.checkConnectivity(this)
+        }
+    }
 
     private fun savePreferences() {
         val preferences = getSharedPreferences(PREFS_NAME, 0)
@@ -148,16 +156,63 @@ class LoginActivity : AppCompatActivity()
         remember.isChecked = rememberValue
     }
 
-    //override fun onPingSuccess(responseCode: Int) {
-    //    Log.d("Success", responseCode.toString())
-    //}
+    private fun checkBiometricPreference() {
+        Log.d("LoginActivity", "Checking biometric preference")
+        val preferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val isBiometricEnabled = preferences.getBoolean("biometric_enabled", false)
 
-    //override fun onPingFailure(exception: Exception) {
-    //  Log.d("Error", exception.toString())
-    //}
+        Log.d("LoginActivity", "Biometric enabled: $isBiometricEnabled")
 
-    //override fun onDestroy() {
-    //    super.onDestroy()
-    //    backendPinger.stop()
-    //}
+        if (isBiometricEnabled) {
+            biometricAuthentication = HandleBiometricAuthentication(this)
+            biometricAuthentication.showBiometricPrompt()
+        }
+    }
+
+    override fun onPingSuccess(responseCode: Int) {
+        Log.d("Success", responseCode.toString())
+    }
+
+    override fun onPingFailure(exception: Exception) {
+        Log.d("Error", exception.toString())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        backendPinger.stop()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onBiometricAuthSuccess() {
+        Log.d("LoginActivity", "Biometric authentication succeeded!")
+        val biometricUtils = BiometricAuthenticationUtils()
+        val publicKey = biometricUtils.getPublicKey()
+
+        if (publicKey != null) {
+            settingsHandler.validateBiometricAuth(publicKey, object : HandleBiometricAuthentication.BiometricAuthCallback {
+                override fun onBiometricAuthSuccess() {
+                    Log.d("LoginActivity", "Biometric authentication succeeded!")
+                    settingsHandler.getUsernameByKey(publicKey, object : HandleBiometricAuthentication.UsernameCallback {
+                        override fun onUsernameReceived(username: String) {
+                            Log.d("LoginActivity", "Checking username")
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.putExtra("USERNAME", username)
+                            startActivity(intent)
+                        }
+                    })
+
+                }
+
+                override fun onBiometricAuthError(errorCode: Int, errString: CharSequence) {
+                    Log.d("LoginActivity", "Biometric authentication failed: $errString")
+                }
+            })
+        } else {
+            Log.d("LoginActivity", "No public key found in keystore")
+        }
+    }
+
+    override fun onBiometricAuthError(errorCode: Int, errString: CharSequence) {
+        Log.d("LoginActivity", "Biometric authentication error: $errString")
+    }
 }

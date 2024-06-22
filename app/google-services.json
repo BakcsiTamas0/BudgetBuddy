@@ -7,31 +7,21 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:227161700693:android:50aeb1934effcda1ee97dc",
-        "android_client_info": {
-          "package_name": "com.example.BudgetBuddy"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAAy7enXm_yH66P4CfOVq7mf-7uLeCuY0k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:227161700693:android:70d93a0bf4ae3e1cee97dc",
         "android_client_info": {
           "package_name": "com.example.budgetbuddy"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "227161700693-75qe2gva1t3curhbn9lk5gtmr01506sq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budgetbuddy",
+            "certificate_hash": "a91534654d46b9dc4eaab1a996e565eed0657ffe"
+          }
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAAy7enXm_yH66P4CfOVq7mf-7uLeCuY0k"

@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Statistics"
+        android:text="AI Chatbot"
         android:textAlignment="center"
         android:textSize="18sp"
         android:layout_marginTop="5dp"
@@ -25,24 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:text="Estimated expenses"
+            android:layout_marginEnd="25dp"
+            android:text="If you have any questions about your bugdeting enter them below to get tips and tricks on how to save more money."
+            android:textAlignment="center"
             android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/estimatedExpenseValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PLACEHOLDER"
-            android:layout_marginStart="75dp"
-            android:layout_toEndOf="@id/estimatedExpenseTextView"/>
-
-        <TextView
-            android:id="@+id/estimatedExpenseCurrency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NIL"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@id/estimatedExpenseValue"/>
 
 
     </RelativeLayout>
@@ -50,7 +36,7 @@
     <View
         android:layout_width="250dp"
         android:layout_height="5dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="42dp"
         android:layout_marginBottom="5dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/custom_view_holder">

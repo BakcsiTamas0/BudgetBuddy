@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budgetbuddy.API.ExchangeAPI.ExchangeAPI
-import com.example.budgetbuddy.API.RegionAPI.RegionAPI
 import com.example.budgetbuddy.Adapters.ExchangeAdapter.ExchangeRecyclerViewAdapter
 import com.example.budgetbuddy.DataClasses.ExchangeData.ExchangeItem
 import com.example.budgetbuddy.DataClasses.RegionData.RegionResponse
@@ -55,28 +54,27 @@ class ExchangeRateFragment : Fragment() {
 
         defaultCountry = view.findViewById(R.id.defaultCountry)
         defaultCurrency = view.findViewById(R.id.defaultCurrency)
-        defaultCountryImage = view.findViewById(R.id.defaultCountryImage)
 
         val exchangeAPI = ExchangeAPI("feea76798c5086d49afc470d")
         var exchangeRates: MutableList<ExchangeItem>
 
         selectedCurrencies = listOf("RON", "EUR", "USD", "GBP", "CAD", "CHF", "CNY", "CZK", "DKK", "HRK", "HUF", "JPY", "NOK", "PLN", "RUB", "SEK", "TRY")
 
-        lifecycleScope.launch {
-            exchangeRates = exchangeAPI.getExchangeRates("RON").toMutableList()
-            exchangeRates = exchangeRates.filter { it.currency in selectedCurrencies }.toMutableList()
-
-            exchangeRecyclerView = view.findViewById(R.id.exchangeRecyclerView)
-            exchangeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-            val adapter = ExchangeRecyclerViewAdapter(requireContext(), exchangeRates)
-            exchangeRecyclerView.adapter = adapter
-        }
-
-
         regionCRUD.getRegion(username, object : HandleRegionCRUD.onRegionResponseReceived {
             override fun onRegionResponseReceived(regionResponse: RegionResponse) {
                 val regionData = regionResponse.response
+
+                lifecycleScope.launch {
+                    exchangeRates = exchangeAPI.getExchangeRates(regionData[0][1]).toMutableList()
+                    exchangeRates = exchangeRates.filter { it.currency in selectedCurrencies }.toMutableList()
+
+                    exchangeRecyclerView = view.findViewById(R.id.exchangeRecyclerView)
+                    exchangeRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+                    val adapter = ExchangeRecyclerViewAdapter(requireContext(), exchangeRates)
+                    exchangeRecyclerView.adapter = adapter
+                }
+
                 updateDefaultCountryAndRegion(regionData)
             }
         })
@@ -95,7 +93,7 @@ class ExchangeRateFragment : Fragment() {
     }
 
     private fun updateDefaultCountryAndRegion(regionData: List<List<String>>) {
-        defaultCountry.text = regionData[0][0]
+        defaultCountry.text = regionUtils.setFullCountryNameFromString(regionData[0][0])
         defaultCurrency.text = regionData[0][1]
     }
 }
